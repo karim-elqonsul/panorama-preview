@@ -1,0 +1,1002 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="معاينة تصميم متجر بانوراما برينت على سلة">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>متجر بانوراما برينت</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&display=swap">
+<style>
+/* Layout: Salla Raed-compatible store — 1200 container, RTL, white surfaces with warm paper bands, charcoal anchors, burnt-orange actions, spectrum ribbon as the only multicolor signature */
+:root{
+  --orange-50:#FDF1E7; --orange-100:#FBE0C8; --orange-500:#E8823A; --orange-600:#D9661A; --orange-700:#C2560F; --orange-800:#9E4510;
+  --ink:#2C2B29; --ink-800:#3A3936; --ink-600:#5C5A55; --ink-400:#8A877F; --ink-300:#D9D5CC; --ink-200:#E9E5DD; --ink-100:#F3F0EA;
+  --paper:#FAF7F2; --white:#FFFFFF; --success:#2E9E4F; --wa:#25D366;
+  --spectrum:linear-gradient(90deg,#DADF28,#3EB54D 25%,#0FA8BE 50%,#2285C7 75%,#2E358D);
+  --font:"Alexandria","Tajawal","Segoe UI",Tahoma,sans-serif;
+  --r-sm:8px; --r-md:14px; --r-lg:20px; --r-xl:28px;
+  --container:1200px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--white);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.7;direction:rtl;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--white)}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+img{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--orange-500);outline-offset:2px;border-radius:6px}
+.wrap{max-width:calc(var(--container) + 32px);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.num{font-variant-numeric:tabular-nums}
+h1,h2,h3,h4{margin:0;line-height:1.25;text-wrap:balance}
+p{margin:0}
+
+/* ---------- top bars */
+.announce{background:var(--ink);color:var(--white);font-size:13px}
+.announce .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:9px}
+.announce .meta{display:flex;gap:20px;opacity:.9}
+.ic{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ic.sm{width:15px;height:15px}
+.row{display:flex;align-items:center;gap:8px}
+.ribbon{height:3px;background:var(--spectrum)}
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--white);border-bottom:1px solid var(--ink-200)}
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:14px}
+.logo img{width:104px;height:auto}
+.search{flex:1;max-width:540px;display:flex;align-items:center;gap:10px;background:var(--ink-100);border-radius:999px;padding:12px 20px;color:var(--ink-400)}
+.search input{border:0;background:transparent;font:inherit;color:var(--ink);flex:1;min-width:0;outline:none}
+.search input::placeholder{color:var(--ink-400)}
+.actions{display:flex;align-items:center;gap:10px}
+.icon-btn{position:relative;width:46px;height:46px;border:1px solid var(--ink-200);border-radius:var(--r-md);display:grid;place-items:center;background:var(--white);color:var(--ink)}
+.icon-btn .badge-count{position:absolute;top:-6px;left:-6px;background:var(--orange-700);color:var(--white);font-size:11px;font-weight:700;width:20px;height:20px;border-radius:50%;display:grid;place-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:var(--r-md);font-weight:600;font-size:15px;padding:14px 26px;line-height:1.2;white-space:nowrap;transition:background .15s,transform .15s}
+.btn:active{transform:translateY(1px)}
+.btn.sm{font-size:13px;padding:10px 18px}
+.btn-primary{background:var(--orange-700);color:var(--white)}
+.btn-primary:hover{background:var(--orange-800)}
+.btn-dark{background:var(--ink);color:var(--white)}
+.btn-dark:hover{background:#000}
+.btn-light{background:var(--white);color:var(--ink)}
+.btn-brand{background:var(--orange-500);color:var(--ink)}
+.btn-outline{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink-300)}
+.btn-ghost-light{background:transparent;color:var(--white);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.7)}
+.btn-block{width:100%}
+.mainnav{border-top:1px solid var(--ink-200)}
+.mainnav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.mainnav ul{list-style:none;margin:0;padding:12px 0;display:flex;gap:22px;overflow-x:auto;scrollbar-width:none}
+.mainnav ul::-webkit-scrollbar{display:none}
+.mainnav a{display:flex;align-items:center;gap:4px;font-size:14px;font-weight:500;white-space:nowrap;color:var(--ink)}
+.mainnav a:hover{color:var(--orange-700)}
+.mainnav .chev{width:13px;height:13px;color:var(--ink-400)}
+.offer-chip{display:inline-flex;align-items:center;gap:6px;background:var(--orange-50);color:var(--orange-700);font-weight:600;font-size:13px;padding:7px 14px;border-radius:999px;white-space:nowrap}
+.menu-btn{display:none}
+
+/* ---------- shared */
+.section{padding-block:72px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(26px,3vw,36px);font-weight:800}
+.sec-head p{color:var(--ink-600);margin-top:6px}
+.link-more{display:flex;align-items:center;gap:6px;color:var(--orange-700);font-weight:600;white-space:nowrap}
+.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;font-size:12px;font-weight:600;padding:5px 12px;line-height:1.3;white-space:nowrap}
+.badge.unit{background:var(--orange-500);color:var(--ink)}
+.badge.dark{background:var(--ink);color:var(--white)}
+.badge.soft{background:var(--orange-50);color:var(--orange-700)}
+.badge.ok{background:#E3F4E8;color:#1F7A3B}
+
+/* ---------- hero */
+.hero{padding-top:24px}
+.slider{position:relative;border-radius:var(--r-xl);overflow:hidden;background:var(--orange-700)}
+.slide{display:grid;grid-template-columns:1.2fr 1fr;min-height:480px}
+.slide[hidden]{display:none!important}
+.slide .copy{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--orange-600),var(--orange-800));color:var(--white);padding:56px 60px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:18px}
+.slide.dark .copy{background:linear-gradient(180deg,var(--ink-800),var(--ink))}
+.slide .copy h1,.slide .copy h2{font-size:clamp(32px,4.2vw,52px);font-weight:900;line-height:1.15;position:relative}
+.slide .copy h1 em,.slide .copy h2 em{font-style:normal;color:var(--ink)}
+.slide.dark .copy h2 em{color:var(--orange-500)}
+.slide .copy p{font-size:17px;max-width:30em;opacity:.95;position:relative}
+.slide .media{position:relative;background-size:cover;background-position:center}
+.proof{position:absolute;right:20px;bottom:20px;background:var(--white);color:var(--ink);font-size:12px;font-weight:600;padding:8px 14px;border-radius:999px;display:flex;gap:6px;align-items:center}
+.swoosh{position:absolute;left:-84px;bottom:-96px;width:210px;opacity:.95;pointer-events:none}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;position:relative}
+.dots{display:flex;justify-content:center;gap:8px;margin-top:16px}
+.dots button{width:8px;height:8px;border-radius:4px;border:0;background:var(--ink-300);padding:0;transition:width .2s,background .2s}
+.dots button[aria-current="true"]{width:28px;background:var(--orange-700)}
+
+/* stats */
+.stats{margin-top:36px;background:var(--paper);border-radius:var(--r-lg);padding:26px 36px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat{display:flex;align-items:center;gap:14px;position:relative}
+.stat + .stat::before{content:"";position:absolute;right:-8px;top:12%;height:76%;width:1px;background:var(--ink-300)}
+.stat .ico{width:52px;height:52px;border-radius:16px;background:var(--orange-50);color:var(--orange-700);display:grid;place-items:center;flex:none}
+.stat .ico .ic{width:24px;height:24px}
+.stat b{display:block;font-size:24px;font-weight:800;line-height:1.2}
+.stat span{color:var(--ink-600);font-size:13px}
+
+/* categories */
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.cat{position:relative;aspect-ratio:282/340;border-radius:var(--r-lg);overflow:hidden;background-size:cover;background-position:center;color:var(--white);display:flex;flex-direction:column;justify-content:flex-end;padding:20px;isolation:isolate;transition:transform .2s}
+.cat::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(44,43,41,0) 40%,rgba(44,43,41,.9));z-index:-1}
+.cat:hover{transform:translateY(-3px)}
+.cat h3{font-size:20px;font-weight:700}
+.cat small{font-size:12px;opacity:.85}
+.cat .tag{position:absolute;top:16px;right:16px;font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;display:flex;gap:6px;align-items:center;color:var(--ink)}
+.cat .tag.online{background:var(--orange-500)}
+.cat .tag.quote{background:var(--white)}
+
+/* paths */
+.paths{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.path{display:grid;grid-template-columns:1fr 210px;border-radius:24px;overflow:hidden;min-height:270px}
+.path.dark{background:var(--ink);color:var(--white)}
+.path.soft{background:var(--orange-50);box-shadow:inset 0 0 0 1.5px var(--orange-500)}
+.path .body{padding:30px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px}
+.path h3{font-size:24px;font-weight:700}
+.path p{font-size:15px;opacity:.88}
+.path .pi{width:44px;height:44px;border-radius:14px;display:grid;place-items:center}
+.path.dark .pi{background:var(--orange-500);color:var(--ink)}
+.path.soft .pi{background:var(--ink);color:var(--white)}
+.path .img{background-size:cover;background-position:center}
+
+/* product cards */
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.pcard{position:relative;border:1px solid var(--ink-200);border-radius:var(--r-lg);overflow:hidden;background:var(--white);display:flex;flex-direction:column;transition:box-shadow .2s,transform .2s}
+.pcard:hover{box-shadow:0 14px 34px -18px rgba(44,43,41,.35);transform:translateY(-2px)}
+.pcard .media{position:relative;aspect-ratio:1;background:var(--paper)}
+.pcard .media img{width:100%;height:100%;object-fit:cover}
+.pcard .media .badge{position:absolute;top:12px;right:12px}
+.pcard .fav{position:absolute;z-index:2;top:12px;left:12px;width:36px;height:36px;border-radius:50%;border:0;background:var(--white);display:grid;place-items:center;color:var(--ink-600)}
+.pcard .body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.pcard .cat-name{font-size:12px;color:var(--ink-400)}
+.pcard h3{font-size:16px;font-weight:600;line-height:1.5;min-height:3em}
+.rating{display:flex;align-items:center;gap:4px;font-size:12px}
+.rating .star{width:14px;height:14px;fill:var(--orange-500);stroke:none}
+.rating b{font-weight:600}
+.rating span{color:var(--ink-400)}
+.price{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.price small{font-size:12px;color:var(--ink-600)}
+.price strong{font-size:18px;font-weight:700}
+.eta{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-600)}
+.pcard .btn{margin-top:auto}
+
+/* steps */
+.band{background:var(--paper);margin-top:80px;padding-block:72px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.step{background:var(--white);border:1px solid var(--ink-200);border-radius:var(--r-lg);padding:28px;display:flex;flex-direction:column;gap:10px}
+.step .n{width:48px;height:48px;border-radius:50%;background:var(--orange-500);display:grid;place-items:center;font-weight:700;font-size:20px}
+.step h3{font-size:20px;font-weight:700}
+.step p{color:var(--ink-600)}
+
+/* clients */
+.clients{background:var(--ink);color:var(--white);padding-block:72px;text-align:center}
+.clients h2{font-size:clamp(26px,3vw,36px);font-weight:800}
+.clients p{opacity:.75;margin-top:8px}
+.clients img{margin:32px auto 0;width:min(1100px,100%)}
+
+/* portfolio */
+.bento{display:grid;grid-template-columns:1fr 1fr 2fr;grid-template-rows:200px 200px;gap:24px}
+.work{position:relative;border-radius:var(--r-lg);overflow:hidden;background-size:cover;background-position:center;color:var(--white);display:flex;flex-direction:column;justify-content:flex-end;padding:16px 18px;isolation:isolate}
+.work::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(44,43,41,.88));z-index:-1}
+.work b{font-size:16px}
+.work small{font-size:12px;opacity:.85}
+.work.big{grid-column:3;grid-row:1 / span 2}
+
+/* season */
+.season{display:grid;grid-template-columns:1.4fr 1fr;border-radius:var(--r-xl);overflow:hidden;background:var(--ink);color:var(--white);min-height:260px}
+.season .body{padding:40px 52px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:12px}
+.season h2{font-size:clamp(28px,3.4vw,40px);font-weight:800}
+.season p{opacity:.82;max-width:34em}
+.season .img{background-size:cover;background-position:center}
+
+/* faq */
+.faq{display:grid;grid-template-columns:376px 1fr;gap:64px;align-items:start}
+.faq .intro{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.faq .intro h2{font-size:clamp(26px,3vw,36px);font-weight:800}
+.faq .intro p{color:var(--ink-600)}
+.acc{display:flex;flex-direction:column;gap:12px}
+.acc details{border:1px solid var(--ink-200);border-radius:16px;background:var(--white);transition:background .2s}
+.acc details[open]{background:var(--paper)}
+.acc summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 22px;font-weight:600;cursor:pointer}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary .pm{width:20px;height:20px;color:var(--ink-600);transition:transform .2s}
+.acc details[open] summary .pm{transform:rotate(45deg);color:var(--orange-700)}
+.acc details p{padding:0 22px 18px;color:var(--ink-600)}
+
+/* footer */
+.foot{background:var(--ink);color:var(--white);margin-top:96px}
+.foot .grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:40px;padding-block:56px 36px}
+.foot h4{font-size:16px;font-weight:600;margin-bottom:14px}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.foot li,.foot p{font-size:14px;opacity:.75}
+.foot .logo img{width:116px;margin-bottom:14px}
+.foot .chips{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-top:16px}
+.foot .chip{display:flex;align-items:center;gap:6px;background:var(--ink-800);padding:7px 12px;border-radius:10px;font-size:12px}
+.foot .bottom{border-top:1px solid var(--ink-600);display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px;flex-wrap:wrap}
+.foot .bottom p{font-size:12px;opacity:.6}
+.pays{display:flex;gap:8px;flex-wrap:wrap}
+.pays span{background:var(--white);color:var(--ink);font-size:12px;font-weight:600;padding:5px 10px;border-radius:8px}
+
+/* ---------- category page */
+.crumbs{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-400);padding-top:20px;flex-wrap:wrap}
+.crumbs b{color:var(--ink);font-weight:500}
+.cat-hero{margin-top:16px;border-radius:var(--r-xl);overflow:hidden;display:grid;grid-template-columns:1.3fr 1fr;background:var(--paper)}
+.cat-hero .body{padding:36px 44px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.cat-hero h1{font-size:clamp(28px,3.4vw,40px);font-weight:800}
+.cat-hero p{color:var(--ink-600);max-width:34em}
+.cat-hero .img{min-height:220px;background-size:cover;background-position:center}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip-btn{border:1px solid var(--ink-300);background:var(--white);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:500;color:var(--ink)}
+.chip-btn[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--white)}
+.listing{display:grid;grid-template-columns:260px 1fr;gap:32px;margin-top:28px;align-items:start}
+.filters{border:1px solid var(--ink-200);border-radius:var(--r-lg);padding:20px;display:flex;flex-direction:column;gap:22px;position:sticky;top:140px}
+.filters h4{font-size:15px;font-weight:600;margin-bottom:10px}
+.filters label{display:flex;align-items:center;gap:10px;font-size:14px;padding-block:4px;cursor:pointer}
+.filters input{accent-color:var(--orange-700);width:17px;height:17px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.toolbar select{font:inherit;font-size:14px;border:1px solid var(--ink-300);border-radius:10px;padding:8px 12px;background:var(--white);color:var(--ink)}
+.listing .pgrid{grid-template-columns:repeat(3,1fr)}
+.empty{grid-column:1/-1;border:1px dashed var(--ink-300);border-radius:var(--r-lg);padding:40px;text-align:center;color:var(--ink-600)}
+
+/* ---------- product page */
+.pdp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,0.96fr);gap:48px;margin-top:20px;align-items:start}
+.gallery{display:flex;flex-direction:column;gap:12px;position:sticky;top:140px}
+.gallery .main{position:relative;border-radius:24px;overflow:hidden;background:var(--paper);aspect-ratio:1}
+.gallery .main img{width:100%;height:100%;object-fit:cover}
+.gallery .main .badge{position:absolute;top:18px;right:18px}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.thumbs button{border:0;padding:0;background:var(--paper);border-radius:16px;overflow:hidden;aspect-ratio:1;box-shadow:inset 0 0 0 1px var(--ink-200)}
+.thumbs button[aria-pressed="true"]{box-shadow:0 0 0 2.5px var(--orange-500)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.thumbs small{display:block;text-align:center;font-size:11px;color:var(--ink-400);margin-top:4px}
+.buy{display:flex;flex-direction:column;gap:20px;min-width:0}
+.buy .kicker{color:var(--orange-700);font-weight:600;font-size:13px}
+.buy h1{font-size:clamp(24px,2.6vw,32px);font-weight:700}
+.meta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink-600)}
+.price-big{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.price-big strong{font-size:36px;font-weight:800;line-height:1}
+.price-big .unit{background:var(--orange-50);color:var(--orange-700);font-weight:600;font-size:13px;padding:5px 10px;border-radius:8px}
+.hr{height:1px;background:var(--ink-200)}
+.opt h4{font-size:16px;font-weight:600;margin-bottom:10px}
+.opt h4 small{font-weight:400;color:var(--ink-400);font-size:13px}
+.seg{display:flex;gap:10px;flex-wrap:wrap}
+.seg button{border:1px solid var(--ink-300);background:var(--white);border-radius:12px;padding:11px 18px;font-size:14px;color:var(--ink)}
+.seg button[aria-pressed="true"]{border:2px solid var(--orange-500);padding:10px 17px;background:var(--orange-50);color:var(--orange-700);font-weight:600}
+.tiers{display:flex;flex-direction:column;gap:10px}
+.tier{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid var(--ink-200);border-radius:14px;padding:14px 18px;background:var(--white);text-align:right;width:100%;color:var(--ink);font-size:15px}
+.tier .l{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tier .radio{width:20px;height:20px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--ink-300);flex:none}
+.tier[aria-pressed="true"]{border:2px solid var(--orange-500);padding:13px 17px;background:var(--orange-50)}
+.tier[aria-pressed="true"] .radio{box-shadow:inset 0 0 0 6px var(--orange-700)}
+.tier .r{display:flex;align-items:baseline;gap:10px;white-space:nowrap}
+.tier .r b{font-size:17px}
+.tier .r small{font-size:12px;color:var(--ink-600)}
+.paths3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.paths3 button{border:1px solid var(--ink-200);border-radius:14px;padding:14px;background:var(--white);display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:right;color:var(--ink)}
+.paths3 button b{font-size:14px}
+.paths3 button small{font-size:12px;color:var(--ink-600)}
+.paths3 button[aria-pressed="true"]{border:2px solid var(--orange-500);padding:13px;background:var(--orange-50)}
+.paths3 button[aria-pressed="true"] .ic{color:var(--orange-700)}
+.drop{margin-top:10px;display:flex;align-items:center;gap:16px;border:1.5px dashed var(--ink-300);border-radius:16px;padding:18px 20px;background:var(--paper);cursor:pointer;transition:border-color .2s}
+.drop:hover,.drop.over{border-color:var(--orange-500)}
+.drop .di{width:48px;height:48px;border-radius:14px;background:var(--white);display:grid;place-items:center;color:var(--orange-700);flex:none}
+.drop b{display:block;font-size:15px}
+.drop small{color:var(--ink-600);font-size:12px}
+.drop input{display:none}
+.eta-box{background:var(--ink-100);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.switch{display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer}
+.switch input{appearance:none;width:44px;height:24px;border-radius:12px;background:var(--ink-300);position:relative;cursor:pointer;flex:none;transition:background .2s;margin:0}
+.switch input::after{content:"";position:absolute;top:3px;right:3px;width:18px;height:18px;border-radius:50%;background:var(--white);transition:right .2s}
+.switch input:checked{background:var(--orange-700)}
+.switch input:checked::after{right:23px}
+.cta-buy{display:flex;gap:12px}
+.cta-buy .btn{flex:1;font-size:16px;padding:17px}
+.cta-buy .icon-btn{width:56px;height:56px}
+.inst{display:flex;align-items:center;gap:10px;border:1px solid var(--ink-200);border-radius:12px;padding:12px 16px;font-size:13px;color:var(--ink-600);flex-wrap:wrap}
+.inst span{background:var(--ink-100);color:var(--ink);padding:3px 8px;border-radius:6px;font-weight:600;font-size:12px}
+.trust{display:flex;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--ink-600)}
+.trust .row .ic{color:var(--orange-700)}
+.toast{position:fixed;left:50%;transform:translate(-50%,20px);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--white);padding:12px 20px;border-radius:12px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:80;max-width:calc(100% - 32px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.tabs{margin-top:56px}
+.tablist{display:flex;gap:28px;border-bottom:1px solid var(--ink-200);overflow-x:auto}
+.tablist button{border:0;background:none;padding:0 0 14px;font-size:15px;color:var(--ink-600);white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-1px}
+.tablist button[aria-selected="true"]{color:var(--ink);font-weight:600;border-bottom-color:var(--orange-500)}
+.tabpanel{padding-top:24px}
+.desc{display:grid;grid-template-columns:1.5fr 1fr;gap:40px}
+.desc .lead{font-size:17px;line-height:1.85}
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.fit div{background:var(--paper);border-radius:16px;padding:16px 18px}
+.fit div.no{background:var(--ink-100)}
+.fit h4{font-size:15px;margin-bottom:8px}
+.fit ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--ink-600)}
+.fit li{display:flex;gap:6px;align-items:center}
+.fit .ok .ic{color:var(--success)}
+.specs{border:1px solid var(--ink-200);border-radius:16px;overflow:hidden}
+.specs div{display:flex;justify-content:space-between;gap:16px;padding:13px 18px;border-bottom:1px solid var(--ink-200);font-size:14px}
+.specs div:last-child{border-bottom:0}
+.specs dt{color:var(--ink-600);font-weight:500}
+.specs dd{margin:0;text-align:left}
+
+/* ---------- business page */
+.biz-hero{margin-top:20px;border-radius:var(--r-xl);overflow:hidden;background:var(--ink);color:var(--white);display:grid;grid-template-columns:1.2fr 1fr;min-height:420px}
+.biz-hero .body{padding:52px 56px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:16px}
+.biz-hero h1{font-size:clamp(30px,4vw,48px);font-weight:900;line-height:1.15}
+.biz-hero h1 em{font-style:normal;color:var(--orange-500)}
+.biz-hero p{opacity:.85;max-width:32em;font-size:17px}
+.biz-hero .img{background-size:cover;background-position:center}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.svc{border:1px solid var(--ink-200);border-radius:var(--r-lg);overflow:hidden;background:var(--white);display:flex;flex-direction:column}
+.svc .img{aspect-ratio:16/10;background-size:cover;background-position:center}
+.svc .b{padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+.svc h3{font-size:18px;font-weight:700}
+.svc p{font-size:14px;color:var(--ink-600)}
+.proc{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:p}
+.proc li{list-style:none;background:var(--white);border:1px solid var(--ink-200);border-radius:var(--r-lg);padding:22px;display:flex;flex-direction:column;gap:8px}
+.proc .n{font-size:13px;font-weight:700;color:var(--orange-700)}
+.proc h3{font-size:17px;font-weight:700}
+.proc p{font-size:13px;color:var(--ink-600)}
+.quote-wrap{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:start}
+.quote-wrap .intro{display:flex;flex-direction:column;gap:14px}
+.quote-wrap .intro h2{font-size:clamp(26px,3vw,36px);font-weight:800}
+.quote-wrap .intro p{color:var(--ink-600)}
+.qlist{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:10px}
+.qlist li{display:flex;gap:8px;align-items:center;font-size:14px}
+.qlist .ic{color:var(--success)}
+form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:16px;background:var(--paper)}
+.qf .full{grid-column:1/-1}
+.qf label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600}
+.qf input,.qf select,.qf textarea{font:inherit;font-size:14px;font-weight:400;border:1px solid var(--ink-300);border-radius:12px;padding:12px 14px;background:var(--white);color:var(--ink);width:100%}
+.qf textarea{min-height:110px;resize:vertical}
+.qf .note{font-size:12px;color:var(--ink-600);font-weight:400}
+.sent{grid-column:1/-1;background:#E3F4E8;color:#1F5F31;border-radius:14px;padding:16px 18px;font-size:14px}
+
+/* ---------- preview switcher */
+.switcher{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);z-index:70;background:rgba(44,43,41,.94);backdrop-filter:blur(10px);border-radius:999px;padding:6px;display:flex;gap:4px;box-shadow:0 12px 32px -12px rgba(0,0,0,.45);max-width:calc(100% - 32px);overflow-x:auto}
+.switcher a{color:#E9E5DD;font-size:13px;font-weight:500;padding:9px 16px;border-radius:999px;white-space:nowrap}
+.switcher a[aria-current="page"]{background:var(--orange-500);color:var(--ink);font-weight:700}
+.switcher .lbl{color:var(--ink-400);font-size:11px;align-self:center;padding:0 10px 0 6px;white-space:nowrap}
+.wa-fab{position:fixed;left:max(20px,calc(env(safe-area-inset-left,0px) + 20px));bottom:calc(84px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;background:var(--wa);display:grid;place-items:center;color:var(--white);box-shadow:0 8px 20px -6px rgba(0,0,0,.35);z-index:60}
+.wa-fab .ic{width:26px;height:26px}
+
+/* ---------- responsive */
+@media (max-width:1080px){
+  .pgrid{grid-template-columns:repeat(3,1fr)}
+  .listing .pgrid{grid-template-columns:repeat(2,1fr)}
+  .cat-grid{grid-template-columns:repeat(4,1fr);gap:16px}
+  .stats{grid-template-columns:repeat(2,1fr);row-gap:24px}
+  .stat:nth-child(3)::before{display:none}
+  .path{grid-template-columns:1fr}
+  .path .img{display:none}
+}
+@media (max-width:860px){
+  .announce .meta,.search-desk,.btn-quote-top{display:none}
+  .menu-btn{display:grid}
+  .hdr{gap:12px}
+  .logo img{width:88px}
+  .search{order:3;max-width:none;flex-basis:100%;padding:11px 16px}
+  .hdr{flex-wrap:wrap}
+  .mainnav .offer-chip{display:none}
+  .slide{grid-template-columns:1fr;min-height:0}
+  .slide .media{order:-1;min-height:210px}
+  .slide .copy{padding:28px 22px 30px;gap:14px}
+  .slide .copy p{font-size:14px}
+  .swoosh{width:120px;left:-40px;bottom:-30px}
+  .cat-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .cat{aspect-ratio:173/190;padding:14px}
+  .cat h3{font-size:16px}
+  .cat .tag{top:10px;right:10px;font-size:11px;padding:4px 9px}
+  .cat small{display:none}
+  .paths{grid-template-columns:1fr;gap:12px}
+  .path{min-height:0}
+  .path .body{padding:20px}
+  .path h3{font-size:19px}
+  .pgrid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .pcard .body{padding:12px;gap:6px}
+  .pcard h3{font-size:14px}
+  .pcard .media .badge{font-size:10px;padding:4px 8px;right:8px;top:8px}
+  .pcard .fav{width:30px;height:30px;left:8px;top:8px}
+  .pcard .btn{font-size:12px;padding:10px 8px}
+  .steps{grid-template-columns:1fr;gap:12px}
+  .step{flex-direction:row;align-items:center;padding:16px;gap:14px}
+  .step .n{width:40px;height:40px;font-size:17px;flex:none}
+  .step h3{font-size:16px}
+  .step p{font-size:13px}
+  .bento{grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:12px}
+  .work{min-height:150px}
+  .work.big{grid-column:1/-1;grid-row:auto;min-height:220px}
+  .season{grid-template-columns:1fr}
+  .season .img{min-height:180px;order:-1}
+  .season .body{padding:26px 22px}
+  .faq{grid-template-columns:1fr;gap:20px}
+  .foot .grid{grid-template-columns:1fr 1fr;gap:28px}
+  .foot .grid > :first-child{grid-column:1/-1}
+  .section{padding-top:48px}
+  .band{margin-top:56px;padding-block:48px}
+  .clients{padding-block:48px}
+  .cat-hero{grid-template-columns:1fr}
+  .cat-hero .img{order:-1;min-height:160px}
+  .cat-hero .body{padding:24px}
+  .listing{grid-template-columns:1fr}
+  .filters{position:static}
+  .pdp{grid-template-columns:1fr;gap:24px}
+  .gallery{position:static}
+  .paths3{grid-template-columns:1fr}
+  .desc{grid-template-columns:1fr}
+  .fit{grid-template-columns:1fr}
+  .biz-hero{grid-template-columns:1fr}
+  .biz-hero .img{order:-1;min-height:200px}
+  .biz-hero .body{padding:28px 22px}
+  .svc-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .proc{grid-template-columns:1fr 1fr;padding:0}
+  .quote-wrap{grid-template-columns:1fr}
+  form.qf{grid-template-columns:1fr;padding:20px}
+  .switcher .lbl{display:none}
+}
+@media (max-width:520px){
+  .stats{padding:18px;gap:14px}
+  .stat{gap:10px}
+  .stat .ico{width:40px;height:40px;border-radius:12px}
+  .stat b{font-size:17px}
+  .stat span{font-size:11.5px}
+  .stat + .stat::before{display:none}
+  .svc-grid,.proc{grid-template-columns:1fr}
+  .tier{padding:12px 14px;font-size:14px}
+  .tier[aria-pressed="true"]{padding:11px 13px}
+  .price-big strong{font-size:30px}
+  .switcher a{padding:8px 11px;font-size:12px}
+}
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M12.59 2.59A2 2 0 0 0 11.17 2H4a2 2 0 0 0-2 2v7.17a2 2 0 0 0 .59 1.42l8.7 8.7a2.43 2.43 0 0 0 3.42 0l6.58-6.58a2.43 2.43 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></symbol>
+    <symbol id="i-factory" viewBox="0 0 24 24"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8 12 3 7 8"/><path d="M12 3v12"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.38 3.62a1 1 0 0 1 3 3L7.37 18.64a2 2 0 0 1-.86.5l-2.87.84a.5.5 0 0 1-.62-.62l.84-2.87a2 2 0 0 1 .5-.86z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 12h16"/><path d="M4 6h16"/><path d="M4 18h16"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26Z"/></symbol>
+  </defs>
+</svg>
+
+<div class="announce">
+  <div class="wrap">
+    <div class="row"><svg class="ic sm"><use href="#i-truck"/></svg><span>شحن مجاني للطلبات فوق 399 ر.س لكل مناطق المملكة</span></div>
+    <div class="meta">
+      <div class="row"><svg class="ic sm"><use href="#i-pin"/></svg><span>مصنعنا في الرياض · حي النهضة</span></div>
+      <div class="row"><svg class="ic sm"><use href="#i-phone"/></svg><span class="num" dir="ltr">050 90 500 13</span></div>
+    </div>
+  </div>
+</div>
+<div class="ribbon"></div>
+
+<header class="site-header">
+  <div class="wrap hdr">
+    <div class="row" style="gap:12px">
+      <button class="icon-btn menu-btn" aria-label="القائمة"><svg class="ic"><use href="#i-menu"/></svg></button>
+      <a href="#home" class="logo" aria-label="بانوراما برينت · الرئيسية"><img src="img/logo-orange.svg" alt="بانوراما برينت" width="104" height="54"></a>
+    </div>
+    <label class="search"><svg class="ic"><use href="#i-search"/></svg><input id="q" type="search" placeholder="ابحث: كروت، ستيكرات، بوكسات، رول أب…" aria-label="ابحث في المتجر"></label>
+    <div class="actions">
+      <a href="#business" class="btn btn-dark sm btn-quote-top">اطلب عرض سعر</a>
+      <a href="#home" class="icon-btn" aria-label="حسابي"><svg class="ic"><use href="#i-user"/></svg></a>
+      <a href="#product" class="icon-btn" aria-label="السلة"><svg class="ic"><use href="#i-bag"/></svg><span class="badge-count num" id="cartCount">2</span></a>
+    </div>
+  </div>
+  <nav class="mainnav" aria-label="الأقسام">
+    <div class="wrap">
+      <ul>
+        <li><a href="#category">الطباعة الرقمية <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
+        <li><a href="#category">الاستيكرات <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
+        <li><a href="#category">التغليف <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
+        <li><a href="#category">الهدايا والدروع <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
+        <li><a href="#business">اللوحات <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
+        <li><a href="#business">المعارض <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
+        <li><a href="#business">البنرات والسيارات <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
+        <li><a href="#business">الهوية البصرية <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
+      </ul>
+      <a href="#category" class="offer-chip"><svg class="ic sm"><use href="#i-tag"/></svg>عروض الموسم</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<!-- ================= HOME ================= -->
+<section data-view="home">
+  <div class="wrap hero">
+    <div class="slider" id="slider" aria-roledescription="carousel">
+      <div class="slide" data-slide="0">
+        <div class="copy">
+          <img class="swoosh" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 420 520'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%23DADF28'/%3E%3Cstop offset='.3' stop-color='%233EB54D'/%3E%3Cstop offset='.55' stop-color='%230FA8BE'/%3E%3Cstop offset='.8' stop-color='%232285C7'/%3E%3Cstop offset='1' stop-color='%232E358D'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M60 500 C 40 360, 120 300, 220 250 C 330 195, 390 120, 330 60 C 280 10, 200 40, 220 110 C 240 180, 340 160, 400 40' fill='none' stroke='url(%23g)' stroke-width='46' stroke-linecap='round'/%3E%3C/svg%3E" alt="">
+          <span class="badge dark">خبرة منذ عام 2000</span>
+          <h1>خبرة 25 سنة مع كبرى الجهات<br><em>الحين أونلاين</em></h1>
+          <p>اطبع كروتك وستيكراتك وتغليفك من مصنعنا في الرياض، بسعر واضح لكل كمية ومدة تنفيذ محددة قبل الدفع</p>
+          <div class="cta-row"><a href="#category" class="btn btn-light">تسوّق المنتجات</a><a href="#business" class="btn btn-ghost-light">طلب عرض سعر للمشاريع</a></div>
+        </div>
+        <div class="media" style="background-image:url(img/hero-fleet.jpg)"><span class="proof"><svg class="ic sm" style="color:var(--orange-700)"><use href="#i-check"/></svg>من أعمالنا · تغليف أسطول سيارات جهة حكومية</span></div>
+      </div>
+      <div class="slide" data-slide="1" hidden>
+        <div class="copy">
+          <span class="badge dark">الاستيكرات والملصقات</span>
+          <h2>ستيكرات بسعر الحبة<br><em>من 0.45 ر.س</em></h2>
+          <p>دائرية ومقصوصة وشفافة ورولات، بخامات فينيل مقاومة للماء وجاهزة خلال 3 أيام عمل</p>
+          <div class="cta-row"><a href="#product" class="btn btn-light">اطلب الآن</a></div>
+        </div>
+        <div class="media" style="background-image:url(img/hero-stickers.jpg)"></div>
+      </div>
+      <div class="slide dark" data-slide="2" hidden>
+        <div class="copy">
+          <span class="badge unit">التغليف والعلب</span>
+          <h2>تغليف يليق<br><em>بمنتجك</em></h2>
+          <p>علب هارد كوفر وعلب شحن كرافت وأكياس فاخرة، بقص رقمي بدون قوالب ومن 50 قطعة</p>
+          <div class="cta-row"><a href="#category" class="btn btn-brand">تصفّح التغليف</a></div>
+        </div>
+        <div class="media" style="background-image:url(img/hero-pack.jpg)"></div>
+      </div>
+      <div class="slide" data-slide="3" hidden>
+        <div class="copy">
+          <span class="badge dark">موسم نهاية العام</span>
+          <h2>هدايا الشركات<br><em>بهويتكم</em></h2>
+          <p>بوكسات ترحيب ودروع تكريم وتقاويم 2027، بأسعار كميات تبدأ من 25 قطعة</p>
+          <div class="cta-row"><a href="#business" class="btn btn-light">اطلب عرض سعر</a></div>
+        </div>
+        <div class="media" style="background-image:url(img/hero-gifts.jpg)"></div>
+      </div>
+    </div>
+    <div class="dots" id="dots" role="tablist" aria-label="الشرائح">
+      <button aria-label="الشريحة 1" aria-current="true"></button><button aria-label="الشريحة 2"></button><button aria-label="الشريحة 3"></button><button aria-label="الشريحة 4"></button>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="ico"><svg class="ic"><use href="#i-award"/></svg></div><div><b class="num">+25 سنة</b><span>خبرة في الطباعة منذ 2000</span></div></div>
+      <div class="stat"><div class="ico"><svg class="ic"><use href="#i-layers"/></svg></div><div><b class="num">+10,000</b><span>مشروع لجهات حكومية وخاصة</span></div></div>
+      <div class="stat"><div class="ico"><svg class="ic"><use href="#i-factory"/></svg></div><div><b class="num">8 أقسام</b><span>إنتاج تحت سقف واحد</span></div></div>
+      <div class="stat"><div class="ico"><svg class="ic"><use href="#i-truck"/></svg></div><div><b>يوم واحد</b><span>توصيل داخل الرياض</span></div></div>
+    </div>
+  </div>
+
+  <div class="wrap section">
+    <div class="sec-head">
+      <div><h2>تسوّق حسب القسم</h2><p>البرتقالي يطلب أونلاين مباشرة، والأبيض بعرض سعر خلال 24 ساعة</p></div>
+      <a href="#category" class="link-more">كل الأقسام <svg class="ic"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="cat-grid">
+      <a href="#category" class="cat" style="background-image:url(img/hero-print.jpg)"><span class="tag online"><svg class="ic sm"><use href="#i-bag"/></svg>اطلب أونلاين</span><h3>الطباعة الرقمية</h3><small>كروت · فواتير · بروشورات · أظرف</small></a>
+      <a href="#category" class="cat" style="background-image:url(img/hero-stickers.jpg)"><span class="tag online"><svg class="ic sm"><use href="#i-bag"/></svg>اطلب أونلاين</span><h3>الاستيكرات والملصقات</h3><small>دائرية · مقصوصة · شفافة · رولات</small></a>
+      <a href="#category" class="cat" style="background-image:url(img/hero-pack.jpg)"><span class="tag online"><svg class="ic sm"><use href="#i-bag"/></svg>اطلب أونلاين</span><h3>التغليف والعلب</h3><small>علب عطور · هارد كوفر · أكياس</small></a>
+      <a href="#category" class="cat" style="background-image:url(img/w-giftbox.jpg)"><span class="tag online"><svg class="ic sm"><use href="#i-bag"/></svg>اطلب أونلاين</span><h3>الهدايا والدروع</h3><small>بوكسات · أكواب · دروع · أختام</small></a>
+      <a href="#business" class="cat" style="background-image:url(img/w-aldawaa.jpg)"><span class="tag quote"><svg class="ic sm"><use href="#i-file"/></svg>بعرض سعر</span><h3>اللوحات والواجهات</h3><small>حروف مضيئة · بايلون · أكريليك</small></a>
+      <a href="#business" class="cat" style="background-image:url(img/w-asdeqa.jpg)"><span class="tag quote"><svg class="ic sm"><use href="#i-file"/></svg>بعرض سعر</span><h3>المعارض والفعاليات</h3><small>أجنحة · رول أب · أعلام · بوابات</small></a>
+      <a href="#business" class="cat" style="background-image:url(img/w-dominos.jpg)"><span class="tag quote"><svg class="ic sm"><use href="#i-file"/></svg>بعرض سعر</span><h3>البنرات والسيارات</h3><small>بنرات · أسوار مشاريع · ستيكرات سيارات</small></a>
+      <a href="#business" class="cat" style="background-image:url(img/w-bizcard.jpg)"><span class="tag quote"><svg class="ic sm"><use href="#i-file"/></svg>بعرض سعر</span><h3>الهوية البصرية</h3><small>شعار · هوية كاملة · مطبوعات</small></a>
+    </div>
+  </div>
+
+  <div class="wrap section">
+    <div class="paths">
+      <div class="path dark">
+        <div class="body"><div class="pi"><svg class="ic"><use href="#i-zap"/></svg></div><h3>طلب سريع أونلاين</h3><p>منتجات جاهزة بأسعار واضحة لكل كمية، ارفع تصميمك وادفع بمدى أو Apple Pay أو بالتقسيط</p><a href="#category" class="btn btn-brand sm">ابدأ التسوق</a></div>
+        <div class="img" style="background-image:url(img/p-bizcards.jpg)"></div>
+      </div>
+      <div class="path soft">
+        <div class="body"><div class="pi"><svg class="ic"><use href="#i-building"/></svg></div><h3>مشروع كبير أو جهة حكومية؟</h3><p>أجنحة معارض، لوحات، أسطول سيارات، أو كميات خاصة، عرض سعر مفصّل خلال 24 ساعة</p><a href="#business" class="btn btn-dark sm">اطلب عرض سعر</a></div>
+        <div class="img" style="background-image:url(img/w-beeah.jpg)"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap section">
+    <div class="sec-head">
+      <div><h2>الأكثر طلبًا</h2><p>أسعار تبدأ من الحبة الواحدة، شاملة ضريبة القيمة المضافة</p></div>
+      <a href="#category" class="link-more">عرض الكل <svg class="ic"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="pgrid" id="homeProducts"></div>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <div class="sec-head"><div><h2>اطلب في ثلاث خطوات</h2><p>بدون واتساب وبدون انتظار رد، كل شيء داخل المتجر</p></div></div>
+      <ol class="steps" style="padding:0;margin:0;list-style:none">
+        <li class="step"><span class="n num">1</span><div><h3>اختر المنتج والكمية</h3><p>السعر النهائي وسعر الحبة يظهران فورًا مع كل كمية، شامل الضريبة</p></div></li>
+        <li class="step"><span class="n num">2</span><div><h3>ارفع تصميمك أو اطلب تصميمه</h3><p>ملف جاهز، أو تعديل بسيط، أو تصميم كامل من فريقنا بسعر محدد</p></div></li>
+        <li class="step"><span class="n num">3</span><div><h3>اعتمد النموذج واستلم</h3><p>نرسل نموذج التصميم خلال 24 ساعة، ونبدأ الطباعة فور موافقتك</p></div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="clients">
+    <div class="wrap">
+      <h2>يثق بنا أكثر من 10,000 مشروع</h2>
+      <p>جهات حكومية وشركات كبرى في المملكة اختارت بانوراما لمطبوعاتها ولوحاتها وأجنحتها</p>
+      <img src="img/clients.jpg" alt="شعارات عملاء بانوراما: وزارة الصحة، وزارة الرياضة، وزارة التعليم، أرامكو، STC، سمسا، موسم الرياض، جامعة الملك سعود وغيرهم" loading="lazy">
+    </div>
+  </div>
+
+  <div class="wrap section">
+    <div class="sec-head">
+      <div><h2>من أعمالنا</h2><p>مشاريع حقيقية نفّذها مصنعنا لجهات وعلامات في المملكة</p></div>
+      <a href="#business" class="link-more">ملف الأعمال كاملًا <svg class="ic"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="bento">
+      <div class="work" style="background-image:url(img/w-beeah.jpg)"><b>بيئة</b><small>تصميم وتنفيذ جناح معرض</small></div>
+      <div class="work" style="background-image:url(img/w-aramco.jpg)"><b>أرامكو</b><small>لوحة بايلون</small></div>
+      <div class="work big" style="background-image:url(img/w-aldawaa.jpg)"><b>صيدلية الدواء</b><small>حروف بارزة مضيئة وواجهة كاملة</small></div>
+      <div class="work" style="background-image:url(img/w-stc.jpg)"><b>STC</b><small>كروت تعريفية وليناردات</small></div>
+      <div class="work" style="background-image:url(img/w-dg.jpg)"><b>دولتشي آند غابانا</b><small>تركيب ستيكرات واجهة</small></div>
+    </div>
+  </div>
+
+  <div class="wrap section">
+    <div class="season">
+      <div class="body"><span class="badge unit">موسم نهاية العام</span><h2>هدايا الشركات بهويتكم</h2><p>بوكسات ترحيب ودروع تكريم وتقاويم 2027، بأسعار كميات تبدأ من 25 قطعة</p><a href="#business" class="btn btn-brand sm">تصفّح باقات الهدايا</a></div>
+      <div class="img" style="background-image:url(img/hero-gifts.jpg)"></div>
+    </div>
+  </div>
+
+  <div class="wrap section">
+    <div class="faq">
+      <div class="intro"><h2>أسئلة متكررة</h2><p>ما لقيت جوابك؟ فريقنا يرد خلال ساعات العمل من الأحد إلى الخميس</p><span class="btn btn-outline">واتساب 050 90 500 13</span></div>
+      <div class="acc">
+        <details open><summary>كم مدة تنفيذ الطلب؟<svg class="ic pm"><use href="#i-plus"/></svg></summary><p>أغلب المنتجات تجهز خلال 2 إلى 5 أيام عمل من اعتماد التصميم، والمدة مكتوبة تحت سعر كل منتج، ويتوفر تنفيذ مستعجل لبعض المنتجات بسعر إضافي</p></details>
+        <details><summary>هل أستطيع رفع تصميمي الخاص؟<svg class="ic pm"><use href="#i-plus"/></svg></summary><p>نعم، من داخل صفحة المنتج مباشرة بصيغة PDF أو AI أو PNG بدقة 300 DPI، ونراجع الملف ونرسل لك النموذج قبل الطباعة</p></details>
+        <details><summary>هل الأسعار شاملة الضريبة؟<svg class="ic pm"><use href="#i-plus"/></svg></summary><p>كل الأسعار المعروضة شاملة ضريبة القيمة المضافة، وسعر الحبة يظهر مع كل كمية</p></details>
+        <details><summary>هل يمكن الاستلام من المصنع؟<svg class="ic pm"><use href="#i-plus"/></svg></summary><p>نعم، اختر الاستلام من المصنع عند الدفع، وتجد طلبك جاهزًا في الرياض · حي النهضة</p></details>
+        <details><summary>كيف أطلب كمية خاصة أو مشروعًا كبيرًا؟<svg class="ic pm"><use href="#i-plus"/></svg></summary><p>من صفحة الشركات والجهات، املأ نموذج طلب عرض السعر ونرسل لك عرضًا مفصلًا خلال 24 ساعة</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CATEGORY ================= -->
+<section data-view="category" hidden>
+  <div class="wrap">
+    <div class="crumbs"><a href="#home">الرئيسية</a><svg class="ic sm"><use href="#i-left"/></svg><b>كل المنتجات</b></div>
+    <div class="cat-hero">
+      <div class="body"><span class="badge soft">8 أقسام إنتاج</span><h1>منتجات تطلبها أونلاين</h1><p>اختر القسم والكمية، وشوف السعر النهائي ومدة التنفيذ قبل الدفع، كل المنتجات تطبع في مصنعنا بالرياض</p></div>
+      <div class="img" style="background-image:url(img/hero-print.jpg)"></div>
+    </div>
+    <div class="chips" id="catChips" style="margin-top:24px">
+      <button class="chip-btn" data-cat="all" aria-pressed="true">الكل</button>
+      <button class="chip-btn" data-cat="print" aria-pressed="false">الطباعة الرقمية</button>
+      <button class="chip-btn" data-cat="stickers" aria-pressed="false">الاستيكرات</button>
+      <button class="chip-btn" data-cat="pack" aria-pressed="false">التغليف</button>
+      <button class="chip-btn" data-cat="gifts" aria-pressed="false">الهدايا والدروع</button>
+      <button class="chip-btn" data-cat="events" aria-pressed="false">المعارض</button>
+    </div>
+    <div class="listing">
+      <aside class="filters" aria-label="الفلاتر">
+        <div><h4>يجهز خلال</h4>
+          <label><input type="checkbox" id="f-eta2" data-eta="2"> يومين أو أقل</label>
+          <label><input type="checkbox" id="f-eta3" data-eta="3"> 3 أيام</label>
+          <label><input type="checkbox" id="f-eta5" data-eta="5"> 4 إلى 5 أيام</label>
+        </div>
+        <div><h4>السعر يبدأ من</h4>
+          <label><input type="checkbox" id="f-p1" data-price="150"> أقل من 150 ر.س</label>
+          <label><input type="checkbox" id="f-p2" data-price="300"> 150 إلى 300 ر.س</label>
+          <label><input type="checkbox" id="f-p3" data-price="9999"> أكثر من 300 ر.س</label>
+        </div>
+        <div><h4>خيارات</h4>
+          <label><input type="checkbox" id="f-exp" data-express="1"> يتوفر تنفيذ مستعجل</label>
+        </div>
+      </aside>
+      <div style="min-width:0">
+        <div class="toolbar"><span id="resultCount" class="num" style="color:var(--ink-600);font-size:14px"></span>
+          <label class="row" style="font-size:14px">ترتيب <select id="sort"><option value="pop">الأكثر طلبًا</option><option value="low">السعر من الأقل</option><option value="high">السعر من الأعلى</option><option value="fast">الأسرع تنفيذًا</option></select></label>
+        </div>
+        <div class="pgrid" id="catProducts"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUCT ================= -->
+<section data-view="product" hidden>
+  <div class="wrap">
+    <div class="crumbs"><a href="#home">الرئيسية</a><svg class="ic sm"><use href="#i-left"/></svg><a href="#category">الاستيكرات والملصقات</a><svg class="ic sm"><use href="#i-left"/></svg><b>ستيكرات دائرية مقصوصة</b></div>
+    <div class="pdp">
+      <div class="gallery">
+        <div class="main"><img id="mainImg" src="img/p-stickers.jpg" alt="ستيكرات دائرية مقصوصة على الحدود"><span class="badge unit num" id="mainBadge">ابتداءً من 0.45 ر.س للحبة</span></div>
+        <div class="thumbs" id="thumbs">
+          <div><button aria-pressed="true" data-src="img/p-stickers.jpg" aria-label="صورة المنتج"><img src="img/p-stickers.jpg" alt=""></button><small>المنتج</small></div>
+          <div><button aria-pressed="false" data-src="img/w-spotuv.jpg" aria-label="الخامة عن قرب"><img src="img/w-spotuv.jpg" alt=""></button><small>الخامة عن قرب</small></div>
+          <div><button aria-pressed="false" data-src="img/hero-stickers.jpg" aria-label="الاستخدام"><img src="img/hero-stickers.jpg" alt=""></button><small>الاستخدام</small></div>
+          <div><button aria-pressed="false" data-src="img/p-mailer.jpg" aria-label="على التغليف"><img src="img/p-mailer.jpg" alt=""></button><small>على التغليف</small></div>
+        </div>
+      </div>
+      <div class="buy">
+        <div><div class="kicker">الاستيكرات والملصقات</div><h1>ستيكرات دائرية مقصوصة على الحدود</h1></div>
+        <div class="meta-row"><span class="rating"><svg class="ic star"><use href="#i-star"/></svg><svg class="ic star"><use href="#i-star"/></svg><svg class="ic star"><use href="#i-star"/></svg><svg class="ic star"><use href="#i-star"/></svg><svg class="ic star"><use href="#i-star"/></svg><b class="num">4.9</b></span><span class="num">128 تقييم</span><span>·</span><span class="num">طُلب 640 مرة هذا الشهر</span></div>
+        <div class="price-big"><strong class="num" id="total">180 ر.س</strong><span id="qtyLabel" class="num" style="color:var(--ink-600);font-size:14px">شامل الضريبة · 250 حبة</span><span class="unit num" id="unit">0.72 ر.س للحبة</span></div>
+        <div class="hr"></div>
+        <div class="opt"><h4>المقاس <small>· القطر</small></h4><div class="seg" data-group="size"><button aria-pressed="false">3 سم</button><button aria-pressed="true">4 سم</button><button aria-pressed="false">5 سم</button><button aria-pressed="false">7 سم</button></div></div>
+        <div class="opt"><h4>الخامة <small>· الفينيل مقاوم للماء</small></h4><div class="seg" data-group="mat"><button aria-pressed="false">ورق لامع</button><button aria-pressed="true">فينيل مطفي</button><button aria-pressed="false">شفاف</button><button aria-pressed="false">كرافت</button></div></div>
+        <div class="opt"><h4>الكمية</h4>
+          <div class="tiers" id="tiers"></div>
+          <p style="font-size:13px;color:var(--ink-600);margin-top:10px">كمية أكبر من 1000؟ <a href="#business" style="color:var(--orange-700);font-weight:600">اطلب عرض سعر</a></p>
+        </div>
+        <div class="hr"></div>
+        <div class="opt"><h4>التصميم</h4>
+          <div class="paths3" id="designPaths">
+            <button aria-pressed="true" data-add="0"><svg class="ic"><use href="#i-file"/></svg><b>لدي تصميم جاهز</b><small>بدون رسوم</small></button>
+            <button aria-pressed="false" data-add="35"><svg class="ic"><use href="#i-pen"/></svg><b>تعديل بسيط</b><small class="num">+35 ر.س · 24 ساعة</small></button>
+            <button aria-pressed="false" data-add="99"><svg class="ic"><use href="#i-zap"/></svg><b>صمّموا لي</b><small class="num">+99 ر.س · 48 ساعة</small></button>
+          </div>
+          <label class="drop" id="drop" for="file"><span class="di"><svg class="ic"><use href="#i-upload"/></svg></span><span style="min-width:0"><b id="dropTitle">اسحب ملف التصميم هنا أو اختر من جهازك</b><small>PDF أو AI أو PNG بدقة 300 DPI · حتى 25 ميجا</small></span><input type="file" id="file" accept=".pdf,.ai,.png,.jpg,.jpeg"></label>
+        </div>
+        <div class="eta-box">
+          <div class="row" style="font-weight:600;font-size:14px"><svg class="ic"><use href="#i-clock"/></svg><span id="etaText">يجهز خلال 3 أيام عمل · يصل الرياض الخميس 6 نوفمبر</span></div>
+          <label class="switch"><span class="row" style="font-size:14px"><svg class="ic" style="color:var(--orange-700)"><use href="#i-zap"/></svg>تنفيذ مستعجل خلال 24 ساعة <b style="color:var(--orange-700)" class="num">+40%</b></span><input type="checkbox" id="express"></label>
+        </div>
+        <div class="cta-buy"><button class="btn btn-primary num" id="addBtn">أضف إلى السلة · 180 ر.س</button><button class="icon-btn" aria-label="أضف للمفضلة"><svg class="ic"><use href="#i-heart"/></svg></button></div>
+        <div class="inst"><span>تابي</span><span>تمارا</span><div id="instText" class="num" style="flex:1;min-width:0">أو قسّمها على 4 دفعات بدون فوائد · 45 ر.س للدفعة</div></div>
+        <div class="trust">
+          <div class="row"><svg class="ic sm"><use href="#i-shield"/></svg>نموذج رقمي قبل الطباعة</div>
+          <div class="row"><svg class="ic sm"><use href="#i-factory"/></svg>من مصنعنا في الرياض</div>
+          <div class="row"><svg class="ic sm"><use href="#i-truck"/></svg>شحن مجاني فوق 399 ر.س</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <div class="tablist" role="tablist">
+        <button role="tab" aria-selected="true" data-tab="t1">الوصف</button>
+        <button role="tab" aria-selected="false" data-tab="t2">تجهيز الملف</button>
+        <button role="tab" aria-selected="false" data-tab="t3">التقييمات (128)</button>
+      </div>
+      <div class="tabpanel" id="t1">
+        <div class="desc">
+          <div>
+            <p class="lead">ستيكرات مقصوصة بدقة على حدود الدائرة، مطبوعة بألوان حية على فينيل مطفي أو ورق لامع، مثالية لتغليف الطلبات وعلب المنتجات وأكياس القهوة والحلويات</p>
+            <div class="fit">
+              <div class="ok"><h4>مناسب لك إذا</h4><ul><li><svg class="ic sm"><use href="#i-check"/></svg>تغلق علب وأكياس منتجاتك</li><li><svg class="ic sm"><use href="#i-check"/></svg>تحتاج كمية من 100 إلى 1000</li><li><svg class="ic sm"><use href="#i-check"/></svg>تريد مقاومة للماء بخامة الفينيل</li></ul></div>
+              <div class="no"><h4>الأنسب لك غيره إذا</h4><ul><li><svg class="ic sm"><use href="#i-minus"/></svg>تحتاج شكلًا حرًا غير دائري</li><li><svg class="ic sm"><use href="#i-minus"/></svg>تريد رولات للآلات الأوتوماتيكية</li></ul></div>
+            </div>
+          </div>
+          <dl class="specs" style="margin:0">
+            <div><dt>الخامات</dt><dd>فينيل مطفي · ورق لامع · شفاف · كرافت</dd></div>
+            <div><dt>المقاسات</dt><dd class="num">3 · 4 · 5 · 7 سم</dd></div>
+            <div><dt>الطباعة</dt><dd>رقمية بألوان CMYK</dd></div>
+            <div><dt>القص</dt><dd>على الحدود لكل حبة</dd></div>
+            <div><dt>الملف المطلوب</dt><dd class="num">PDF أو AI · 300 DPI · هامش 2 مم</dd></div>
+          </dl>
+        </div>
+      </div>
+      <div class="tabpanel" id="t2" hidden><p class="lead" style="max-width:46em">جهّز الملف بمقاس الستيكر الفعلي مع هامش أمان 2 مم داخل خط القص، وحوّل النصوص إلى outlines، واستخدم ألوان CMYK بدقة 300 DPI، ويمكنك تحميل قالب جاهز لكل مقاس من هذه الصفحة في المتجر الفعلي</p></div>
+      <div class="tabpanel" id="t3" hidden><p class="lead" style="max-width:46em">تظهر هنا تقييمات العملاء المرتبطة بطلبات حقيقية من سلة، ويُرسل طلب التقييم تلقائيًا بعد الاستلام</p></div>
+    </div>
+
+    <div class="section" style="padding-top:56px">
+      <div class="sec-head"><div><h2>يكمل طلبك</h2></div></div>
+      <div class="pgrid" id="relProducts"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BUSINESS ================= -->
+<section data-view="business" hidden>
+  <div class="wrap">
+    <div class="crumbs"><a href="#home">الرئيسية</a><svg class="ic sm"><use href="#i-left"/></svg><b>الشركات والجهات</b></div>
+    <div class="biz-hero">
+      <div class="body"><span class="badge unit">للشركات والجهات الحكومية</span><h1>مشروعك الكبير<br><em>من مصنع واحد</em></h1><p>لوحات وواجهات، أجنحة معارض، تغليف أساطيل، وهدايا بالكميات، بعرض سعر مفصّل خلال 24 ساعة وفريق تركيب في الرياض</p><div class="cta-row"><a href="#quote" class="btn btn-brand" data-scroll="quoteForm">اطلب عرض سعر</a><span class="btn btn-ghost-light num">050 90 500 13</span></div></div>
+      <div class="img" style="background-image:url(img/w-qomra.jpg)"></div>
+    </div>
+
+    <div class="section">
+      <div class="sec-head"><div><h2>ما ننفّذه للجهات</h2><p>أقسام تُطلب بعرض سعر لأن تكلفتها تعتمد على المقاس والموقع والكمية</p></div></div>
+      <div class="svc-grid">
+        <div class="svc"><div class="img" style="background-image:url(img/w-aldawaa.jpg)"></div><div class="b"><h3>اللوحات والواجهات</h3><p>حروف بارزة مضيئة، بايلون، أكريليك، كلادنج، ولوحات إرشادية</p></div></div>
+        <div class="svc"><div class="img" style="background-image:url(img/w-asdeqa.jpg)"></div><div class="b"><h3>المعارض والفعاليات</h3><p>تصميم وتنفيذ الأجنحة، رول أب وبوب أب، أعلام وبوابات</p></div></div>
+        <div class="svc"><div class="img" style="background-image:url(img/hero-fleet.jpg)"></div><div class="b"><h3>البنرات والسيارات</h3><p>تغليف أساطيل، أسوار مشاريع، شد بنر على الواجهات</p></div></div>
+        <div class="svc"><div class="img" style="background-image:url(img/w-trophies.jpg)"></div><div class="b"><h3>الهدايا والدروع بالكميات</h3><p>دروع تكريم، بوكسات ترحيب، أكواب وملبوسات بهوية الجهة</p></div></div>
+        <div class="svc"><div class="img" style="background-image:url(img/w-stc.jpg)"></div><div class="b"><h3>مطبوعات المؤسسات</h3><p>كروت تعريفية، ليناردات، ورق رسمي، فواتير ودفاتر</p></div></div>
+        <div class="svc"><div class="img" style="background-image:url(img/w-bizcard.jpg)"></div><div class="b"><h3>الهوية البصرية</h3><p>تصميم شعار وهوية كاملة وتطبيقها على كل المطبوعات</p></div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sec-head"><div><h2>كيف نعمل معكم</h2></div></div>
+      <ol class="proc">
+        <li><span class="n">الخطوة 1</span><h3>أرسلوا الطلب</h3><p>النموذج أدناه أو واتساب، مع الملفات والمقاسات إن وجدت</p></li>
+        <li><span class="n">الخطوة 2</span><h3>عرض سعر خلال 24 ساعة</h3><p>عرض مفصّل بالبنود والمدة، ومعاينة الموقع للوحات والأجنحة</p></li>
+        <li><span class="n">الخطوة 3</span><h3>تصميم وعيّنة</h3><p>نموذج رقمي وعيّنة فعلية للكميات الكبيرة قبل الإنتاج</p></li>
+        <li><span class="n">الخطوة 4</span><h3>إنتاج وتركيب</h3><p>من مصنعنا في الرياض، مع فريق تركيب وتسليم في الموعد</p></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="clients" style="margin-top:72px">
+    <div class="wrap"><h2>جهات تعاملنا معها</h2><p>أرامكو، STC، موسم الرياض، جامعة الملك سعود، ووزارات الصحة والرياضة والتعليم</p><img src="img/clients.jpg" alt="شعارات عملاء بانوراما" loading="lazy"></div>
+  </div>
+
+  <div class="wrap section" id="quoteForm">
+    <div class="quote-wrap">
+      <div class="intro">
+        <h2>اطلب عرض سعر</h2>
+        <p>املأ النموذج ونرد بعرض مفصّل خلال 24 ساعة عمل</p>
+        <ul class="qlist">
+          <li><svg class="ic"><use href="#i-check"/></svg>فواتير ضريبية معتمدة للجهات</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>أسعار كميات وخصومات للتعاقدات السنوية</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>معاينة موقع مجانية داخل الرياض</li>
+        </ul>
+      </div>
+      <form class="qf" id="qf" novalidate>
+        <label>الاسم<input id="qf-name" required placeholder="الاسم الكامل"></label>
+        <label>الجهة أو الشركة<input id="qf-org" placeholder="اسم الجهة"></label>
+        <label>رقم الجوال<input id="qf-phone" inputmode="tel" required placeholder="05x xxx xxxx" dir="ltr" style="text-align:right"></label>
+        <label>الخدمة<select id="qf-svc"><option>اللوحات والواجهات</option><option>المعارض والفعاليات</option><option>البنرات والسيارات</option><option>الهدايا والدروع بالكميات</option><option>مطبوعات المؤسسات</option><option>الهوية البصرية</option></select></label>
+        <label>الكمية التقريبية<input id="qf-qty" placeholder="مثال: 500 قطعة"></label>
+        <label>الموعد المطلوب<input id="qf-date" type="date"></label>
+        <label class="full">تفاصيل المشروع<textarea id="qf-details" placeholder="المقاسات، الموقع، الخامات، أي ملاحظات"></textarea></label>
+        <label class="full">ملفات أو صور<input id="qf-file" type="file" multiple><span class="note">ملفات التصميم أو صور الموقع</span></label>
+        <div class="full"><button class="btn btn-primary btn-block" type="submit">أرسل طلب عرض السعر</button></div>
+        <div class="sent" id="sent" hidden>هذه معاينة للتصميم، وفي المتجر الفعلي يصل الطلب لفريق المبيعات مع رسالة تأكيد للعميل على واتساب</div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="ribbon" style="height:4px"></div>
+  <div class="wrap grid">
+    <div>
+      <a href="#home" class="logo"><img src="img/logo-white.svg" alt="بانوراما برينت"></a>
+      <p>مصنع طباعة ودعاية وإعلان في الرياض منذ عام 2000، ثمانية أقسام إنتاج تخدم الأفراد والمتاجر والجهات الحكومية</p>
+      <div class="chips"><span class="chip"><svg class="ic sm"><use href="#i-shield"/></svg>موثّق في المركز السعودي للأعمال</span><span class="chip"><svg class="ic sm"><use href="#i-shield"/></svg>سجل تجاري · رقم ضريبي</span></div>
+    </div>
+    <div><h4>الأقسام</h4><ul><li>الطباعة الرقمية</li><li>الاستيكرات والملصقات</li><li>التغليف والعلب</li><li>الهدايا والدروع</li><li>اللوحات والواجهات</li><li>المعارض والفعاليات</li></ul></div>
+    <div><h4>المساعدة</h4><ul><li>الشحن والتوصيل</li><li>الاستبدال والاسترجاع</li><li>سياسة الخصوصية</li><li>الشروط والأحكام</li><li>الأسئلة الشائعة</li><li><a href="#business">صفحة الشركات والجهات</a></li></ul></div>
+    <div><h4>تواصل معنا</h4><ul>
+      <li class="row"><svg class="ic sm"><use href="#i-phone"/></svg><span class="num" dir="ltr">050 90 500 13</span></li>
+      <li class="row"><svg class="ic sm"><use href="#i-mail"/></svg><span style="overflow-wrap:anywhere">panorama.print.ksa@gmail.com</span></li>
+      <li class="row"><svg class="ic sm"><use href="#i-pin"/></svg><span>الرياض · شارع سلمان الفارسي · حي النهضة</span></li>
+      <li class="row"><svg class="ic sm"><use href="#i-clock"/></svg><span>الأحد – الخميس · 9 صباحًا – 9 مساءً</span></li>
+    </ul></div>
+  </div>
+  <div class="wrap bottom">
+    <p>© 2026 بانوراما برينت للدعاية والإعلان · جميع الأسعار شاملة ضريبة القيمة المضافة</p>
+    <div class="pays"><span>مدى</span><span>Apple Pay</span><span>STC Pay</span><span>Visa</span><span>Mastercard</span><span>تابي</span><span>تمارا</span></div>
+  </div>
+  <div style="height:72px"></div>
+</footer>
+
+<span class="wa-fab" aria-label="واتساب 050 90 500 13" title="واتساب 050 90 500 13"><svg class="ic"><use href="#i-chat"/></svg></span>
+
+<nav class="switcher" aria-label="صفحات المعاينة">
+  <span class="lbl">معاينة التصميم</span>
+  <a href="#home" data-nav="home">الرئيسية</a>
+  <a href="#category" data-nav="category">القسم</a>
+  <a href="#product" data-nav="product">المنتج</a>
+  <a href="#business" data-nav="business">الشركات</a>
+</nav>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  const P=[
+    {id:1,t:'ستيكرات دائرية مقصوصة',c:'الاستيكرات والملصقات',k:'stickers',p:90,per:'/ 100 حبة',u:'ابتداءً من 0.45 ر.س للحبة',eta:3,img:'p-stickers',x:1,pop:1},
+    {id:2,t:'كروت أعمال 350 جرام بحواف ملونة',c:'الطباعة الرقمية',k:'print',p:120,per:'/ 100 كرت',u:'ابتداءً من 0.60 ر.س للكرت',eta:2,img:'p-bizcards',x:1,pop:2},
+    {id:3,t:'علبة شحن كرافت مطبوعة من الداخل',c:'التغليف والعلب',k:'pack',p:450,per:'/ 50 علبة',u:'ابتداءً من 6.5 ر.س للعلبة',eta:5,img:'p-mailer',x:0,pop:3},
+    {id:4,t:'أكياس ورقية فاخرة بيد حبل',c:'التغليف والعلب',k:'pack',p:380,per:'/ 50 كيس',u:'ابتداءً من 5.9 ر.س للكيس',eta:4,img:'p-bag',x:0,pop:4},
+    {id:5,t:'أكواب سيراميك مطبوعة بالكامل',c:'الهدايا والدروع',k:'gifts',p:240,per:'/ 12 كوب',u:'ابتداءً من 16 ر.س للكوب',eta:3,img:'p-mug',x:1,pop:5},
+    {id:6,t:'رول أب 85 × 200 مع الحقيبة',c:'المعارض والفعاليات',k:'events',p:165,per:'/ قطعة',u:'طباعة وهيكل وحقيبة',eta:2,img:'p-rollup',x:1,pop:6},
+    {id:7,t:'درع أكريليك بقاعدة ذهبية',c:'الهدايا والدروع',k:'gifts',p:145,per:'/ قطعة',u:'حفر بالليزر مع الاسم',eta:4,img:'p-shield',x:0,pop:7},
+    {id:8,t:'بروشور مطوي ثلاثي A4',c:'الطباعة الرقمية',k:'print',p:180,per:'/ 100 نسخة',u:'ابتداءً من 1.4 ر.س للنسخة',eta:3,img:'p-brochure',x:1,pop:8}
+  ];
+  const fmt=n=>n.toLocaleString('en-US',{maximumFractionDigits:2});
+  const star='<svg class="ic star"><use href="#i-star"/></svg>';
+  const card=p=>`<article class="pcard"><a href="#product" class="media"><img src="img/${p.img}.jpg" alt="${p.t}" loading="lazy"><span class="badge unit">${p.u}</span></a><button class="fav" aria-label="أضف للمفضلة"><svg class="ic sm"><use href="#i-heart"/></svg></button><div class="body"><span class="cat-name">${p.c}</span><h3><a href="#product">${p.t}</a></h3><div class="rating">${star}<b class="num">4.9</b><span class="num">(128)</span></div><div class="price"><small>ابتداءً من</small><strong class="num">${fmt(p.p)} ر.س</strong><small class="num">${p.per}</small></div><div class="eta"><svg class="ic sm"><use href="#i-clock"/></svg><span class="num">يجهز خلال ${p.eta===2?'يومي عمل':p.eta+' أيام عمل'}</span></div><a href="#product" class="btn btn-primary sm btn-block">اختر الكمية واطلب</a></div></article>`;
+  const fixFav=()=>{};
+  const home=document.getElementById('homeProducts'); home.innerHTML=P.slice(0,4).map(card).join(''); fixFav(home);
+  const rel=document.getElementById('relProducts'); rel.innerHTML=[P[2],P[3],P[1],P[7]].map(card).join(''); fixFav(rel);
+
+  // category listing
+  let cat='all';
+  const grid=document.getElementById('catProducts'), count=document.getElementById('resultCount');
+  function renderCat(){
+    const etas=[...document.querySelectorAll('[data-eta]:checked')].map(i=>+i.dataset.eta);
+    const prices=[...document.querySelectorAll('[data-price]:checked')].map(i=>+i.dataset.price);
+    const exp=document.getElementById('f-exp').checked;
+    let list=P.filter(p=>cat==='all'||p.k===cat)
+      .filter(p=>!etas.length||etas.some(e=>e===5?p.eta>=4:e===2?p.eta<=2:p.eta===e))
+      .filter(p=>!prices.length||prices.some(m=>m===150?p.p<150:m===300?(p.p>=150&&p.p<=300):p.p>300))
+      .filter(p=>!exp||p.x);
+    const s=document.getElementById('sort').value;
+    list.sort((a,b)=>s==='low'?a.p-b.p:s==='high'?b.p-a.p:s==='fast'?a.eta-b.eta:a.pop-b.pop);
+    grid.innerHTML=list.length?list.map(card).join(''):'<div class="empty">لا توجد منتجات بهذه الفلاتر، جرّب إزالة فلتر</div>';
+    fixFav(grid);
+    count.textContent=list.length+' منتجات';
+  }
+  document.getElementById('catChips').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cat=b.dataset.cat;document.querySelectorAll('#catChips button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderCat()});
+  document.querySelectorAll('.filters input').forEach(i=>i.addEventListener('change',renderCat));
+  document.getElementById('sort').addEventListener('change',renderCat);
+  renderCat();
+
+  // PDP
+  const tiers=[{q:100,p:90},{q:250,p:180,tag:'الأكثر طلبًا',cls:'soft'},{q:500,p:300},{q:1000,p:450,tag:'وفّر 50%',cls:'ok'}];
+  let ti=1, designAdd=0, size=1;
+  const sizeMul=[0.85,1,1.2,1.55];
+  const tw=document.getElementById('tiers');
+  tw.innerHTML=tiers.map((t,i)=>`<button class="tier" aria-pressed="${i===ti}" data-i="${i}"><span class="l"><span class="radio"></span><b class="num">${fmt(t.q)} حبة</b>${t.tag?`<span class="badge ${t.cls}">${t.tag}</span>`:''}</span><span class="r"><b class="num" data-tp="${i}"></b><small class="num" data-tu="${i}"></small></span></button>`).join('');
+  function calc(){
+    const m=sizeMul[size], exp=document.getElementById('express').checked;
+    tiers.forEach((t,i)=>{const pr=Math.round(t.p*m);tw.querySelector(`[data-tp="${i}"]`).textContent=fmt(pr)+' ر.س';tw.querySelector(`[data-tu="${i}"]`).textContent=fmt(pr/t.q)+' ر.س للحبة'});
+    const t=tiers[ti]; let base=Math.round(t.p*m); let total=base+designAdd; if(exp) total=Math.round(total*1.4);
+    document.getElementById('total').textContent=fmt(total)+' ر.س';
+    document.getElementById('unit').textContent=fmt(base/t.q)+' ر.س للحبة';
+    document.getElementById('qtyLabel').textContent='شامل الضريبة · '+fmt(t.q)+' حبة';
+    document.getElementById('addBtn').textContent='أضف إلى السلة · '+fmt(total)+' ر.س';
+    document.getElementById('instText').textContent='أو قسّمها على 4 دفعات بدون فوائد · '+fmt(Math.ceil(total/4))+' ر.س للدفعة';
+    document.getElementById('etaText').textContent=exp?'يجهز خلال 24 ساعة عمل · يصل الرياض الأربعاء 5 نوفمبر':'يجهز خلال 3 أيام عمل · يصل الرياض الخميس 6 نوفمبر';
+  }
+  tw.addEventListener('click',e=>{const b=e.target.closest('.tier');if(!b)return;ti=+b.dataset.i;tw.querySelectorAll('.tier').forEach(x=>x.setAttribute('aria-pressed',x===b));calc()});
+  document.querySelectorAll('.seg').forEach(g=>g.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;g.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));if(g.dataset.group==='size'){size=[...g.children].indexOf(b);calc()}}));
+  document.getElementById('designPaths').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;designAdd=+b.dataset.add;document.querySelectorAll('#designPaths button').forEach(x=>x.setAttribute('aria-pressed',x===b));document.getElementById('drop').hidden=designAdd===99;calc()});
+  document.getElementById('express').addEventListener('change',calc);
+  const file=document.getElementById('file'), drop=document.getElementById('drop');
+  file.addEventListener('change',()=>{if(file.files[0])document.getElementById('dropTitle').textContent='تم إرفاق '+file.files[0].name});
+  ['dragover','dragenter'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
+  ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over');if(ev==='drop'&&e.dataTransfer.files[0])document.getElementById('dropTitle').textContent='تم إرفاق '+e.dataTransfer.files[0].name}));
+  document.getElementById('thumbs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;document.getElementById('mainImg').src=b.dataset.src;document.querySelectorAll('#thumbs button').forEach(x=>x.setAttribute('aria-pressed',x===b))});
+  const toast=document.getElementById('toast'); let tt;
+  const say=m=>{toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),2600)};
+  let cart=2;
+  document.getElementById('addBtn').addEventListener('click',()=>{cart++;document.getElementById('cartCount').textContent=cart;say('أُضيف إلى السلة · في المعاينة فقط')});
+  document.querySelectorAll('.tablist button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tablist button').forEach(x=>x.setAttribute('aria-selected',x===b));document.querySelectorAll('.tabpanel').forEach(p=>p.hidden=p.id!==b.dataset.tab)}));
+  calc();
+
+  // hero slider
+  const slides=[...document.querySelectorAll('.slide')], dots=[...document.querySelectorAll('#dots button')];
+  let si=0, timer;
+  const go=i=>{si=(i+slides.length)%slides.length;slides.forEach((s,k)=>s.hidden=k!==si);dots.forEach((d,k)=>d.setAttribute('aria-current',k===si))};
+  dots.forEach((d,i)=>d.addEventListener('click',()=>{go(i);restart()}));
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const restart=()=>{clearInterval(timer);if(!reduce)timer=setInterval(()=>go(si+1),6000)};
+  restart();
+
+  // quote form
+  document.getElementById('qf').addEventListener('submit',e=>{e.preventDefault();document.getElementById('sent').hidden=false});
+  document.querySelectorAll('[data-scroll]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.getElementById(a.dataset.scroll).scrollIntoView({behavior:reduce?'auto':'smooth'})}));
+
+  // routing
+  const views=['home','category','product','business'];
+  function route(){
+    const h=location.hash.replace('#','');
+    const v=views.includes(h)?h:'home';
+    document.querySelectorAll('[data-view]').forEach(s=>s.hidden=s.dataset.view!==v);
+    document.querySelectorAll('.switcher a').forEach(a=>a.toggleAttribute('aria-current',a.dataset.nav===v));
+    document.querySelectorAll('.switcher a').forEach(a=>{if(a.dataset.nav===v)a.setAttribute('aria-current','page')});
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange',route); route();
+})();
+</script>
+
+</body>
+</html>
