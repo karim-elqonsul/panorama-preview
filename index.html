@@ -54,16 +54,19 @@ p{margin:0}
 .actions{display:flex;align-items:center;gap:10px}
 .icon-btn{position:relative;width:46px;height:46px;border:1px solid var(--ink-200);border-radius:var(--r-md);display:grid;place-items:center;background:var(--white);color:var(--ink)}
 .icon-btn .badge-count{position:absolute;top:-6px;left:-6px;background:var(--orange-700);color:var(--white);font-size:11px;font-weight:700;width:20px;height:20px;border-radius:50%;display:grid;place-items:center}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:var(--r-md);font-weight:600;font-size:15px;padding:14px 26px;line-height:1.2;white-space:nowrap;transition:background .15s,transform .15s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:var(--r-md);font-weight:600;font-size:15px;padding:14px 26px;line-height:1.2;white-space:nowrap;transition:background .2s,color .2s,box-shadow .2s,transform .15s}
 .btn:active{transform:translateY(1px)}
 .btn.sm{font-size:13px;padding:10px 18px}
 .btn-primary{background:var(--orange-700);color:var(--white)}
 .btn-primary:hover{background:var(--orange-800)}
 .btn-dark{background:var(--ink);color:var(--white)}
-.btn-dark:hover{background:#000}
+.btn-dark:hover{background:var(--orange-500);color:var(--ink)}
 .btn-light{background:var(--white);color:var(--ink)}
+.btn-light:hover{background:var(--orange-500)}
 .btn-brand{background:var(--orange-500);color:var(--ink)}
+.btn-brand:hover{background:var(--orange-700);color:var(--white)}
 .btn-outline{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink-300)}
+.btn-outline:hover{background:var(--orange-500);box-shadow:inset 0 0 0 1.5px var(--orange-500)}
 .btn-ghost-light{background:transparent;color:var(--white);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.7)}
 .btn-block{width:100%}
 .mainnav{border-top:1px solid var(--ink-200)}
@@ -88,57 +91,156 @@ p{margin:0}
 .badge.soft{background:var(--orange-50);color:var(--orange-700)}
 .badge.ok{background:#E3F4E8;color:#1F7A3B}
 
-/* ---------- hero */
-.hero{padding-top:24px}
-.slider{position:relative;border-radius:var(--r-xl);overflow:hidden;background:var(--orange-700)}
-.slide{display:grid;grid-template-columns:1.2fr 1fr;min-height:480px}
-.slide[hidden]{display:none!important}
-.slide .copy{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--orange-600),var(--orange-800));color:var(--white);padding:56px 60px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:18px}
-.slide.dark .copy{background:linear-gradient(180deg,var(--ink-800),var(--ink))}
-.slide .copy h1,.slide .copy h2{font-size:clamp(32px,4.2vw,52px);font-weight:900;line-height:1.15;position:relative}
-.slide .copy h1 em,.slide .copy h2 em{font-style:normal;color:var(--ink)}
-.slide.dark .copy h2 em{color:var(--orange-500)}
-.slide .copy p{font-size:17px;max-width:30em;opacity:.95;position:relative}
-.slide .media{position:relative;background-size:cover;background-position:center}
-.proof{position:absolute;right:20px;bottom:20px;background:var(--white);color:var(--ink);font-size:12px;font-weight:600;padding:8px 14px;border-radius:999px;display:flex;gap:6px;align-items:center}
-.swoosh{position:absolute;left:-84px;bottom:-96px;width:210px;opacity:.95;pointer-events:none}
-.cta-row{display:flex;gap:12px;flex-wrap:wrap;position:relative}
-.dots{display:flex;justify-content:center;gap:8px;margin-top:16px}
-.dots button{width:8px;height:8px;border-radius:4px;border:0;background:var(--ink-300);padding:0;transition:width .2s,background .2s}
-.dots button[aria-current="true"]{width:28px;background:var(--orange-700)}
+/* ---------- hero · press sheet */
+.hero{padding-top:28px}
+.sheet{position:relative;background:var(--paper);border:1px solid var(--ink-200);border-radius:var(--r-xl);padding:56px;display:grid;grid-template-columns:minmax(0,1fr) 480px;grid-template-areas:"copy visual" "tabs bar";column-gap:clamp(32px,6vw,96px);row-gap:36px;overflow:hidden}
+.sheet-copy{grid-area:copy;display:grid;align-content:center;min-width:0}
+.sheet-visual{grid-area:visual;position:relative;align-self:start}
+.sheet-tabs{grid-area:tabs;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-self:end}
+.colorbar{grid-area:bar;display:flex;align-items:center;gap:12px;align-self:end;direction:ltr;justify-content:flex-start}
+.colorbar .sw{display:flex}
+.colorbar .sw i{width:16px;height:16px;display:block}
+.colorbar .slug{font-size:12px;letter-spacing:.12em;color:var(--ink-400);white-space:nowrap}
+.reg{width:20px;height:20px;flex:none}
+.stack{display:grid}
+.stack > *{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility 0s linear .5s,transform .5s ease}
+.stack > .is-on{opacity:1;visibility:visible;transition:opacity .5s ease,visibility 0s,transform .5s ease}
+.copy-slide{display:flex;flex-direction:column;align-items:flex-start;transform:translateY(8px)}
+.copy-slide.is-on{transform:none}
+.eyebrow{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--ink-600)}
+.eyebrow .reg{width:16px;height:16px}
+.sheet h1,.sheet h2.hl{font-size:clamp(38px,4.3vw,60px);font-weight:900;line-height:1.18;margin-top:22px}
+.hi{display:inline-block;margin-top:10px;background:var(--orange-500);color:var(--ink);font-size:clamp(38px,4.3vw,60px);font-weight:900;line-height:1.18;padding:.02em .32em .14em;border-radius:12px;transform:rotate(-2deg);transform-origin:right center}
+.copy-slide p{font-size:18px;line-height:1.75;color:var(--ink-600);max-width:460px;margin-top:26px}
+.copy-slide .cta-row{margin-top:30px}
+.sheet-tabs button{border:0;background:none;padding:0;display:flex;flex-direction:column;align-items:flex-start;gap:10px;color:var(--ink);font:inherit;text-align:right}
+.sheet-tabs .bar{display:block;width:100%;height:3px;border-radius:2px;background:rgba(44,43,41,.1);overflow:hidden}
+.sheet-tabs .bar i{display:block;height:100%;width:0;background:linear-gradient(270deg,#2285C7,#0FA8BE 50%,#3EB54D)}
+.sheet-tabs .lb{display:flex;gap:8px;align-items:center;font-size:14px;font-weight:500;opacity:.45;transition:opacity .2s}
+.sheet-tabs .lb b{color:var(--orange-700);font-size:13px;font-weight:600}
+.sheet-tabs button:hover .lb,.sheet-tabs button[aria-selected="true"] .lb{opacity:1}
+.sheet-tabs button[aria-selected="true"] .bar i{animation:fillbar 4.5s linear forwards}
+.sheet:hover .sheet-tabs button[aria-selected="true"] .bar i{animation-play-state:paused}
+@keyframes fillbar{from{width:0}to{width:100%}}
+.reduce .sheet-tabs button[aria-selected="true"] .bar i{animation:none;width:100%}
+.crops{position:absolute;inset:-32px;pointer-events:none}
+.crops i{position:absolute;width:22px;height:22px}
+.crops i::before,.crops i::after{content:"";position:absolute;background:rgba(44,43,41,.55)}
+.crops i::before{width:22px;height:1px}
+.crops i::after{width:1px;height:22px}
+.crops .tl{top:0;left:0}.crops .tl::before{top:32px;left:0}.crops .tl::after{left:32px;top:0}
+.crops .tr{top:0;right:0}.crops .tr::before{top:32px;right:0}.crops .tr::after{right:32px;top:0}
+.crops .bl{bottom:0;left:0}.crops .bl::before{bottom:32px;left:0}.crops .bl::after{left:32px;bottom:0}
+.crops .br{bottom:0;right:0}.crops .br::before{bottom:32px;right:0}.crops .br::after{right:32px;bottom:0}
+.crops i{width:32px;height:32px}
+.crops i::before{width:22px}.crops i::after{height:22px}
 
-/* stats */
-.stats{margin-top:36px;background:var(--paper);border-radius:var(--r-lg);padding:26px 36px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.stat{display:flex;align-items:center;gap:14px;position:relative}
-.stat + .stat::before{content:"";position:absolute;right:-8px;top:12%;height:76%;width:1px;background:var(--ink-300)}
-.stat .ico{width:52px;height:52px;border-radius:16px;background:var(--orange-50);color:var(--orange-700);display:grid;place-items:center;flex:none}
-.stat .ico .ic{width:24px;height:24px}
-.stat b{display:block;font-size:24px;font-weight:800;line-height:1.2}
-.stat span{color:var(--ink-600);font-size:13px}
+/* banners */
+.bnr{position:relative;margin:0;aspect-ratio:480/448;border-radius:20px;overflow:hidden;container-type:inline-size;direction:ltr;isolation:isolate}
+.bnr *{position:absolute}
+.pc{background:var(--white);border-radius:3cqw;padding:1.5cqw;box-shadow:0 12px 24px -6px rgba(44,43,41,.22);transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+.pc img{position:static;width:100%;height:100%;object-fit:cover;border-radius:2cqw}
+.bnr-exp{background:var(--orange-500)}
+.bnr-exp .bn-logo{left:5.8%;top:6.2%;width:25%;height:auto}
+.bnr-exp .bn-num{left:3%;bottom:-5%;font-size:43cqw;font-weight:900;line-height:1;letter-spacing:-.04em;color:var(--ink);transition:color .35s}
+.bnr-exp .bn-years{z-index:2;right:5.8%;bottom:6.5%;display:flex;flex-direction:column;align-items:flex-end;direction:rtl;color:var(--ink)}
+.bnr-exp .bn-years *{position:static}
+.bnr-exp .bn-years b{font-size:9.6cqw;font-weight:900;line-height:1.1}
+.bnr-exp .bn-years small{font-size:3.2cqw;font-weight:600}
+.bnr-exp .pc{width:32.5%;aspect-ratio:156/118}
+.bnr-exp .pa{left:22%;top:26%;transform:rotate(-9deg)}
+.bnr-exp .pb{left:44%;top:15%;transform:rotate(5deg)}
+.bnr-exp .pcc{left:58%;top:37%;transform:rotate(13deg)}
+.sheet-visual:hover .bnr-exp .bn-num{color:var(--white)}
+.sheet-visual:hover .bnr-exp .pa{transform:translate(-5cqw,1cqw) rotate(-16deg)}
+.sheet-visual:hover .bnr-exp .pb{transform:translateY(-3cqw) rotate(2deg)}
+.sheet-visual:hover .bnr-exp .pcc{transform:translate(4cqw,3cqw) rotate(20deg)}
+.bnr-gift{background:var(--ink)}
+.bnr-gift .bn-num{left:-2%;top:0;font-size:37cqw;font-weight:900;line-height:1;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:2px var(--orange-500);transition:color .35s}
+.bnr-gift .pc{left:16%;top:42%;width:62.5%;aspect-ratio:300/228;transform:rotate(6deg)}
+.bnr-gift .tag{left:58%;top:36%;display:flex;flex-direction:column;align-items:flex-end;direction:rtl;background:var(--orange-500);color:var(--ink);border-radius:3cqw;padding:2.5cqw 3.8cqw 2.5cqw 8.3cqw;transform:rotate(-12deg);transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+.bnr-gift .tag *{position:static}
+.bnr-gift .tag b{font-size:4.6cqw;font-weight:900;line-height:1.3}
+.bnr-gift .tag small{font-size:2.7cqw;font-weight:600}
+.bnr-gift .tag::before{content:"";position:absolute;left:3.2cqw;top:50%;width:2.5cqw;height:2.5cqw;margin-top:-1.25cqw;border-radius:50%;background:var(--ink)}
+.sheet-visual:hover .bnr-gift .bn-num{color:var(--orange-500)}
+.sheet-visual:hover .bnr-gift .pc{transform:translateY(-3cqw) rotate(1deg)}
+.sheet-visual:hover .bnr-gift .tag{transform:translate(-1cqw,2cqw) rotate(4deg)}
+.bnr-pack{background:var(--orange-100)}
+.bnr-pack .die{left:6%;top:12%;width:80%;height:auto;transform:rotate(6deg)}
+.bnr-pack .die path{transition:stroke .35s,stroke-opacity .35s}
+.bnr-pack .pc{left:49%;top:52%;width:44.6%;aspect-ratio:214/166;transform:rotate(-5deg)}
+.bnr-pack .legend{left:5.8%;bottom:6%;display:flex;flex-direction:column;gap:1.6cqw;direction:rtl;align-items:flex-end}
+.bnr-pack .legend *{position:static}
+.bnr-pack .legend span{display:flex;align-items:center;gap:2cqw;font-size:2.8cqw;font-weight:500;color:rgba(44,43,41,.75)}
+.bnr-pack .legend i{display:block;width:6cqw;border-top:1.5px solid rgba(44,43,41,.6)}
+.bnr-pack .legend i.d{border-top-style:dashed}
+.sheet-visual:hover .bnr-pack .die path{stroke:var(--orange-500);stroke-opacity:1}
+.sheet-visual:hover .bnr-pack .pc{transform:translate(-1cqw,-3cqw) rotate(2deg)}
+.stk{position:absolute;right:-40px;top:-34px;width:132px;height:132px;border-radius:50%;background:var(--orange-500);color:var(--ink);border:5px solid var(--white);box-shadow:0 6px 14px rgba(44,43,41,.18);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transform:rotate(10deg) scale(.85);z-index:3;opacity:0;transition:opacity .4s,transform .45s cubic-bezier(.34,1.56,.64,1)}
+.stk.is-on{transform:rotate(10deg);opacity:1}
+.stk.dark{background:var(--ink);color:var(--white)}
+.stk b{font-size:30px;font-weight:900;line-height:1.1}
+.stk b.long{font-size:24px}
+.stk small{font-size:13px;font-weight:600}
 
-/* categories */
-.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.cat{position:relative;aspect-ratio:282/340;border-radius:var(--r-lg);overflow:hidden;background-size:cover;background-position:center;color:var(--white);display:flex;flex-direction:column;justify-content:flex-end;padding:20px;isolation:isolate;transition:transform .2s}
-.cat::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(44,43,41,0) 40%,rgba(44,43,41,.9));z-index:-1}
-.cat:hover{transform:translateY(-3px)}
-.cat h3{font-size:20px;font-weight:700}
-.cat small{font-size:12px;opacity:.85}
-.cat .tag{position:absolute;top:16px;right:16px;font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;display:flex;gap:6px;align-items:center;color:var(--ink)}
-.cat .tag.online{background:var(--orange-500)}
-.cat .tag.quote{background:var(--white)}
+/* ---------- tapes */
+.tapes{position:relative;height:210px;overflow:hidden;margin-top:12px}
+.tape{position:absolute;left:-12%;width:124%;top:50%;overflow:hidden;display:flex;align-items:center}
+.tape-ink{height:60px;background:linear-gradient(90deg,#3EB54D,#0FA8BE 50%,#2285C7);color:var(--ink);transform:translateY(-50%) translateY(8px) rotate(-3deg)}
+.tape-org{height:84px;background:var(--orange-500);color:var(--ink);transform:translateY(-50%) rotate(2.5deg);box-shadow:0 10px 20px -6px rgba(44,43,41,.16)}
+.track{display:flex;width:max-content;direction:ltr;animation:tapeL 40s linear infinite}
+.tape-ink .track{animation:tapeR 46s linear infinite}
+.tapes:hover .track{animation-play-state:paused}
+@keyframes tapeL{from{transform:translateX(0)}to{transform:translateX(-33.3333%)}}
+@keyframes tapeR{from{transform:translateX(-33.3333%)}to{transform:translateX(0)}}
+.trow{display:flex;align-items:center;gap:36px;padding-inline:18px;direction:rtl;white-space:nowrap}
+.trow .st{display:flex;align-items:baseline;gap:10px}
+.trow .st b{font-size:36px;font-weight:900;line-height:1}
+.trow .st span{font-size:20px;font-weight:600}
+.tape-ink .trow{gap:28px}
+.tape-ink .trow span{font-size:18px;font-weight:600}
+.star4{width:18px;height:18px;flex:none;fill:currentColor}
+.tape-org .star4{color:var(--ink)}
+.tape-ink .star4{width:14px;height:14px;color:var(--white)}
+
+/* ---------- category icon tiles */
+.ctiles{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ctile{min-height:264px;padding:24px;border-radius:var(--r-lg);background:var(--paper);border:1px solid var(--ink-200);display:flex;flex-direction:column;justify-content:space-between;gap:18px;transition:background .25s,border-color .25s,transform .25s,box-shadow .25s}
+.ctile .top{display:flex;justify-content:space-between;align-items:center}
+.ctile .ibox{width:100px;height:100px;border-radius:26px;background:var(--orange-50);display:grid;place-items:center;transition:background .25s}
+.ctile .ibox svg{width:60px;height:60px;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.ctile .arr{width:40px;height:40px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--ink-300);display:grid;place-items:center;transition:background .25s,box-shadow .25s,color .25s}
+.ctile .arr .ic{width:20px;height:20px}
+.ctile b{display:block;font-size:20px;font-weight:700;line-height:1.4}
+.ctile small{display:block;font-size:14px;color:var(--ink-600);margin-top:4px;transition:color .25s}
+.ctile .ctag{display:flex;align-items:center;gap:8px;font-style:normal;font-size:13px;font-weight:600;color:var(--orange-700);margin-top:12px;transition:color .25s}
+.ctile .ctag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--orange-500);transition:background .25s}
+.ctile:hover,.ctile:focus-visible{background:var(--orange-500);border-color:var(--orange-500);transform:translateY(-4px);box-shadow:0 16px 32px -8px rgba(232,130,58,.3)}
+.ctile:hover .ibox{background:var(--white)}
+.ctile:hover .ibox svg{transform:scale(1.13) rotate(-6deg)}
+.ctile:hover .arr{background:var(--ink);box-shadow:none;color:var(--white)}
+.ctile:hover small,.ctile:hover .ctag{color:var(--ink)}
+.ctile:hover .ctag::before{background:var(--ink)}
 
 /* paths */
 .paths{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.path{display:grid;grid-template-columns:1fr 210px;border-radius:24px;overflow:hidden;min-height:270px}
+.path{display:grid;grid-template-columns:1fr 210px;border-radius:24px;overflow:hidden;min-height:270px;transition:transform .35s,box-shadow .35s}
 .path.dark{background:var(--ink);color:var(--white)}
 .path.soft{background:var(--orange-50);box-shadow:inset 0 0 0 1.5px var(--orange-500)}
+.path:hover{transform:translateY(-5px);box-shadow:0 18px 36px -10px rgba(232,130,58,.32),inset 0 0 0 2px var(--orange-500)}
 .path .body{padding:30px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px}
 .path h3{font-size:24px;font-weight:700}
 .path p{font-size:15px;opacity:.88}
-.path .pi{width:44px;height:44px;border-radius:14px;display:grid;place-items:center}
+.path .pi{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;transition:background .25s,color .25s,transform .35s}
 .path.dark .pi{background:var(--orange-500);color:var(--ink)}
 .path.soft .pi{background:var(--ink);color:var(--white)}
-.path .img{background-size:cover;background-position:center}
+.path.dark:hover .pi{background:var(--white)}
+.path.soft:hover .pi{background:var(--orange-500);color:var(--ink)}
+.path:hover .pi{transform:rotate(-8deg)}
+.path .img{position:relative;overflow:hidden}
+.path .img i{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s ease}
+.path:hover .img i{transform:scale(1.1)}
 
 /* product cards */
 .pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
@@ -160,28 +262,6 @@ p{margin:0}
 .price strong{font-size:18px;font-weight:700}
 .eta{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-600)}
 .pcard .btn{margin-top:auto}
-
-/* steps */
-.band{background:var(--paper);margin-top:80px;padding-block:72px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.step{background:var(--white);border:1px solid var(--ink-200);border-radius:var(--r-lg);padding:28px;display:flex;flex-direction:column;gap:10px}
-.step .n{width:48px;height:48px;border-radius:50%;background:var(--orange-500);display:grid;place-items:center;font-weight:700;font-size:20px}
-.step h3{font-size:20px;font-weight:700}
-.step p{color:var(--ink-600)}
-
-/* clients */
-.clients{background:var(--ink);color:var(--white);padding-block:72px;text-align:center}
-.clients h2{font-size:clamp(26px,3vw,36px);font-weight:800}
-.clients p{opacity:.75;margin-top:8px}
-.clients img{margin:32px auto 0;width:min(1100px,100%)}
-
-/* portfolio */
-.bento{display:grid;grid-template-columns:1fr 1fr 2fr;grid-template-rows:200px 200px;gap:24px}
-.work{position:relative;border-radius:var(--r-lg);overflow:hidden;background-size:cover;background-position:center;color:var(--white);display:flex;flex-direction:column;justify-content:flex-end;padding:16px 18px;isolation:isolate}
-.work::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(44,43,41,.88));z-index:-1}
-.work b{font-size:16px}
-.work small{font-size:12px;opacity:.85}
-.work.big{grid-column:3;grid-row:1 / span 2}
 
 /* season */
 .season{display:grid;grid-template-columns:1.4fr 1fr;border-radius:var(--r-xl);overflow:hidden;background:var(--ink);color:var(--white);min-height:260px}
@@ -215,8 +295,6 @@ p{margin:0}
 .foot .chip{display:flex;align-items:center;gap:6px;background:var(--ink-800);padding:7px 12px;border-radius:10px;font-size:12px}
 .foot .bottom{border-top:1px solid var(--ink-600);display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px;flex-wrap:wrap}
 .foot .bottom p{font-size:12px;opacity:.6}
-.pays{display:flex;gap:8px;flex-wrap:wrap}
-.pays span{background:var(--white);color:var(--ink);font-size:12px;font-weight:600;padding:5px 10px;border-radius:8px}
 
 /* ---------- category page */
 .crumbs{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-400);padding-top:20px;flex-wrap:wrap}
@@ -293,8 +371,6 @@ p{margin:0}
 .cta-buy{display:flex;gap:12px}
 .cta-buy .btn{flex:1;font-size:16px;padding:17px}
 .cta-buy .icon-btn{width:56px;height:56px}
-.inst{display:flex;align-items:center;gap:10px;border:1px solid var(--ink-200);border-radius:12px;padding:12px 16px;font-size:13px;color:var(--ink-600);flex-wrap:wrap}
-.inst span{background:var(--ink-100);color:var(--ink);padding:3px 8px;border-radius:6px;font-weight:600;font-size:12px}
 .trust{display:flex;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--ink-600)}
 .trust .row .ic{color:var(--orange-700)}
 .toast{position:fixed;left:50%;transform:translate(-50%,20px);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--white);padding:12px 20px;border-radius:12px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:80;max-width:calc(100% - 32px)}
@@ -447,6 +523,165 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
   .price-big strong{font-size:30px}
   .switcher a{padding:8px 11px;font-size:12px}
 }
+/* best sellers carousel */
+.sec-ctrl{display:flex;align-items:center;gap:12px}
+.sec-ctrl .sep{width:1px;height:24px;background:var(--ink-300)}
+.arrow-btn{width:44px;height:44px;border-radius:50%;border:0;background:var(--white);box-shadow:inset 0 0 0 1px var(--ink-300);display:grid;place-items:center;color:var(--ink);transition:background .2s,box-shadow .2s}
+.arrow-btn:hover{background:var(--orange-500);box-shadow:none}
+.arrow-btn .ic{width:20px;height:20px}
+.arrow-btn.prev .ic{transform:scaleX(-1)}
+.filters-row{display:flex;gap:10px;margin:-6px 0 24px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.filters-row::-webkit-scrollbar{display:none}
+.fchip{flex:none;border:1px solid var(--ink-200);background:var(--white);border-radius:999px;padding:9px 18px;font:inherit;font-size:14px;font-weight:500;color:var(--ink);transition:background .2s,border-color .2s,color .2s}
+.fchip:hover{background:var(--orange-500);border-color:var(--orange-500)}
+.fchip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--white)}
+.pscroll{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 72px)/4);gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-block:8px 14px;margin-block:-8px -14px}
+.pscroll::-webkit-scrollbar{display:none}
+.pscroll > *{scroll-snap-align:start}
+.sprog{height:3px;border-radius:2px;background:rgba(44,43,41,.08);margin-top:28px;position:relative;overflow:hidden}
+.sprog i{position:absolute;top:0;height:100%;right:0;width:25%;background:var(--orange-500);border-radius:2px;transition:right .25s,width .25s}
+.pcard:hover{box-shadow:0 14px 32px -6px rgba(232,130,58,.22);border-color:var(--orange-500);transform:translateY(-3px)}
+.pcard .media{overflow:hidden}
+.pcard .media img{transition:transform .5s ease}
+.pcard:hover .media img{transform:scale(1.08)}
+
+/* steps */
+.band{background:var(--paper);margin-top:80px;padding-block:72px}
+.flow{position:relative;height:24px;margin-bottom:24px}
+.flow .line{position:absolute;top:11px;right:16.666%;left:16.666%;height:2px;background:repeating-linear-gradient(90deg,var(--paper) 0 8px,transparent 8px 14px),linear-gradient(270deg,#2285C7,#0FA8BE 50%,#3EB54D)}
+.flow .node{position:absolute;top:4px;width:16px;height:16px;margin-right:-8px;border-radius:50%;background:var(--white);box-shadow:inset 0 0 0 3px #0FA8BE}
+.flow .spark{position:absolute;top:5px;width:14px;height:14px;margin-right:-7px;border-radius:50%;background:linear-gradient(135deg,#3EB54D,#2285C7);box-shadow:0 0 14px 2px rgba(15,168,190,.7);animation:spark 3.6s ease-in-out infinite}
+@keyframes spark{0%{right:16.666%;opacity:0}10%{opacity:1}80%{right:83.333%;opacity:1}92%,100%{right:83.333%;opacity:0}}
+.stepsx{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:0;padding:0;list-style:none}
+.stepx{background:var(--white);border:1px solid var(--ink-200);border-radius:var(--r-lg);padding:24px 28px 28px;display:flex;flex-direction:column;gap:12px;transition:border-color .25s,box-shadow .25s,transform .25s}
+.stepx .top{display:flex;justify-content:space-between;align-items:center}
+.stepx .n{font-size:64px;font-weight:900;line-height:1.1;color:transparent;-webkit-text-stroke:1.5px var(--orange-500);transition:color .25s}
+.stepx .ci{width:56px;height:56px;border-radius:50%;background:var(--orange-50);display:grid;place-items:center;transition:background .25s}
+.stepx .ci .ic{width:26px;height:26px}
+.stepx h3{font-size:20px;font-weight:700}
+.stepx p{color:var(--ink-600);font-size:14px}
+.stepx:hover{border-color:var(--orange-500);box-shadow:0 16px 32px -8px rgba(232,130,58,.22);transform:translateY(-4px)}
+.stepx:hover .n{color:var(--orange-500)}
+.stepx:hover .ci{background:var(--orange-500)}
+
+/* clients */
+.clients{background:var(--ink);color:var(--white);padding-block:72px;text-align:center;overflow:hidden}
+.clients h2{font-size:clamp(26px,3vw,36px);font-weight:800}
+.clients p{opacity:.75;margin-top:8px}
+.clients .wrap > img{margin:32px auto 0;width:min(1100px,100%)}
+.marq{margin-top:40px;display:flex;flex-direction:column;gap:28px}
+.mrow{overflow:hidden;direction:ltr}
+.mtrack{display:flex;width:max-content;animation:mR 70s linear infinite}
+.mtrack.b{animation:mL 74s linear infinite}
+.mtrack img{height:64px;width:auto;max-width:none;flex:none}
+.clients:hover .mtrack{animation-play-state:paused}
+@keyframes mL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes mR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+/* promo banner slots */
+.promos{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.promo{position:relative;aspect-ratio:588/300;border-radius:var(--r-lg);overflow:hidden;container-type:inline-size;display:block}
+.promo.dark{background:var(--ink);color:var(--white)}
+.promo.org{background:var(--orange-500);color:var(--ink)}
+.promo .pr-card{position:absolute;left:6%;top:24%;width:39.5%;aspect-ratio:232/176;background:var(--white);border-radius:2.4cqw;padding:1.2cqw;box-shadow:0 12px 24px -6px rgba(0,0,0,.25);transform:rotate(7deg);transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+.promo .pr-card img{width:100%;height:100%;object-fit:cover;border-radius:1.5cqw}
+.promo:hover .pr-card{transform:translate(1cqw,-2cqw) rotate(-2deg)}
+.promo .pr-copy{position:absolute;right:6%;top:50%;transform:translateY(-50%);width:51%;display:flex;flex-direction:column;align-items:flex-start;gap:1.7cqw}
+.promo .pr-copy small{font-size:2.2cqw;font-weight:600}
+.promo.dark .pr-copy small{color:var(--orange-500)}
+.promo .pr-copy b{font-size:5.1cqw;font-weight:900;line-height:1.22}
+.promo .pr-copy span{font-size:2.55cqw;font-weight:500;opacity:.78}
+.promo .pr-copy .btn{margin-top:1cqw}
+.promo .reg{position:absolute;left:3.7%;bottom:7%;width:3.4cqw;height:3.4cqw}
+
+/* footer pay tiles */
+.pays{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pays .secure{display:flex;align-items:center;gap:6px;font-size:12px;opacity:.7;margin-inline-end:8px}
+.pt{width:64px;height:38px;border-radius:8px;background:var(--white);box-shadow:inset 0 0 0 1px var(--ink-200);display:grid;place-items:center;color:rgba(44,43,41,.75);font-size:10.5px;font-weight:600;line-height:1;white-space:nowrap;letter-spacing:0}
+.pt.sm{font-size:8.5px}
+
+/* installments widget */
+.instw{background:var(--orange-50);border:1px solid rgba(232,130,58,.35);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:14px}
+.iw-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.iw-top b{display:block;font-size:16px;font-weight:600}
+.iw-top span{font-size:13px;color:var(--ink-600)}
+.iw-top span strong{color:var(--orange-700);font-weight:700}
+.iw-logos{display:flex;gap:8px}
+.iw-sch{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.iw-sch span{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--ink-600)}
+.iw-sch span::before{content:"";height:4px;border-radius:2px;background:rgba(44,43,41,.12)}
+.iw-sch span.on::before{background:var(--orange-500)}
+.iw-sch b{color:var(--ink);font-weight:700}
+
+@media (max-width:1080px){
+  .sheet{grid-template-columns:minmax(0,1fr) 400px;padding:44px}
+  .ctiles{gap:16px}
+  .ctile{min-height:240px;padding:20px}
+  .ctile .ibox{width:84px;height:84px}
+  .ctile .ibox svg{width:50px;height:50px}
+  .pscroll{grid-auto-columns:calc((100% - 48px)/3)}
+}
+@media (max-width:860px){
+  .sheet{grid-template-columns:1fr;grid-template-areas:"visual" "copy" "tabs" "bar";padding:16px 16px 20px;row-gap:22px;border-radius:24px}
+  .sheet-visual{margin:14px 8px 0}
+  .crops{inset:-14px -8px}
+  .crops i{width:14px;height:14px}
+  .crops i::before{width:6px}.crops i::after{height:10px}
+  .crops .tl::before,.crops .tr::before{top:14px}.crops .tl::after{left:8px}.crops .tr::after{right:8px}
+  .crops .bl::before,.crops .br::before{bottom:14px}.crops .bl::after{left:8px}.crops .br::after{right:8px}
+  .crops .tl::before,.crops .bl::before{left:0}.crops .tr::before,.crops .br::before{right:0}
+  .stk{width:90px;height:90px;right:-12px;top:-20px;border-width:4px}
+  .stk b{font-size:22px}.stk b.long{font-size:17px}.stk small{font-size:10px}
+  .eyebrow{font-size:12px}
+  .eyebrow .reg{display:none}
+  .sheet h1,.sheet h2.hl,.hi{font-size:34px}
+  .sheet h1,.sheet h2.hl{margin-top:12px}
+  .hi{margin-top:6px;border-radius:10px}
+  .copy-slide p{font-size:14.5px;margin-top:16px;line-height:1.65}
+  .copy-slide .cta-row{margin-top:20px;width:100%;flex-direction:column;align-items:center;gap:14px}
+  .copy-slide .cta-row .btn{width:100%}
+  .copy-slide .cta-row .btn-outline{box-shadow:none;padding:4px;background:none}
+  .sheet-tabs{gap:10px}
+  .sheet-tabs .lb{font-size:11.5px;gap:5px}
+  .sheet-tabs .lb b{font-size:11px}
+  .colorbar{justify-content:flex-end}
+  .colorbar .sw i{width:11px;height:11px}
+  .colorbar .slug{display:none}
+  .colorbar .reg{width:14px;height:14px;order:2}
+  .tapes{height:130px;margin-top:0}
+  .tape-ink{height:38px}
+  .tape-org{height:54px}
+  .trow{gap:22px;padding-inline:11px}
+  .trow .st b{font-size:22px}
+  .trow .st span{font-size:13px}
+  .tape-ink .trow{gap:18px}
+  .tape-ink .trow span{font-size:12px}
+  .star4{width:12px;height:12px}
+  .ctiles{grid-template-columns:repeat(2,1fr);gap:12px}
+  .ctile{min-height:196px;padding:16px;border-radius:16px;gap:10px}
+  .ctile .ibox{width:60px;height:60px;border-radius:16px}
+  .ctile .ibox svg{width:38px;height:38px}
+  .ctile .arr{width:30px;height:30px}
+  .ctile .arr .ic{width:16px;height:16px}
+  .ctile b{font-size:15px;line-height:1.35}
+  .ctile small{font-size:11.5px;line-height:1.5}
+  .ctile .ctag{font-size:11.5px;margin-top:8px}
+  .pscroll{grid-auto-columns:46%;gap:12px}
+  .sec-ctrl .arrow-btn,.sec-ctrl .sep{display:none}
+  .sprog{margin-top:18px}
+  .flow{display:none}
+  .stepsx{grid-template-columns:1fr;gap:12px}
+  .stepx{padding:20px}
+  .stepx .n{font-size:52px}
+  .stepx h3{font-size:18px}
+  .marq{gap:16px;margin-top:28px}
+  .mtrack img{height:40px}
+  .promos{grid-template-columns:1fr;gap:12px}
+  .promo .pr-copy .btn{font-size:11px;padding:7px 12px}
+  .pays{justify-content:flex-start}
+  .pt{width:52px;height:31px;font-size:9px}
+  .pt.sm{font-size:7.5px}
+}
 </style>
 </head>
 <body>
@@ -482,6 +717,8 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 12h16"/><path d="M4 6h16"/><path d="M4 18h16"/></symbol>
     <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
     <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26Z"/></symbol>
+    <symbol id="i-reg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="5.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 0V20M0 10H20" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="10" cy="10" r="2.2" fill="currentColor"/></symbol>
+    <symbol id="i-star4" viewBox="0 0 24 24"><path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z"/></symbol>
   </defs>
 </svg>
 
@@ -530,102 +767,132 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
 <!-- ================= HOME ================= -->
 <section data-view="home">
   <div class="wrap hero">
-    <div class="slider" id="slider" aria-roledescription="carousel">
-      <div class="slide" data-slide="0">
-        <div class="copy">
-          <img class="swoosh" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 420 520'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%23DADF28'/%3E%3Cstop offset='.3' stop-color='%233EB54D'/%3E%3Cstop offset='.55' stop-color='%230FA8BE'/%3E%3Cstop offset='.8' stop-color='%232285C7'/%3E%3Cstop offset='1' stop-color='%232E358D'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M60 500 C 40 360, 120 300, 220 250 C 330 195, 390 120, 330 60 C 280 10, 200 40, 220 110 C 240 180, 340 160, 400 40' fill='none' stroke='url(%23g)' stroke-width='46' stroke-linecap='round'/%3E%3C/svg%3E" alt="">
-          <span class="badge dark">خبرة منذ عام 2000</span>
-          <h1>خبرة 25 سنة مع كبرى الجهات<br><em>الحين أونلاين</em></h1>
-          <p>اطبع كروتك وستيكراتك وتغليفك من مصنعنا في الرياض، بسعر واضح لكل كمية ومدة تنفيذ محددة قبل الدفع</p>
-          <div class="cta-row"><a href="#category" class="btn btn-light">تسوّق المنتجات</a><a href="#business" class="btn btn-ghost-light">طلب عرض سعر للمشاريع</a></div>
+    <div class="sheet" id="sheet" aria-roledescription="carousel" aria-label="عروض بانوراما برينت">
+      <div class="sheet-copy">
+        <div class="stack" id="copies">
+          <div class="copy-slide is-on" data-slide="0">
+            <span class="eyebrow"><svg class="reg"><use href="#i-reg"/></svg>خبرة منذ عام 2000 · مصنع في الرياض</span>
+            <h1>خبرة 25 سنة<br>مع كبرى الجهات</h1>
+            <span class="hi">الحين أونلاين</span>
+            <p>اطبع كروتك وستيكراتك وتغليفك من مصنعنا في الرياض، بسعر واضح لكل كمية ومدة تنفيذ محددة قبل الدفع</p>
+            <div class="cta-row"><a href="#category" class="btn btn-brand">تسوّق المنتجات</a><a href="#business" class="btn btn-outline">اطلب عرض سعر للمشاريع</a></div>
+          </div>
+          <div class="copy-slide" data-slide="1" aria-hidden="true">
+            <span class="eyebrow"><svg class="reg"><use href="#i-reg"/></svg>موسم نهاية العام · هدايا الشركات</span>
+            <h2 class="hl">هدايا الشركات<br>بهوية جهتك</h2>
+            <span class="hi">من 25 قطعة</span>
+            <p>بوكسات ترحيب ودروع تكريم وتقاويم 2027 بتصميم يناسب هويتكم، وسعر واضح لكل كمية</p>
+            <div class="cta-row"><a href="#category" class="btn btn-brand" tabindex="-1">تصفح الهدايا</a><a href="#business" class="btn btn-outline" tabindex="-1">اطلب عرض سعر للكميات</a></div>
+          </div>
+          <div class="copy-slide" data-slide="2" aria-hidden="true">
+            <span class="eyebrow"><svg class="reg"><use href="#i-reg"/></svg>اطلب أونلاين · التغليف والعلب</span>
+            <h2 class="hl">تغليف بهوية<br>علامتك التجارية</h2>
+            <span class="hi">من 50 علبة</span>
+            <p>علب شحن وعطور وأكياس مطبوعة بسعر واضح لكل كمية، ارفع تصميمك واطلب في دقائق</p>
+            <div class="cta-row"><a href="#category" class="btn btn-brand" tabindex="-1">تسوّق التغليف</a><a href="#product" class="btn btn-outline" tabindex="-1">اطلب تصميم للعلبة</a></div>
+          </div>
         </div>
-        <div class="media" style="background-image:url(img/hero-fleet.jpg)"><span class="proof"><svg class="ic sm" style="color:var(--orange-700)"><use href="#i-check"/></svg>من أعمالنا · تغليف أسطول سيارات جهة حكومية</span></div>
       </div>
-      <div class="slide" data-slide="1" hidden>
-        <div class="copy">
-          <span class="badge dark">الاستيكرات والملصقات</span>
-          <h2>ستيكرات بسعر الحبة<br><em>من 0.45 ر.س</em></h2>
-          <p>دائرية ومقصوصة وشفافة ورولات، بخامات فينيل مقاومة للماء وجاهزة خلال 3 أيام عمل</p>
-          <div class="cta-row"><a href="#product" class="btn btn-light">اطلب الآن</a></div>
-        </div>
-        <div class="media" style="background-image:url(img/hero-stickers.jpg)"></div>
-      </div>
-      <div class="slide dark" data-slide="2" hidden>
-        <div class="copy">
-          <span class="badge unit">التغليف والعلب</span>
-          <h2>تغليف يليق<br><em>بمنتجك</em></h2>
-          <p>علب هارد كوفر وعلب شحن كرافت وأكياس فاخرة، بقص رقمي بدون قوالب ومن 50 قطعة</p>
-          <div class="cta-row"><a href="#category" class="btn btn-brand">تصفّح التغليف</a></div>
-        </div>
-        <div class="media" style="background-image:url(img/hero-pack.jpg)"></div>
-      </div>
-      <div class="slide" data-slide="3" hidden>
-        <div class="copy">
-          <span class="badge dark">موسم نهاية العام</span>
-          <h2>هدايا الشركات<br><em>بهويتكم</em></h2>
-          <p>بوكسات ترحيب ودروع تكريم وتقاويم 2027، بأسعار كميات تبدأ من 25 قطعة</p>
-          <div class="cta-row"><a href="#business" class="btn btn-light">اطلب عرض سعر</a></div>
-        </div>
-        <div class="media" style="background-image:url(img/hero-gifts.jpg)"></div>
-      </div>
-    </div>
-    <div class="dots" id="dots" role="tablist" aria-label="الشرائح">
-      <button aria-label="الشريحة 1" aria-current="true"></button><button aria-label="الشريحة 2"></button><button aria-label="الشريحة 3"></button><button aria-label="الشريحة 4"></button>
-    </div>
 
-    <div class="stats">
-      <div class="stat"><div class="ico"><svg class="ic"><use href="#i-award"/></svg></div><div><b class="num">+25 سنة</b><span>خبرة في الطباعة منذ 2000</span></div></div>
-      <div class="stat"><div class="ico"><svg class="ic"><use href="#i-layers"/></svg></div><div><b class="num">+10,000</b><span>مشروع لجهات حكومية وخاصة</span></div></div>
-      <div class="stat"><div class="ico"><svg class="ic"><use href="#i-factory"/></svg></div><div><b class="num">8 أقسام</b><span>إنتاج تحت سقف واحد</span></div></div>
-      <div class="stat"><div class="ico"><svg class="ic"><use href="#i-truck"/></svg></div><div><b>يوم واحد</b><span>توصيل داخل الرياض</span></div></div>
+      <div class="sheet-visual">
+        <div class="crops" aria-hidden="true"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
+        <div class="stack" id="banners">
+          <figure class="bnr bnr-exp is-on" data-slide="0" aria-label="بانر خبرة 25 سنة">
+            <img class="bn-logo" src="img/logo-white.svg" alt="">
+            <span class="bn-num num" aria-hidden="true">25</span>
+            <span class="bn-years"><b>سنة</b><small class="num">في الطباعة منذ 2000</small></span>
+            <span class="pc pa"><img src="img/hero-print.jpg" alt=""></span>
+            <span class="pc pb"><img src="img/hero-stickers.jpg" alt=""></span>
+            <span class="pc pcc"><img src="img/hero-pack.jpg" alt=""></span>
+          </figure>
+          <figure class="bnr bnr-gift" data-slide="1" aria-label="بانر هدايا الشركات">
+            <span class="bn-num num" aria-hidden="true">2027</span>
+            <span class="pc"><img src="img/w-giftbox.jpg" alt=""></span>
+            <span class="tag"><b>بهوية جهتك</b><small class="num">من 25 قطعة</small></span>
+          </figure>
+          <figure class="bnr bnr-pack" data-slide="2" aria-label="بانر التغليف">
+            <svg class="die" viewBox="0 0 300 240" fill="none" aria-hidden="true"><path d="M20 60V22Q20 10 32 10H78Q90 10 90 22V60L96 38H134L140 60V46H210V60L216 38H254L260 60L278 72V168L260 180L254 202H216L210 180V214H140V180L134 202H96L90 180V218Q90 230 78 230H32Q20 230 20 218V180Z" stroke="#2C2B29" stroke-opacity=".55" stroke-width="1.4" stroke-linejoin="round"/><path d="M20 60H260M20 180H260M90 60V180M140 60V180M210 60V180M260 60V180" stroke="#2C2B29" stroke-opacity=".45" stroke-width="1.2" stroke-dasharray="5 5"/></svg>
+            <span class="pc"><img src="img/hero-pack.jpg" alt=""></span>
+            <span class="legend"><span><i></i>خط القص</span><span><i class="d"></i>خط الطي</span></span>
+          </figure>
+        </div>
+        <div class="stk dark is-on" data-slide="0" aria-hidden="true"><b class="long num" dir="ltr">+10,000</b><small>مشروع منفذ</small></div>
+        <div class="stk" data-slide="1" aria-hidden="true"><b>يوم</b><small>توصيل في الرياض</small></div>
+        <div class="stk" data-slide="2" aria-hidden="true"><b class="num">24</b><small>ساعة للنموذج</small></div>
+      </div>
+
+      <div class="sheet-tabs" role="tablist" aria-label="الشرائح">
+        <button role="tab" aria-selected="true" data-go="0"><span class="bar"><i></i></span><span class="lb"><b class="num">01</b>خبرة 25 سنة</span></button>
+        <button role="tab" aria-selected="false" data-go="1"><span class="bar"><i></i></span><span class="lb"><b class="num">02</b>هدايا الشركات</span></button>
+        <button role="tab" aria-selected="false" data-go="2"><span class="bar"><i></i></span><span class="lb"><b class="num">03</b>التغليف</span></button>
+      </div>
+      <div class="colorbar" aria-hidden="true">
+        <svg class="reg" style="color:var(--ink)"><use href="#i-reg"/></svg>
+        <span class="sw"><i style="background:#00AEEF"></i><i style="background:#EC008C"></i><i style="background:#FFF200"></i><i style="background:#2C2B29"></i><i style="background:#E8823A"></i><i style="background:#DADF28"></i><i style="background:#3EB54D"></i><i style="background:#0FA8BE"></i><i style="background:#2285C7"></i><i style="background:#2E358D"></i></span>
+        <span class="slug num">PANORAMA PRINT · RIYADH · 2000</span>
+      </div>
     </div>
+  </div>
+
+  <div class="tapes" aria-label="بانوراما بالأرقام">
+    <div class="tape tape-ink" aria-hidden="true"><div class="track">
+      <div class="trow"><span>الطباعة الرقمية</span><svg class="star4"><use href="#i-star4"/></svg><span>الاستيكرات والملصقات</span><svg class="star4"><use href="#i-star4"/></svg><span>التغليف والعلب</span><svg class="star4"><use href="#i-star4"/></svg><span>الهدايا والدروع</span><svg class="star4"><use href="#i-star4"/></svg><span>اللوحات والواجهات</span><svg class="star4"><use href="#i-star4"/></svg><span>المعارض والفعاليات</span><svg class="star4"><use href="#i-star4"/></svg><span>البنرات والسيارات</span><svg class="star4"><use href="#i-star4"/></svg><span>الهوية البصرية</span><svg class="star4"><use href="#i-star4"/></svg></div>
+    </div></div>
+    <div class="tape tape-org"><div class="track">
+      <div class="trow"><span class="st"><b class="num" dir="ltr">+25</b><span>سنة خبرة</span></span><svg class="star4" aria-hidden="true"><use href="#i-star4"/></svg><span class="st"><b class="num" dir="ltr">+10,000</b><span>مشروع منفذ</span></span><svg class="star4" aria-hidden="true"><use href="#i-star4"/></svg><span class="st"><b class="num">8</b><span>أقسام إنتاج</span></span><svg class="star4" aria-hidden="true"><use href="#i-star4"/></svg><span class="st"><b class="num">24</b><span>ساعة للنموذج</span></span><svg class="star4" aria-hidden="true"><use href="#i-star4"/></svg><span class="st"><b>يوم</b><span>توصيل داخل الرياض</span></span><svg class="star4" aria-hidden="true"><use href="#i-star4"/></svg></div>
+    </div></div>
   </div>
 
   <div class="wrap section">
     <div class="sec-head">
-      <div><h2>تسوّق حسب القسم</h2><p>البرتقالي يطلب أونلاين مباشرة، والأبيض بعرض سعر خلال 24 ساعة</p></div>
+      <div><h2>تسوّق حسب القسم</h2><p>ثمانية أقسام إنتاج تحت سقف واحد، اختر قسمك وابدأ طلبك</p></div>
       <a href="#category" class="link-more">كل الأقسام <svg class="ic"><use href="#i-arrow"/></svg></a>
     </div>
-    <div class="cat-grid">
-      <a href="#category" class="cat" style="background-image:url(img/hero-print.jpg)"><span class="tag online"><svg class="ic sm"><use href="#i-bag"/></svg>اطلب أونلاين</span><h3>الطباعة الرقمية</h3><small>كروت · فواتير · بروشورات · أظرف</small></a>
-      <a href="#category" class="cat" style="background-image:url(img/hero-stickers.jpg)"><span class="tag online"><svg class="ic sm"><use href="#i-bag"/></svg>اطلب أونلاين</span><h3>الاستيكرات والملصقات</h3><small>دائرية · مقصوصة · شفافة · رولات</small></a>
-      <a href="#category" class="cat" style="background-image:url(img/hero-pack.jpg)"><span class="tag online"><svg class="ic sm"><use href="#i-bag"/></svg>اطلب أونلاين</span><h3>التغليف والعلب</h3><small>علب عطور · هارد كوفر · أكياس</small></a>
-      <a href="#category" class="cat" style="background-image:url(img/w-giftbox.jpg)"><span class="tag online"><svg class="ic sm"><use href="#i-bag"/></svg>اطلب أونلاين</span><h3>الهدايا والدروع</h3><small>بوكسات · أكواب · دروع · أختام</small></a>
-      <a href="#business" class="cat" style="background-image:url(img/w-aldawaa.jpg)"><span class="tag quote"><svg class="ic sm"><use href="#i-file"/></svg>بعرض سعر</span><h3>اللوحات والواجهات</h3><small>حروف مضيئة · بايلون · أكريليك</small></a>
-      <a href="#business" class="cat" style="background-image:url(img/w-asdeqa.jpg)"><span class="tag quote"><svg class="ic sm"><use href="#i-file"/></svg>بعرض سعر</span><h3>المعارض والفعاليات</h3><small>أجنحة · رول أب · أعلام · بوابات</small></a>
-      <a href="#business" class="cat" style="background-image:url(img/w-dominos.jpg)"><span class="tag quote"><svg class="ic sm"><use href="#i-file"/></svg>بعرض سعر</span><h3>البنرات والسيارات</h3><small>بنرات · أسوار مشاريع · ستيكرات سيارات</small></a>
-      <a href="#business" class="cat" style="background-image:url(img/w-bizcard.jpg)"><span class="tag quote"><svg class="ic sm"><use href="#i-file"/></svg>بعرض سعر</span><h3>الهوية البصرية</h3><small>شعار · هوية كاملة · مطبوعات</small></a>
+    <div class="ctiles">
+      <a href="#category" class="ctile"><span class="top"><span class="ibox"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="14" y="5" width="20" height="13" rx="2" fill="#E8823A"/><rect x="6" y="16" width="36" height="18" rx="4" stroke="#2C2B29" stroke-width="2.5" stroke-linejoin="round"/><rect x="14" y="27" width="20" height="15" rx="2" fill="#fff" stroke="#2C2B29" stroke-width="2.5" stroke-linejoin="round"/><path d="M18 32h12M18 37h8" stroke="#2C2B29" stroke-width="2.5" stroke-linecap="round"/><circle cx="35" cy="22" r="1.8" fill="#2C2B29"/></svg></span><span class="arr"><svg class="ic"><use href="#i-arrow"/></svg></span></span><span><b>الطباعة الرقمية</b><small>كروت · فواتير · بروشورات · أظرف</small><em class="ctag">اطلب أونلاين</em></span></a>
+      <a href="#category" class="ctile"><span class="top"><span class="ibox"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 7A17 17 0 1 0 41 24L31 24A7 7 0 0 1 24 17Z" fill="#E8823A" stroke="#2C2B29" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 7C31 9 39 17 41 24L31 24A7 7 0 0 1 24 17Z" fill="#fff" stroke="#2C2B29" stroke-width="2.5" stroke-linejoin="round"/><path d="M14 27c2 3 5 4 8 4" stroke="#2C2B29" stroke-width="2.5" stroke-linecap="round"/><circle cx="15" cy="20" r="1.8" fill="#2C2B29"/></svg></span><span class="arr"><svg class="ic"><use href="#i-arrow"/></svg></span></span><span><b>الاستيكرات والملصقات</b><small>دائرية · مقصوصة · شفافة · رولات</small><em class="ctag">اطلب أونلاين</em></span></a>
+      <a href="#category" class="ctile"><span class="top"><span class="ibox"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 5L41 14L24 23L7 14Z" fill="#E8823A"/><path d="M24 5L41 14V34L24 43L7 34V14Z" stroke="#2C2B29" stroke-width="2.5" stroke-linejoin="round"/><path d="M7 14L24 23L41 14M24 23V43" stroke="#2C2B29" stroke-width="2.5" stroke-linejoin="round"/><path d="M15.5 9.5L32.5 18.5V25" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg></span><span class="arr"><svg class="ic"><use href="#i-arrow"/></svg></span></span><span><b>التغليف والعلب</b><small>علب عطور · هارد كوفر · أكياس</small><em class="ctag">اطلب أونلاين</em></span></a>
+      <a href="#category" class="ctile"><span class="top"><span class="ibox"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="7" y="17" width="34" height="9" rx="2" fill="#E8823A" stroke="#2C2B29" stroke-width="2.5"/><path d="M10 26V40a2 2 0 0 0 2 2h24a2 2 0 0 0 2-2V26M24 17V42" stroke="#2C2B29" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 17C21 9 12 8 13 14C14 17 24 17 24 17ZM24 17C27 9 36 8 35 14C34 17 24 17 24 17Z" stroke="#2C2B29" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="arr"><svg class="ic"><use href="#i-arrow"/></svg></span></span><span><b>الهدايا والدروع</b><small>بوكسات هدايا · أكواب · دروع · أختام</small><em class="ctag">اطلب أونلاين</em></span></a>
+      <a href="#business" class="ctile"><span class="top"><span class="ibox"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="5" y="7" width="38" height="12" rx="3" fill="#E8823A" stroke="#2C2B29" stroke-width="2.5"/><path d="M12 13H36" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><path d="M9 19V41M39 19V41M4 41H44" stroke="#2C2B29" stroke-width="2.5" stroke-linecap="round"/><rect x="14" y="27" width="8" height="14" stroke="#2C2B29" stroke-width="2.5"/><rect x="27" y="27" width="7" height="7" stroke="#2C2B29" stroke-width="2.5"/></svg></span><span class="arr"><svg class="ic"><use href="#i-arrow"/></svg></span></span><span><b>اللوحات والواجهات</b><small>حروف مضيئة · بايلون · أكريليك</small><em class="ctag">بعرض سعر</em></span></a>
+      <a href="#business" class="ctile"><span class="top"><span class="ibox"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><rect x="7" y="7" width="34" height="8" fill="#E8823A"/><rect x="7" y="7" width="34" height="24" rx="2" stroke="#2C2B29" stroke-width="2.5"/><rect x="14" y="25" width="20" height="16" rx="2" fill="#fff" stroke="#2C2B29" stroke-width="2.5"/><path d="M19 31H29" stroke="#E8823A" stroke-width="2.5" stroke-linecap="round"/><path d="M4 41H44" stroke="#2C2B29" stroke-width="2.5" stroke-linecap="round"/></svg></span><span class="arr"><svg class="ic"><use href="#i-arrow"/></svg></span></span><span><b>المعارض والفعاليات</b><small>أجنحة · رول أب · أعلام · بوابات</small><em class="ctag">بعرض سعر</em></span></a>
+      <a href="#business" class="ctile"><span class="top"><span class="ibox"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M6 27H42V31H6Z" fill="#E8823A"/><path d="M6 33V24L11 14H31L38 22H42V33H38M29 33H19M10 33H6" stroke="#2C2B29" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><path d="M13 16.5H22V22H10.5Z" stroke="#2C2B29" stroke-width="2.5" stroke-linejoin="round"/><circle cx="14.5" cy="34" r="4.5" fill="#fff" stroke="#2C2B29" stroke-width="2.5"/><circle cx="33.5" cy="34" r="4.5" fill="#fff" stroke="#2C2B29" stroke-width="2.5"/></svg></span><span class="arr"><svg class="ic"><use href="#i-arrow"/></svg></span></span><span><b>البنرات والسيارات</b><small>بنرات · أسوار مشاريع · ستيكرات سيارات</small><em class="ctag">بعرض سعر</em></span></a>
+      <a href="#business" class="ctile"><span class="top"><span class="ibox"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 5L36 20L24 43L12 20Z" fill="#E8823A" stroke="#2C2B29" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 25V43M6 43H42" stroke="#2C2B29" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="21" r="3.5" fill="#fff" stroke="#2C2B29" stroke-width="2.5"/></svg></span><span class="arr"><svg class="ic"><use href="#i-arrow"/></svg></span></span><span><b>الهوية البصرية</b><small>شعار · هوية كاملة · مطبوعات الهوية</small><em class="ctag">بعرض سعر</em></span></a>
     </div>
   </div>
 
   <div class="wrap section">
     <div class="paths">
-      <div class="path dark">
-        <div class="body"><div class="pi"><svg class="ic"><use href="#i-zap"/></svg></div><h3>طلب سريع أونلاين</h3><p>منتجات جاهزة بأسعار واضحة لكل كمية، ارفع تصميمك وادفع بمدى أو Apple Pay أو بالتقسيط</p><a href="#category" class="btn btn-brand sm">ابدأ التسوق</a></div>
-        <div class="img" style="background-image:url(img/p-bizcards.jpg)"></div>
-      </div>
-      <div class="path soft">
-        <div class="body"><div class="pi"><svg class="ic"><use href="#i-building"/></svg></div><h3>مشروع كبير أو جهة حكومية؟</h3><p>أجنحة معارض، لوحات، أسطول سيارات، أو كميات خاصة، عرض سعر مفصّل خلال 24 ساعة</p><a href="#business" class="btn btn-dark sm">اطلب عرض سعر</a></div>
-        <div class="img" style="background-image:url(img/w-beeah.jpg)"></div>
-      </div>
+      <a href="#business" class="path soft">
+        <div class="body"><div class="pi"><svg class="ic"><use href="#i-building"/></svg></div><h3>مشروع كبير أو جهة حكومية؟</h3><p>أجنحة معارض، لوحات، أسطول سيارات، أو كميات خاصة، عرض سعر مفصّل خلال 24 ساعة</p><span class="btn btn-dark sm">اطلب عرض سعر</span></div>
+        <div class="img"><i style="background-image:url(img/w-beeah.jpg)"></i></div>
+      </a>
+      <a href="#category" class="path dark">
+        <div class="body"><div class="pi"><svg class="ic"><use href="#i-zap"/></svg></div><h3>طلب سريع أونلاين</h3><p>منتجات جاهزة بأسعار واضحة لكل كمية، ارفع تصميمك وادفع بمدى أو Apple Pay أو بالتقسيط</p><span class="btn btn-brand sm">ابدأ التسوق</span></div>
+        <div class="img"><i style="background-image:url(img/p-bizcards.jpg)"></i></div>
+      </a>
     </div>
   </div>
 
   <div class="wrap section">
     <div class="sec-head">
       <div><h2>الأكثر طلبًا</h2><p>أسعار تبدأ من الحبة الواحدة، شاملة ضريبة القيمة المضافة</p></div>
-      <a href="#category" class="link-more">عرض الكل <svg class="ic"><use href="#i-arrow"/></svg></a>
+      <div class="sec-ctrl"><a href="#category" class="link-more">عرض الكل <svg class="ic"><use href="#i-arrow"/></svg></a><span class="sep"></span><button class="arrow-btn prev" id="pPrev" aria-label="السابق"><svg class="ic"><use href="#i-arrow"/></svg></button><button class="arrow-btn next" id="pNext" aria-label="التالي"><svg class="ic"><use href="#i-arrow"/></svg></button></div>
     </div>
-    <div class="pgrid" id="homeProducts"></div>
+    <div class="filters-row" id="homeChips" role="group" aria-label="فلترة حسب القسم">
+      <button class="fchip" aria-pressed="true" data-cat="all">الكل</button><button class="fchip" aria-pressed="false" data-cat="print">الطباعة الرقمية</button><button class="fchip" aria-pressed="false" data-cat="stickers">الاستيكرات</button><button class="fchip" aria-pressed="false" data-cat="pack">التغليف والعلب</button><button class="fchip" aria-pressed="false" data-cat="gifts">الهدايا والدروع</button>
+    </div>
+    <div class="pscroll" id="homeProducts"></div>
+    <div class="sprog" aria-hidden="true"><i id="pThumb"></i></div>
   </div>
 
   <div class="band">
     <div class="wrap">
       <div class="sec-head"><div><h2>اطلب في ثلاث خطوات</h2><p>بدون واتساب وبدون انتظار رد، كل شيء داخل المتجر</p></div></div>
-      <ol class="steps" style="padding:0;margin:0;list-style:none">
-        <li class="step"><span class="n num">1</span><div><h3>اختر المنتج والكمية</h3><p>السعر النهائي وسعر الحبة يظهران فورًا مع كل كمية، شامل الضريبة</p></div></li>
-        <li class="step"><span class="n num">2</span><div><h3>ارفع تصميمك أو اطلب تصميمه</h3><p>ملف جاهز، أو تعديل بسيط، أو تصميم كامل من فريقنا بسعر محدد</p></div></li>
-        <li class="step"><span class="n num">3</span><div><h3>اعتمد النموذج واستلم</h3><p>نرسل نموذج التصميم خلال 24 ساعة، ونبدأ الطباعة فور موافقتك</p></div></li>
+      <div class="flow" aria-hidden="true"><span class="line"></span><span class="node" style="right:16.666%"></span><span class="node" style="right:50%"></span><span class="node" style="right:83.333%"></span><span class="spark"></span></div>
+      <ol class="stepsx">
+        <li class="stepx"><div class="top"><span class="n num">01</span><span class="ci"><svg class="ic"><use href="#i-bag"/></svg></span></div><h3>اختر المنتج والكمية</h3><p>السعر النهائي وسعر الحبة يظهران فورًا مع كل كمية، شامل الضريبة</p></li>
+        <li class="stepx"><div class="top"><span class="n num">02</span><span class="ci"><svg class="ic"><use href="#i-upload"/></svg></span></div><h3>ارفع تصميمك أو اطلب تصميمه</h3><p>ملف جاهز، أو تعديل بسيط، أو تصميم كامل من فريقنا بسعر محدد</p></li>
+        <li class="stepx"><div class="top"><span class="n num">03</span><span class="ci"><svg class="ic"><use href="#i-truck"/></svg></span></div><h3>اعتمد النموذج واستلم</h3><p>نرسل نموذج التصميم خلال 24 ساعة، ونبدأ الطباعة فور موافقتك</p></li>
       </ol>
     </div>
   </div>
@@ -634,21 +901,17 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
     <div class="wrap">
       <h2>يثق بنا أكثر من 10,000 مشروع</h2>
       <p>جهات حكومية وشركات كبرى في المملكة اختارت بانوراما لمطبوعاتها ولوحاتها وأجنحتها</p>
-      <img src="img/clients.jpg" alt="شعارات عملاء بانوراما: وزارة الصحة، وزارة الرياضة، وزارة التعليم، أرامكو، STC، سمسا، موسم الرياض، جامعة الملك سعود وغيرهم" loading="lazy">
+    </div>
+    <div class="marq">
+      <div class="mrow"><div class="mtrack"><img src="img/clients-a.png" alt="شعارات عملاء بانوراما: الرومانسية، كنوز، أكاديمية طويق، وزارة الصحة، جامعة الملك سعود، وتين، D360، المواصفات السعودية، STC، أرامكو، الحدث، تدير، مدرستي" width="2336" height="64"><img src="img/clients-a.png" alt="" aria-hidden="true" width="2336" height="64"></div></div>
+      <div class="mrow"><div class="mtrack b"><img src="img/clients-b.png" alt="شعارات عملاء بانوراما: موسم الرياض، أمانة منطقة الرياض، وزارة الرياضة، المسار الرياضي، مدن، وزارة التعليم، ماراثون الرياض، سمسا، مكيون، جامعة الأميرة نورة، صحتك، كاساو" width="2434" height="64"><img src="img/clients-b.png" alt="" aria-hidden="true" width="2434" height="64"></div></div>
     </div>
   </div>
 
   <div class="wrap section">
-    <div class="sec-head">
-      <div><h2>من أعمالنا</h2><p>مشاريع حقيقية نفّذها مصنعنا لجهات وعلامات في المملكة</p></div>
-      <a href="#business" class="link-more">ملف الأعمال كاملًا <svg class="ic"><use href="#i-arrow"/></svg></a>
-    </div>
-    <div class="bento">
-      <div class="work" style="background-image:url(img/w-beeah.jpg)"><b>بيئة</b><small>تصميم وتنفيذ جناح معرض</small></div>
-      <div class="work" style="background-image:url(img/w-aramco.jpg)"><b>أرامكو</b><small>لوحة بايلون</small></div>
-      <div class="work big" style="background-image:url(img/w-aldawaa.jpg)"><b>صيدلية الدواء</b><small>حروف بارزة مضيئة وواجهة كاملة</small></div>
-      <div class="work" style="background-image:url(img/w-stc.jpg)"><b>STC</b><small>كروت تعريفية وليناردات</small></div>
-      <div class="work" style="background-image:url(img/w-dg.jpg)"><b>دولتشي آند غابانا</b><small>تركيب ستيكرات واجهة</small></div>
+    <div class="promos">
+      <a href="#product" class="promo dark"><span class="pr-card"><img src="img/hero-stickers.jpg" alt="" loading="lazy"></span><span class="pr-copy"><small>الاستيكرات والملصقات</small><b>ستيكرات بشعارك<br>بأي شكل تبيه</b><span class="num">ابتداءً من 0.45 ر.س للحبة</span><em class="btn btn-brand sm" style="font-style:normal">اطلب الحين</em></span><svg class="reg" style="color:var(--orange-500)"><use href="#i-reg"/></svg></a>
+      <a href="#product" class="promo org"><span class="pr-card"><img src="img/hero-print.jpg" alt="" loading="lazy"></span><span class="pr-copy"><small>الطباعة الرقمية</small><b>كروت أعمال<br>تعلق في الذاكرة</b><span class="num">100 كرت بحواف ملونة بـ 120 ر.س</span><em class="btn btn-dark sm" style="font-style:normal">صمّم كرتك</em></span><svg class="reg" style="color:var(--ink)"><use href="#i-reg"/></svg></a>
     </div>
   </div>
 
@@ -754,7 +1017,10 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
           <label class="switch"><span class="row" style="font-size:14px"><svg class="ic" style="color:var(--orange-700)"><use href="#i-zap"/></svg>تنفيذ مستعجل خلال 24 ساعة <b style="color:var(--orange-700)" class="num">+40%</b></span><input type="checkbox" id="express"></label>
         </div>
         <div class="cta-buy"><button class="btn btn-primary num" id="addBtn">أضف إلى السلة · 180 ر.س</button><button class="icon-btn" aria-label="أضف للمفضلة"><svg class="ic"><use href="#i-heart"/></svg></button></div>
-        <div class="inst"><span>تابي</span><span>تمارا</span><div id="instText" class="num" style="flex:1;min-width:0">أو قسّمها على 4 دفعات بدون فوائد · 45 ر.س للدفعة</div></div>
+        <div class="instw" aria-label="التقسيط">
+          <div class="iw-top"><div><b>قسّمها على 4 دفعات بدون فوائد</b><span><strong class="num iw-amt">45 ر.س</strong> لكل دفعة، تختار التقسيط في صفحة الدفع</span></div><div class="iw-logos"><span class="pt" title="مكان شعار tabby الرسمي">tabby</span><span class="pt" title="مكان شعار tamara الرسمي">tamara</span></div></div>
+          <div class="iw-sch"><span class="on"><b class="num iw-amt">45 ر.س</b>اليوم</span><span><b class="num iw-amt">45 ر.س</b>الدفعة 2</span><span><b class="num iw-amt">45 ر.س</b>الدفعة 3</span><span><b class="num iw-amt">45 ر.س</b>الدفعة 4</span></div>
+        </div>
         <div class="trust">
           <div class="row"><svg class="ic sm"><use href="#i-shield"/></svg>نموذج رقمي قبل الطباعة</div>
           <div class="row"><svg class="ic sm"><use href="#i-factory"/></svg>من مصنعنا في الرياض</div>
@@ -881,7 +1147,7 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
   </div>
   <div class="wrap bottom">
     <p>© 2026 بانوراما برينت للدعاية والإعلان · جميع الأسعار شاملة ضريبة القيمة المضافة</p>
-    <div class="pays"><span>مدى</span><span>Apple Pay</span><span>STC Pay</span><span>Visa</span><span>Mastercard</span><span>تابي</span><span>تمارا</span></div>
+    <div class="pays"><span class="secure"><svg class="ic sm"><use href="#i-shield"/></svg>دفع آمن ومشفّر</span><span class="pt" title="مكان شعار مدى الرسمي">مدى</span><span class="pt" title="مكان شعار Apple Pay الرسمي">Apple Pay</span><span class="pt" title="مكان شعار STC Pay الرسمي">STC Pay</span><span class="pt" title="مكان شعار Visa الرسمي">Visa</span><span class="pt sm" title="مكان شعار Mastercard الرسمي">Mastercard</span><span class="pt" title="مكان شعار tabby الرسمي">tabby</span><span class="pt" title="مكان شعار tamara الرسمي">tamara</span></div>
   </div>
   <div style="height:72px"></div>
 </footer>
@@ -913,7 +1179,16 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
   const star='<svg class="ic star"><use href="#i-star"/></svg>';
   const card=p=>`<article class="pcard"><a href="#product" class="media"><img src="img/${p.img}.jpg" alt="${p.t}" loading="lazy"><span class="badge unit">${p.u}</span></a><button class="fav" aria-label="أضف للمفضلة"><svg class="ic sm"><use href="#i-heart"/></svg></button><div class="body"><span class="cat-name">${p.c}</span><h3><a href="#product">${p.t}</a></h3><div class="rating">${star}<b class="num">4.9</b><span class="num">(128)</span></div><div class="price"><small>ابتداءً من</small><strong class="num">${fmt(p.p)} ر.س</strong><small class="num">${p.per}</small></div><div class="eta"><svg class="ic sm"><use href="#i-clock"/></svg><span class="num">يجهز خلال ${p.eta===2?'يومي عمل':p.eta+' أيام عمل'}</span></div><a href="#product" class="btn btn-primary sm btn-block">اختر الكمية واطلب</a></div></article>`;
   const fixFav=()=>{};
-  const home=document.getElementById('homeProducts'); home.innerHTML=P.slice(0,4).map(card).join(''); fixFav(home);
+  const home=document.getElementById('homeProducts'), thumb=document.getElementById('pThumb');
+  const syncBar=()=>{const max=home.scrollWidth-home.clientWidth;const vis=home.clientWidth/home.scrollWidth;thumb.style.width=(Math.min(1,vis)*100)+'%';const pos=max>0?Math.abs(home.scrollLeft)/max:0;thumb.style.right=(pos*(1-Math.min(1,vis))*100)+'%'};
+  const renderHome=k=>{home.innerHTML=P.filter(p=>k==='all'||p.k===k).map(card).join('');home.scrollLeft=0;syncBar()};
+  renderHome('all');
+  home.addEventListener('scroll',syncBar,{passive:true}); window.addEventListener('resize',syncBar);
+  document.getElementById('homeChips').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#homeChips button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderHome(b.dataset.cat)});
+  const step=()=>{const c=home.firstElementChild;return c?c.getBoundingClientRect().width+24:300};
+  document.getElementById('pNext').addEventListener('click',()=>home.scrollBy({left:-step(),behavior:'smooth'}));
+  document.getElementById('pPrev').addEventListener('click',()=>home.scrollBy({left:step(),behavior:'smooth'}));
+  document.querySelectorAll('.track').forEach(t=>{const r=t.querySelector('.trow');for(let i=0;i<2;i++){const c=r.cloneNode(true);c.setAttribute('aria-hidden','true');t.appendChild(c)}});
   const rel=document.getElementById('relProducts'); rel.innerHTML=[P[2],P[3],P[1],P[7]].map(card).join(''); fixFav(rel);
 
   // category listing
@@ -952,7 +1227,7 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
     document.getElementById('unit').textContent=fmt(base/t.q)+' ر.س للحبة';
     document.getElementById('qtyLabel').textContent='شامل الضريبة · '+fmt(t.q)+' حبة';
     document.getElementById('addBtn').textContent='أضف إلى السلة · '+fmt(total)+' ر.س';
-    document.getElementById('instText').textContent='أو قسّمها على 4 دفعات بدون فوائد · '+fmt(Math.ceil(total/4))+' ر.س للدفعة';
+    document.querySelectorAll('.iw-amt').forEach(x=>x.textContent=fmt(Math.ceil(total/4))+' ر.س');
     document.getElementById('etaText').textContent=exp?'يجهز خلال 24 ساعة عمل · يصل الرياض الأربعاء 5 نوفمبر':'يجهز خلال 3 أيام عمل · يصل الرياض الخميس 6 نوفمبر';
   }
   tw.addEventListener('click',e=>{const b=e.target.closest('.tier');if(!b)return;ti=+b.dataset.i;tw.querySelectorAll('.tier').forEach(x=>x.setAttribute('aria-pressed',x===b));calc()});
@@ -971,14 +1246,17 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
   document.querySelectorAll('.tablist button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tablist button').forEach(x=>x.setAttribute('aria-selected',x===b));document.querySelectorAll('.tabpanel').forEach(p=>p.hidden=p.id!==b.dataset.tab)}));
   calc();
 
-  // hero slider
-  const slides=[...document.querySelectorAll('.slide')], dots=[...document.querySelectorAll('#dots button')];
-  let si=0, timer;
-  const go=i=>{si=(i+slides.length)%slides.length;slides.forEach((s,k)=>s.hidden=k!==si);dots.forEach((d,k)=>d.setAttribute('aria-current',k===si))};
-  dots.forEach((d,i)=>d.addEventListener('click',()=>{go(i);restart()}));
+  // hero press-sheet slider
   const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const restart=()=>{clearInterval(timer);if(!reduce)timer=setInterval(()=>go(si+1),6000)};
-  restart();
+  if(reduce) document.documentElement.classList.add('reduce');
+  const tabs=[...document.querySelectorAll('.sheet-tabs button')];
+  let si=0, rt;
+  const go=i=>{si=(i+3)%3;
+    document.querySelectorAll('#copies > *, #banners > *, .stk').forEach(el=>{const on=+el.dataset.slide===si;el.classList.toggle('is-on',on);if(el.classList.contains('copy-slide')){el.setAttribute('aria-hidden',!on);el.querySelectorAll('a').forEach(a=>on?a.removeAttribute('tabindex'):a.setAttribute('tabindex','-1'))}});
+    tabs.forEach((t,k)=>{t.setAttribute('aria-selected',k===si);const bar=t.querySelector('.bar i');bar.style.animation='none';void bar.offsetWidth;bar.style.animation=''});
+  };
+  tabs.forEach((t,i)=>{t.addEventListener('click',()=>go(i));t.querySelector('.bar i').addEventListener('animationend',()=>{if(+t.dataset.go===si)go(si+1)})});
+  go(0);
 
   // quote form
   document.getElementById('qf').addEventListener('submit',e=>{e.preventDefault();document.getElementById('sent').hidden=false});
