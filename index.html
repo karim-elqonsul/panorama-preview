@@ -741,14 +741,25 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
 
 .section.acts-sec{margin-top:28px;padding-top:0}
 .acts{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.act{display:flex;align-items:center;gap:14px;padding:22px;border-radius:var(--r-lg);background:var(--white);border:1px solid var(--ink-200);min-height:120px;transition:background .25s,border-color .25s,transform .25s,box-shadow .25s}
-.act .aib{width:56px;height:56px;flex:none;border-radius:16px;background:var(--orange-50);display:grid;place-items:center;transition:background .25s}
+.act{display:flex;flex-direction:column;justify-content:space-between;gap:18px;padding:22px;border-radius:var(--r-lg);min-height:168px;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+.act .top{display:flex;justify-content:space-between;align-items:center}
+.act .aib{width:52px;height:52px;border-radius:16px;background:var(--white);display:grid;place-items:center;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
 .act .aib .ic{width:26px;height:26px}
-.act b{display:block;font-size:16px;font-weight:700}
-.act span{display:block;font-size:12.5px;color:var(--ink-600);line-height:1.5;margin-top:4px}
-.act:hover{background:var(--orange-50);border-color:var(--orange-500);transform:translateY(-3px);box-shadow:0 12px 28px -8px rgba(232,130,58,.25)}
-.act:hover .aib{background:var(--orange-500)}
-
+.act .aar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(44,43,41,.3);transition:background .25s,box-shadow .25s,color .25s}
+.act .aar .ic{width:16px;height:16px}
+.act b{display:block;font-size:18px;font-weight:700}
+.act .atx span{display:block;font-size:13px;line-height:1.5;margin-top:4px;opacity:.82}
+.t-org{background:var(--orange-500);color:var(--ink)}
+.t-dark{background:var(--ink);color:var(--white)}
+.t-dark .aib{background:var(--orange-500);color:var(--ink)}
+.t-dark .aar{box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
+.t-green{background:linear-gradient(90deg,#0FA8BE,#3EB54D);color:var(--ink)}
+.t-kraft{background:var(--orange-100);color:var(--ink)}
+.act:hover{transform:translateY(-5px);box-shadow:0 16px 32px -8px rgba(232,130,58,.32)}
+.t-green:hover{box-shadow:0 16px 32px -8px rgba(15,168,190,.35)}
+.act:hover .aib{transform:scale(1.08) rotate(-6deg)}
+.act:hover .aar{background:var(--ink);color:var(--white);box-shadow:none}
+.t-dark:hover .aar{background:var(--white);color:var(--ink)}
 .pgrid8{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 
 .featx{display:grid;grid-template-columns:2.086fr 1fr 1fr;gap:24px}
@@ -802,8 +813,11 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
   .cp-card .stub{padding:14px 16px}
   .cp-card .stub b{font-size:22px}
   .cp-card .btn{font-size:12px;padding:7px 12px}
-  .acts{grid-template-columns:1fr;gap:10px}
-  .act{min-height:0;padding:16px}
+  .acts{grid-template-columns:1fr 1fr;gap:12px}
+  .act{min-height:168px;padding:16px;gap:12px}
+  .act b{font-size:15px}
+  .act .atx span{font-size:11.5px}
+  .act .aib{width:46px;height:46px}
   .pgrid8{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:46%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px}
   .pgrid8::-webkit-scrollbar{display:none}
   .pgrid8 > *{scroll-snap-align:start}
@@ -821,6 +835,28 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
   .clients{padding-block:28px}
   .clients h2{font-size:20px}
   .clients p{font-size:13px}
+}
+.dd{position:absolute;top:100%;z-index:41;display:none;gap:20px;background:var(--white);border:1px solid var(--ink-200);border-radius:18px;box-shadow:0 20px 40px -12px rgba(44,43,41,.16);padding:20px;margin-top:4px;width:520px}
+.has-dd.open .dd{display:flex;animation:megaIn .18s ease-out}
+.dd-links{flex:1;display:flex;flex-direction:column;gap:2px}
+.dd-links b{font-size:16px;font-weight:700;margin-bottom:8px}
+.dd-links a{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:10px;font-size:14px;font-weight:500;color:var(--ink)}
+.dd-links a .ic{width:14px;height:14px;color:var(--ink-400)}
+.dd-links a:hover{background:var(--orange-50);color:var(--orange-700)}
+.dd-links .dd-all{color:var(--orange-700);font-weight:600;font-size:13px;justify-content:flex-start;margin-top:6px}
+.dd-promo{width:220px;flex:none;background:var(--paper);border-radius:14px;padding:12px 12px 14px;display:flex;flex-direction:column;align-items:flex-start;gap:7px}
+.dd-promo img{width:100%;height:124px;object-fit:cover;border-radius:10px}
+.dd-promo em{font-style:normal;background:var(--orange-500);font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px}
+.dd-promo b{font-size:14px;font-weight:700}
+.dd-promo span{font-size:12px;color:var(--ink-600)}
+.dd-promo i{font-style:normal;display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--orange-700)}
+.dd-promo i .ic{width:14px;height:14px}
+.dd-trigger[aria-expanded="true"]{color:var(--orange-700)}
+.dd-trigger[aria-expanded="true"] .chev{transform:rotate(180deg)}
+@media (max-width:860px){
+  .dd{position:fixed;top:64px;left:8px;right:8px;width:auto;flex-direction:column;max-height:72vh;overflow:auto}
+  .dd-promo{width:100%;flex-direction:row;flex-wrap:wrap}
+  .dd-promo img{width:96px;height:72px}
 }
 </style>
 </head>
@@ -899,14 +935,14 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
     <div class="wrap">
       <ul>
         <li><button class="allcats" id="allcats" aria-expanded="false" aria-controls="mega"><svg class="ic"><use href="#i-grid"/></svg>كل الأقسام</button></li>
-        <li><a href="#category">الطباعة الرقمية <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
-        <li><a href="#category">الاستيكرات <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
-        <li><a href="#category">التغليف <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
-        <li><a href="#category">الهدايا والدروع <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
-        <li><a href="#business">اللوحات <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
-        <li><a href="#business">المعارض <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
-        <li><a href="#business">البنرات والسيارات <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
-        <li><a href="#business">الهوية البصرية <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
+        <li class="has-dd"><a href="#category" class="dd-trigger" aria-haspopup="true" aria-expanded="false">الطباعة الرقمية <svg class="ic chev"><use href="#i-chev"/></svg></a><div class="dd"><div class="dd-links"><b>الطباعة الرقمية</b><a href="#category">كروت أعمال<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#category">فواتير ودفاتر<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#category">بروشورات وفلايرات<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#category">أظرف ومطبوعات مكتبية<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#category" class="dd-all">كل منتجات القسم</a></div><a href="#product" class="dd-promo"><img src="img/p-bizcards.jpg" alt="" loading="lazy"><em>الأكثر طلبًا</em><b>كروت أعمال 350 جرام</b><span class="num">ابتداءً من 120 ر.س / 100 كرت</span><i>اختر الكمية <svg class="ic"><use href="#i-arrow"/></svg></i></a></div></li>
+        <li class="has-dd"><a href="#category" class="dd-trigger" aria-haspopup="true" aria-expanded="false">الاستيكرات <svg class="ic chev"><use href="#i-chev"/></svg></a><div class="dd"><div class="dd-links"><b>الاستيكرات</b><a href="#category">ستيكرات دائرية<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#category">ستيكرات مقصوصة<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#category">ستيكرات شفافة<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#category">رولات ليبل<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#category" class="dd-all">كل منتجات القسم</a></div><a href="#product" class="dd-promo"><img src="img/p-stickers.jpg" alt="" loading="lazy"><em>الأكثر طلبًا</em><b>ستيكرات دائرية مقصوصة</b><span class="num">ابتداءً من 90 ر.س / 100 حبة</span><i>اختر الكمية <svg class="ic"><use href="#i-arrow"/></svg></i></a></div></li>
+        <li class="has-dd"><a href="#category" class="dd-trigger" aria-haspopup="true" aria-expanded="false">التغليف <svg class="ic chev"><use href="#i-chev"/></svg></a><div class="dd"><div class="dd-links"><b>التغليف</b><a href="#category">علب شحن<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#category">علب عطور<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#category">علب هارد كوفر<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#category">أكياس ورقية<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#category" class="dd-all">كل منتجات القسم</a></div><a href="#product" class="dd-promo"><img src="img/p-mailer.jpg" alt="" loading="lazy"><em>قسم الشهر</em><b>علبة شحن كرافت مطبوعة</b><span class="num">ابتداءً من 450 ر.س / 50 علبة</span><i>اختر الكمية <svg class="ic"><use href="#i-arrow"/></svg></i></a></div></li>
+        <li class="has-dd"><a href="#category" class="dd-trigger" aria-haspopup="true" aria-expanded="false">الهدايا والدروع <svg class="ic chev"><use href="#i-chev"/></svg></a><div class="dd"><div class="dd-links"><b>الهدايا والدروع</b><a href="#category">بوكسات هدايا<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#category">أكواب مطبوعة<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#category">دروع تكريم<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#category">أختام<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#category" class="dd-all">كل منتجات القسم</a></div><a href="#product" class="dd-promo"><img src="img/p-mug.jpg" alt="" loading="lazy"><em>عروض الموسم</em><b>أكواب سيراميك مطبوعة</b><span class="num">ابتداءً من 240 ر.س / 12 كوب</span><i>اختر الكمية <svg class="ic"><use href="#i-arrow"/></svg></i></a></div></li>
+        <li class="has-dd"><a href="#business" class="dd-trigger" aria-haspopup="true" aria-expanded="false">اللوحات <svg class="ic chev"><use href="#i-chev"/></svg></a><div class="dd"><div class="dd-links"><b>اللوحات</b><a href="#business">حروف مضيئة<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#business">بايلون<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#business">لوحات أكريليك<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#business">لوحات إرشادية<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#business" class="dd-all">كل منتجات القسم</a></div><a href="#business" class="dd-promo"><img src="img/w-aldawaa.jpg" alt="" loading="lazy"><em>من أعمالنا</em><b>واجهة صيدلية الدواء</b><span class="num">حروف بارزة مضيئة وواجهة كاملة</span><i>اطلب عرض سعر <svg class="ic"><use href="#i-arrow"/></svg></i></a></div></li>
+        <li class="has-dd"><a href="#business" class="dd-trigger" aria-haspopup="true" aria-expanded="false">المعارض <svg class="ic chev"><use href="#i-chev"/></svg></a><div class="dd"><div class="dd-links"><b>المعارض</b><a href="#business">أجنحة معارض<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#business">رول أب<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#business">أعلام<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#business">بوابات<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#business" class="dd-all">كل منتجات القسم</a></div><a href="#product" class="dd-promo"><img src="img/p-rollup.jpg" alt="" loading="lazy"><em>الأكثر طلبًا</em><b>رول أب 85 × 200 مع الحقيبة</b><span class="num">ابتداءً من 165 ر.س / قطعة</span><i>اختر الكمية <svg class="ic"><use href="#i-arrow"/></svg></i></a></div></li>
+        <li class="has-dd"><a href="#business" class="dd-trigger" aria-haspopup="true" aria-expanded="false">البنرات والسيارات <svg class="ic chev"><use href="#i-chev"/></svg></a><div class="dd"><div class="dd-links"><b>البنرات والسيارات</b><a href="#business">بنرات<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#business">أسوار مشاريع<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#business">ستيكرات سيارات<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#business">تغليف أساطيل<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#business" class="dd-all">كل منتجات القسم</a></div><a href="#business" class="dd-promo"><img src="img/hero-fleet.jpg" alt="" loading="lazy"><em>من أعمالنا</em><b>تغليف أسطول سيارات</b><span class="num">لجهة حكومية في الرياض</span><i>اطلب عرض سعر <svg class="ic"><use href="#i-arrow"/></svg></i></a></div></li>
+        <li class="has-dd"><a href="#business" class="dd-trigger" aria-haspopup="true" aria-expanded="false">الهوية البصرية <svg class="ic chev"><use href="#i-chev"/></svg></a><div class="dd"><div class="dd-links"><b>الهوية البصرية</b><a href="#business">تصميم شعار<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#business">هوية بصرية كاملة<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#business">مطبوعات الهوية<svg class="ic"><use href="#i-arrow"/></svg></a><a href="#business" class="dd-all">كل منتجات القسم</a></div><a href="#business" class="dd-promo"><img src="img/w-bizcard.jpg" alt="" loading="lazy"><em>خدمة تصميم</em><b>هوية ومطبوعات كاملة</b><span class="num">من الفكرة لآخر قطعة مطبوعة</span><i>اطلب عرض سعر <svg class="ic"><use href="#i-arrow"/></svg></i></a></div></li>
       </ul>
       <a href="#offers" class="offer-chip" data-scroll="offers"><svg class="ic sm"><use href="#i-tag"/></svg>عروض الموسم</a>
     </div>
@@ -1025,10 +1061,10 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
 
   <div class="wrap section acts-sec">
     <div class="acts">
-      <a href="#category" class="act"><span class="aib"><svg class="ic"><use href="#i-zap"/></svg></span><span><b>طلب أونلاين</b><span>اختر المنتج والكمية وادفع أونلاين</span></span></a>
-      <a href="#business" class="act"><span class="aib"><svg class="ic"><use href="#i-building"/></svg></span><span><b>عرض سعر للمشاريع</b><span>للجهات والكميات الخاصة خلال 24 ساعة</span></span></a>
-      <a href="https://wa.me/966509050013" target="_blank" rel="noopener" class="act"><span class="aib"><svg class="ic"><use href="#i-chat"/></svg></span><span><b>تواصل واتساب</b><span class="num">050 90 500 13 · رد خلال ساعات العمل</span></span></a>
-      <a href="#product" class="act"><span class="aib"><svg class="ic"><use href="#i-pen"/></svg></span><span><b>اطلب تصميم</b><span>تصميم كامل من فريقنا بسعر محدد</span></span></a>
+      <a href="#category" class="act t-org"><span class="top"><span class="aib"><svg class="ic"><use href="#i-zap"/></svg></span><span class="aar"><svg class="ic"><use href="#i-arrow"/></svg></span></span><span class="atx"><b>طلب أونلاين</b><span>اختر المنتج والكمية وادفع أونلاين</span></span></a>
+      <a href="#business" class="act t-dark"><span class="top"><span class="aib"><svg class="ic"><use href="#i-building"/></svg></span><span class="aar"><svg class="ic"><use href="#i-arrow"/></svg></span></span><span class="atx"><b>عرض سعر للمشاريع</b><span>للجهات والكميات الخاصة خلال 24 ساعة</span></span></a>
+      <a href="https://wa.me/966509050013" target="_blank" rel="noopener" class="act t-green"><span class="top"><span class="aib"><svg class="ic"><use href="#i-chat"/></svg></span><span class="aar"><svg class="ic"><use href="#i-arrow"/></svg></span></span><span class="atx"><b>تواصل واتساب</b><span class="num">050 90 500 13 · رد خلال ساعات العمل</span></span></a>
+      <a href="#product" class="act t-kraft"><span class="top"><span class="aib"><svg class="ic"><use href="#i-pen"/></svg></span><span class="aar"><svg class="ic"><use href="#i-arrow"/></svg></span></span><span class="atx"><b>اطلب تصميم</b><span>تصميم كامل من فريقنا بسعر محدد</span></span></a>
     </div>
   </div>
 
@@ -1348,10 +1384,21 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
   const fpw=document.getElementById('featProducts'); fpw.innerHTML=P.filter(p=>p.k==='pack').map(card).join(''); fixFav(fpw);
   const mb=document.getElementById('allcats'), mg=document.getElementById('mega');
   const setMega=o=>{mg.classList.toggle('open',o);mb.setAttribute('aria-expanded',o)};
-  mb.addEventListener('click',e=>{e.stopPropagation();setMega(!mg.classList.contains('open'))});
+  mb.addEventListener('click',e=>{e.stopPropagation();closeDD();setMega(!mg.classList.contains('open'))});
   document.addEventListener('click',e=>{if(!mg.contains(e.target))setMega(false)});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')setMega(false)});
   mg.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMega(false)));
+  const dds=[...document.querySelectorAll('.has-dd')];
+  const closeDD=()=>dds.forEach(li=>{li.classList.remove('open');li.querySelector('.dd-trigger').setAttribute('aria-expanded','false')});
+  const placeDD=li=>{const nav=document.querySelector('.mainnav').getBoundingClientRect(),r=li.getBoundingClientRect(),dd=li.querySelector('.dd');if(window.innerWidth>860){const right=Math.max(16,nav.right-r.right-12);dd.style.right=Math.min(right,nav.width-536)+'px';dd.style.left='auto'}else{dd.style.right='';dd.style.left=''}};
+  const openDD=li=>{closeDD();setMega(false);placeDD(li);li.classList.add('open');li.querySelector('.dd-trigger').setAttribute('aria-expanded','true')};
+  const canHover=window.matchMedia('(hover:hover)').matches; let ddT;
+  dds.forEach(li=>{const t=li.querySelector('.dd-trigger');
+    t.addEventListener('click',e=>{if(!li.classList.contains('open')){e.preventDefault();e.stopPropagation();openDD(li)}});
+    if(canHover){li.addEventListener('mouseenter',()=>{clearTimeout(ddT);openDD(li)});li.addEventListener('mouseleave',()=>{ddT=setTimeout(closeDD,180)})}
+    li.querySelectorAll('.dd a').forEach(a=>a.addEventListener('click',closeDD));});
+  document.addEventListener('click',e=>{if(!e.target.closest('.has-dd'))closeDD()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDD()});
   document.querySelectorAll('.track').forEach(t=>{const r=t.querySelector('.trow');for(let i=0;i<2;i++){const c=r.cloneNode(true);c.setAttribute('aria-hidden','true');t.appendChild(c)}});
   const rel=document.getElementById('relProducts'); rel.innerHTML=[P[2],P[3],P[1],P[7]].map(card).join(''); fixFav(rel);
 
