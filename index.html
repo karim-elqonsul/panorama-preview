@@ -565,15 +565,15 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
 .stepx:hover .ci{background:var(--orange-500)}
 
 /* clients */
-.clients{background:var(--ink);color:var(--white);padding-block:72px;text-align:center;overflow:hidden}
-.clients h2{font-size:clamp(26px,3vw,36px);font-weight:800}
+.clients{background:var(--ink);color:var(--white);padding-block:48px;text-align:center;overflow:hidden}
+.clients h2{font-size:clamp(22px,2.4vw,28px);font-weight:800}
 .clients p{opacity:.75;margin-top:8px}
 .clients .wrap > img{margin:32px auto 0;width:min(1100px,100%)}
-.marq{margin-top:40px;display:flex;flex-direction:column;gap:28px}
+.marq{margin-top:28px;display:flex;flex-direction:column;gap:20px}
 .mrow{overflow:hidden;direction:ltr}
 .mtrack{display:flex;width:max-content;animation:mR 70s linear infinite}
 .mtrack.b{animation:mL 74s linear infinite}
-.mtrack img{height:64px;width:auto;max-width:none;flex:none}
+.mtrack img{height:48px;width:auto;max-width:none;flex:none}
 .clients:hover .mtrack{animation-play-state:paused}
 @keyframes mL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes mR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
@@ -675,12 +675,152 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
   .stepx .n{font-size:52px}
   .stepx h3{font-size:18px}
   .marq{gap:16px;margin-top:28px}
-  .mtrack img{height:40px}
+  .mtrack img{height:32px}
   .promos{grid-template-columns:1fr;gap:12px}
   .promo .pr-copy .btn{font-size:11px;padding:7px 12px}
   .pays{justify-content:flex-start}
   .pt{width:52px;height:31px;font-size:9px}
   .pt.sm{font-size:7.5px}
+}
+/* ---- round 3: offers, actions, featured, mega, tape break */
+.mainnav{position:relative}
+.allcats{display:flex;align-items:center;gap:8px;border:0;background:var(--ink);color:var(--white);font:inherit;font-size:14px;font-weight:600;padding:7px 12px 7px 14px;border-radius:999px;white-space:nowrap;flex:none;transition:background .2s}
+.allcats .ic{width:16px;height:16px}
+.allcats:hover,.allcats[aria-expanded="true"]{background:var(--orange-700)}
+.mainnav ul{align-items:center}
+.mega{position:absolute;top:100%;left:0;right:0;width:min(1200px,calc(100% - 32px));margin-inline:auto;z-index:40;padding-top:8px;display:none}
+.mega.open{display:block;animation:megaIn .2s ease-out}
+@keyframes megaIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.mega-in{background:var(--white);border:1px solid var(--ink-200);border-radius:20px;box-shadow:0 24px 48px -12px rgba(44,43,41,.16);padding:28px 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px 24px}
+.mega-col h5{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;margin:0 0 10px}
+.mega-col h5 i{width:40px;height:40px;border-radius:12px;background:var(--orange-50);display:grid;place-items:center;flex:none}
+.mega-col h5 svg{width:26px;height:26px}
+.mega-col a{display:block;font-size:13.5px;color:var(--ink-600);padding:4px 0}
+.mega-col a:hover{color:var(--orange-700)}
+.mega-foot{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--paper);border-radius:14px;padding:14px 20px;font-size:14px;font-weight:500}
+.mega-foot a{color:var(--orange-700);font-weight:600}
+
+.coupons{display:grid;grid-template-columns:2.086fr 1fr 1fr;gap:24px}
+.cp{position:relative;border-radius:20px;overflow:hidden;min-height:320px;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s}
+.cp:hover{transform:translateY(-5px) rotate(-.6deg);box-shadow:0 18px 36px -10px rgba(232,130,58,.32)}
+.cp::before,.cp::after{content:"";position:absolute;width:28px;height:28px;border-radius:50%;background:var(--white);z-index:2}
+.cp-feat{background:var(--orange-500);color:var(--ink);display:grid;grid-template-columns:1fr 200px}
+.cp-feat::before{left:186px;top:-14px}.cp-feat::after{left:186px;bottom:-14px}
+.cp-feat .body{padding:32px 28px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px}
+.cp-eb{display:inline-block;background:var(--ink);color:var(--white);font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px}
+.cp-feat h3{font-size:34px;font-weight:900;line-height:1.2}
+.cp-feat p{font-size:15px;font-weight:500;opacity:.82;max-width:30em}
+.cp-feat .body .btn{margin-top:4px}
+.cp-feat .stub{position:relative;overflow:hidden}
+.cp-feat .stub img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.cp-feat:hover .stub img{transform:scale(1.08)}
+.cp-feat .stub::after{content:"";position:absolute;top:22px;bottom:22px;right:-1px;width:2px;background:repeating-linear-gradient(to bottom,rgba(44,43,41,.55) 0 2px,transparent 2px 9px);transition:background .3s}
+.cp-feat:hover .stub::after{background:repeating-linear-gradient(to bottom,#fff 0 2px,transparent 2px 9px)}
+.cp-card{display:grid;grid-template-rows:1fr 108px}
+.cp-card::before{left:-14px;bottom:94px}.cp-card::after{right:-14px;bottom:94px}
+.cp-card .body{padding:24px 24px 18px;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.cp-card small{font-size:12px;font-weight:600}
+.cp-card h3{font-size:19px;font-weight:700;line-height:1.35}
+.cp-card .pr{display:flex;align-items:baseline;gap:4px 6px;flex-wrap:wrap}
+.cp-card .pr b{white-space:nowrap}
+.cp-card .pr b{font-size:26px;font-weight:900}
+.cp-card .pr span{font-size:13px;opacity:.7}
+.cp-card .stub{position:relative;padding:18px 24px;display:flex;align-items:center;justify-content:space-between}
+.cp-card .stub::before{content:"";position:absolute;top:0;left:22px;right:22px;height:2px;background:repeating-linear-gradient(to left,currentColor 0 2px,transparent 2px 9px);opacity:.4;transition:opacity .3s,color .3s}
+.cp-card:hover .stub::before{opacity:1;color:var(--orange-500)}
+.cp-card .stub b{display:block;font-size:30px;font-weight:900;line-height:1.1}
+.cp-card .stub small{display:block;font-size:12px;font-weight:500;opacity:.75}
+.cp-card .stub .reg{width:18px;height:18px}
+.cp-dark{background:var(--ink);color:var(--white)}
+.cp-dark .body small{color:var(--orange-500)}
+.cp-dark .stub b{color:var(--orange-500)}
+.cp-dark .stub .reg{color:var(--orange-500)}
+.cp-kraft{background:var(--orange-100);color:var(--ink)}
+.cp-kraft .body small{color:var(--orange-700)}
+.cp-kraft .stub b{color:var(--orange-700)}
+
+.section.acts-sec{margin-top:28px;padding-top:0}
+.acts{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.act{display:flex;align-items:center;gap:14px;padding:22px;border-radius:var(--r-lg);background:var(--white);border:1px solid var(--ink-200);min-height:120px;transition:background .25s,border-color .25s,transform .25s,box-shadow .25s}
+.act .aib{width:56px;height:56px;flex:none;border-radius:16px;background:var(--orange-50);display:grid;place-items:center;transition:background .25s}
+.act .aib .ic{width:26px;height:26px}
+.act b{display:block;font-size:16px;font-weight:700}
+.act span{display:block;font-size:12.5px;color:var(--ink-600);line-height:1.5;margin-top:4px}
+.act:hover{background:var(--orange-50);border-color:var(--orange-500);transform:translateY(-3px);box-shadow:0 12px 28px -8px rgba(232,130,58,.25)}
+.act:hover .aib{background:var(--orange-500)}
+
+.pgrid8{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+
+.featx{display:grid;grid-template-columns:2.086fr 1fr 1fr;gap:24px}
+.fpanel{position:relative;border-radius:24px;overflow:hidden;background:var(--orange-100);min-height:528px;padding:40px;display:flex;flex-direction:column;align-items:flex-start;gap:14px;isolation:isolate}
+.fpanel .die{position:absolute;left:-40px;bottom:-40px;width:390px;transform:rotate(8deg);z-index:-1}
+.fpanel .fp-card{position:absolute;left:48px;bottom:44px;width:230px;aspect-ratio:230/180;background:var(--white);border-radius:14px;padding:7px;box-shadow:0 12px 24px -6px rgba(44,43,41,.2);transform:rotate(-5deg);transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+.fpanel .fp-card img{width:100%;height:100%;object-fit:cover;border-radius:9px}
+.fpanel:hover .fp-card{transform:translateY(-8px) rotate(2deg)}
+.fpanel .lab{background:var(--ink);color:var(--white);font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px}
+.fpanel h2{font-size:clamp(32px,3.4vw,42px);font-weight:900;line-height:1.2}
+.fpanel p{font-size:16px;line-height:1.65;color:var(--ink-600);max-width:30em}
+.fpanel .chips{gap:8px}
+.fpanel .btn{margin-top:6px}
+
+.tapebreak{position:relative;height:120px;overflow:hidden;margin-top:88px;background:linear-gradient(to bottom,var(--white) 50%,var(--ink) 50%)}
+.tapebreak .tape{left:-12%;width:124%}
+.tb-org{height:34px;background:var(--orange-500);color:var(--ink);transform:translateY(-50%) translateY(4px) rotate(2.2deg)}
+.tb-grad{height:56px;background:linear-gradient(90deg,#3EB54D,#0FA8BE 50%,#2285C7);color:var(--ink);transform:translateY(-50%) rotate(-2deg);box-shadow:0 8px 18px -6px rgba(0,0,0,.18)}
+.tb-org .trow{gap:26px}.tb-org .trow span{font-size:13px;font-weight:600}.tb-org .star4{width:10px;height:10px;color:var(--ink)}
+.tb-grad .trow{gap:30px}.tb-grad .trow span{font-size:17px;font-weight:600}.tb-grad .star4{width:13px;height:13px;color:var(--white)}
+.tb-org .track{animation:tapeR 34s linear infinite}
+.tb-grad .track{animation:tapeL 40s linear infinite}
+.tapebreak + .foot,.foot.after-break{margin-top:0}
+
+@media (max-width:1080px){
+  .coupons{grid-template-columns:1fr 1fr}
+  .cp-feat{grid-column:1/-1}
+  .acts{grid-template-columns:1fr 1fr}
+  .pgrid8{grid-template-columns:repeat(3,1fr)}
+  .featx{grid-template-columns:1fr 1fr}
+  .fpanel{grid-column:1/-1}
+  .mega-in{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:860px){
+  .mega{position:fixed;top:64px;left:8px;right:8px;width:auto;margin:0;padding:0}
+  .mega-in{grid-template-columns:1fr 1fr;padding:20px;gap:18px 14px;max-height:70vh;overflow:auto}
+  .allcats{font-size:13px;padding:6px 10px}
+  .coupons{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:12px;flex-wrap:wrap}
+  .coupons::-webkit-scrollbar{display:none}
+  .cp-feat{flex:1 1 100%;grid-template-columns:1fr;grid-template-rows:130px auto;min-height:0}
+  .cp-feat .stub{grid-row:1}
+  .cp-feat .body{padding:20px}
+  .cp-feat h3{font-size:24px}
+  .cp-feat p{font-size:13.5px}
+  .cp-feat::before{left:-14px;top:116px;bottom:auto}.cp-feat::after{right:-14px;left:auto;top:116px;bottom:auto}
+  .cp-feat .stub::after{top:auto;bottom:-1px;left:22px;right:22px;width:auto;height:2px;background:repeating-linear-gradient(to left,rgba(44,43,41,.55) 0 2px,transparent 2px 9px)}
+  .cp-card{flex:1 1 calc(50% - 6px);min-width:0;min-height:300px}
+  .cp-card .body{padding:18px 16px 14px}
+  .cp-card h3{font-size:15px}
+  .cp-card .pr b{font-size:20px}
+  .cp-card .stub{padding:14px 16px}
+  .cp-card .stub b{font-size:22px}
+  .cp-card .btn{font-size:12px;padding:7px 12px}
+  .acts{grid-template-columns:1fr;gap:10px}
+  .act{min-height:0;padding:16px}
+  .pgrid8{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:46%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px}
+  .pgrid8::-webkit-scrollbar{display:none}
+  .pgrid8 > *{scroll-snap-align:start}
+  .featx{display:flex;flex-wrap:wrap;gap:12px}
+  .featx .pcard{flex:1 1 calc(50% - 6px);min-width:0}
+  .fpanel{flex:1 1 100%;min-height:490px;padding:22px 20px;gap:10px}
+  .fpanel h2{font-size:30px}
+  .fpanel p{font-size:14px}
+  .fpanel .die{width:270px;left:-30px;bottom:-30px}
+  .fpanel .fp-card{width:150px;left:24px;bottom:24px}
+  .tapebreak{height:76px;margin-top:56px}
+  .tb-org{height:22px}.tb-grad{height:36px}
+  .tb-org .trow span{font-size:9px}.tb-grad .trow span{font-size:11px}
+  .tb-grad .trow{gap:18px}.tb-org .trow{gap:16px}
+  .clients{padding-block:28px}
+  .clients h2{font-size:20px}
+  .clients p{font-size:13px}
 }
 </style>
 </head>
@@ -719,6 +859,15 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
     <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26Z"/></symbol>
     <symbol id="i-reg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="5.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10 0V20M0 10H20" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="10" cy="10" r="2.2" fill="currentColor"/></symbol>
     <symbol id="i-star4" viewBox="0 0 24 24"><path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z"/></symbol>
+    <symbol id="c-print" viewBox="0 0 48 48"><rect x="14" y="5" width="20" height="13" rx="2" fill="#E8823A"/><rect x="6" y="16" width="36" height="18" rx="4" fill="none" stroke="#2C2B29" stroke-width="2.5"/><rect x="14" y="27" width="20" height="15" rx="2" fill="#fff" stroke="#2C2B29" stroke-width="2.5"/><path d="M18 32h12M18 37h8" stroke="#2C2B29" stroke-width="2.5" stroke-linecap="round"/></symbol>
+    <symbol id="c-stickers" viewBox="0 0 48 48"><path d="M24 7A17 17 0 1 0 41 24L31 24A7 7 0 0 1 24 17Z" fill="#E8823A" stroke="#2C2B29" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 7C31 9 39 17 41 24L31 24A7 7 0 0 1 24 17Z" fill="#fff" stroke="#2C2B29" stroke-width="2.5" stroke-linejoin="round"/></symbol>
+    <symbol id="c-pack" viewBox="0 0 48 48"><path d="M24 5L41 14L24 23L7 14Z" fill="#E8823A"/><path d="M24 5L41 14V34L24 43L7 34V14ZM7 14L24 23L41 14M24 23V43" fill="none" stroke="#2C2B29" stroke-width="2.5" stroke-linejoin="round"/></symbol>
+    <symbol id="c-gifts" viewBox="0 0 48 48"><rect x="7" y="17" width="34" height="9" rx="2" fill="#E8823A" stroke="#2C2B29" stroke-width="2.5"/><path d="M10 26V40a2 2 0 0 0 2 2h24a2 2 0 0 0 2-2V26M24 17V42M24 17C21 9 12 8 13 14C14 17 24 17 24 17ZM24 17C27 9 36 8 35 14C34 17 24 17 24 17Z" fill="none" stroke="#2C2B29" stroke-width="2.5" stroke-linejoin="round"/></symbol>
+    <symbol id="c-signs" viewBox="0 0 48 48"><rect x="5" y="7" width="38" height="12" rx="3" fill="#E8823A" stroke="#2C2B29" stroke-width="2.5"/><path d="M9 19V41M39 19V41M4 41H44" stroke="#2C2B29" stroke-width="2.5" stroke-linecap="round"/><rect x="14" y="27" width="8" height="14" fill="none" stroke="#2C2B29" stroke-width="2.5"/></symbol>
+    <symbol id="c-events" viewBox="0 0 48 48"><rect x="7" y="7" width="34" height="8" fill="#E8823A"/><rect x="7" y="7" width="34" height="24" rx="2" fill="none" stroke="#2C2B29" stroke-width="2.5"/><rect x="14" y="25" width="20" height="16" rx="2" fill="#fff" stroke="#2C2B29" stroke-width="2.5"/><path d="M4 41H44" stroke="#2C2B29" stroke-width="2.5" stroke-linecap="round"/></symbol>
+    <symbol id="c-vehicles" viewBox="0 0 48 48"><path d="M6 27H42V31H6Z" fill="#E8823A"/><path d="M6 33V24L11 14H31L38 22H42V33H38M29 33H19M10 33H6" fill="none" stroke="#2C2B29" stroke-width="2.5" stroke-linejoin="round"/><circle cx="14.5" cy="34" r="4.5" fill="#fff" stroke="#2C2B29" stroke-width="2.5"/><circle cx="33.5" cy="34" r="4.5" fill="#fff" stroke="#2C2B29" stroke-width="2.5"/></symbol>
+    <symbol id="c-identity" viewBox="0 0 48 48"><path d="M24 5L36 20L24 43L12 20Z" fill="#E8823A" stroke="#2C2B29" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 25V43M6 43H42" stroke="#2C2B29" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="21" r="3.5" fill="#fff" stroke="#2C2B29" stroke-width="2.5"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
   </defs>
 </svg>
 
@@ -749,6 +898,7 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
   <nav class="mainnav" aria-label="الأقسام">
     <div class="wrap">
       <ul>
+        <li><button class="allcats" id="allcats" aria-expanded="false" aria-controls="mega"><svg class="ic"><use href="#i-grid"/></svg>كل الأقسام</button></li>
         <li><a href="#category">الطباعة الرقمية <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
         <li><a href="#category">الاستيكرات <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
         <li><a href="#category">التغليف <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
@@ -758,8 +908,9 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
         <li><a href="#business">البنرات والسيارات <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
         <li><a href="#business">الهوية البصرية <svg class="ic chev"><use href="#i-chev"/></svg></a></li>
       </ul>
-      <a href="#category" class="offer-chip"><svg class="ic sm"><use href="#i-tag"/></svg>عروض الموسم</a>
+      <a href="#offers" class="offer-chip" data-scroll="offers"><svg class="ic sm"><use href="#i-tag"/></svg>عروض الموسم</a>
     </div>
+    <div class="mega" id="mega"><div class="mega-in"><div class="mega-col"><h5><i><svg><use href="#c-print"/></svg></i>الطباعة الرقمية</h5><a href="#category">كروت أعمال</a><a href="#category">فواتير</a><a href="#category">بروشورات</a><a href="#category">أظرف</a></div><div class="mega-col"><h5><i><svg><use href="#c-stickers"/></svg></i>الاستيكرات والملصقات</h5><a href="#category">دائرية</a><a href="#category">مقصوصة</a><a href="#category">شفافة</a><a href="#category">رولات</a></div><div class="mega-col"><h5><i><svg><use href="#c-pack"/></svg></i>التغليف والعلب</h5><a href="#category">علب شحن</a><a href="#category">علب عطور</a><a href="#category">هارد كوفر</a><a href="#category">أكياس</a></div><div class="mega-col"><h5><i><svg><use href="#c-gifts"/></svg></i>الهدايا والدروع</h5><a href="#category">بوكسات هدايا</a><a href="#category">أكواب</a><a href="#category">دروع</a><a href="#category">أختام</a></div><div class="mega-col"><h5><i><svg><use href="#c-signs"/></svg></i>اللوحات والواجهات</h5><a href="#business">حروف مضيئة</a><a href="#business">بايلون</a><a href="#business">لوحات أكريليك</a><a href="#business">لوحات إرشادية</a></div><div class="mega-col"><h5><i><svg><use href="#c-events"/></svg></i>المعارض والفعاليات</h5><a href="#business">أجنحة معارض</a><a href="#business">رول أب</a><a href="#business">أعلام</a><a href="#business">بوابات</a></div><div class="mega-col"><h5><i><svg><use href="#c-vehicles"/></svg></i>البنرات والسيارات</h5><a href="#business">بنرات</a><a href="#business">أسوار مشاريع</a><a href="#business">ستيكرات سيارات</a><a href="#business">تغليف أساطيل</a></div><div class="mega-col"><h5><i><svg><use href="#c-identity"/></svg></i>الهوية البصرية</h5><a href="#business">تصميم شعار</a><a href="#business">هوية كاملة</a><a href="#business">مطبوعات الهوية</a></div><div class="mega-foot"><span>ما لقيت قسمك؟ اطلب عرض سعر لأي منتج مطبوع</span><a href="#category">تصفح كل المنتجات</a></div></div></div>
   </nav>
 </header>
 
@@ -843,6 +994,18 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
     </div></div>
   </div>
 
+  <div class="wrap section" id="offers">
+    <div class="sec-head">
+      <div><h2>عروض نهاية العام</h2><p>عروض لفترة محدودة على الهدايا والطباعة، وفي المناسبات تتحول لعروض الموسم</p></div>
+      <a href="#category" class="link-more">كل العروض <svg class="ic"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="coupons">
+      <a href="#category" class="cp cp-feat"><div class="body"><span class="cp-eb">عروض الموسم</span><h3>هدايا الشركات<br>وتقاويم 2027</h3><p>أسعار كميات تبدأ من 25 قطعة، بتصميم يناسب هوية جهتك</p><span class="btn btn-dark">تصفح العروض</span></div><div class="stub"><img src="img/w-giftbox.jpg" alt="بوكس هدايا شركات مطبوع بالهوية" loading="lazy"></div></a>
+      <a href="#product" class="cp cp-card cp-dark"><div class="body"><small>الاستيكرات والملصقات</small><h3>ستيكرات دائرية مقصوصة</h3><div class="pr"><b class="num">450 ر.س</b><span class="num">/ 1000 حبة</span></div><span class="btn btn-brand sm">اطلب العرض</span></div><div class="stub"><div><b>بنص السعر</b><small class="num">عند طلب 1000 حبة</small></div><svg class="reg"><use href="#i-reg"/></svg></div></a>
+      <a href="#product" class="cp cp-card cp-kraft"><div class="body"><small>الطباعة الرقمية</small><h3>كروت أعمال 350 جرام بحواف ملونة</h3><div class="pr"><b class="num">120 ر.س</b><span class="num">/ 100 كرت</span></div><span class="btn btn-dark sm">اطلب العرض</span></div><div class="stub"><div><b>يومين</b><small>ويجهز طلبك</small></div><svg class="reg"><use href="#i-reg"/></svg></div></a>
+    </div>
+  </div>
+
   <div class="wrap section">
     <div class="sec-head">
       <div><h2>تسوّق حسب القسم</h2><p>ثمانية أقسام إنتاج تحت سقف واحد، اختر قسمك وابدأ طلبك</p></div>
@@ -860,29 +1023,39 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
     </div>
   </div>
 
-  <div class="wrap section">
-    <div class="paths">
-      <a href="#business" class="path soft">
-        <div class="body"><div class="pi"><svg class="ic"><use href="#i-building"/></svg></div><h3>مشروع كبير أو جهة حكومية؟</h3><p>أجنحة معارض، لوحات، أسطول سيارات، أو كميات خاصة، عرض سعر مفصّل خلال 24 ساعة</p><span class="btn btn-dark sm">اطلب عرض سعر</span></div>
-        <div class="img"><i style="background-image:url(img/w-beeah.jpg)"></i></div>
-      </a>
-      <a href="#category" class="path dark">
-        <div class="body"><div class="pi"><svg class="ic"><use href="#i-zap"/></svg></div><h3>طلب سريع أونلاين</h3><p>منتجات جاهزة بأسعار واضحة لكل كمية، ارفع تصميمك وادفع بمدى أو Apple Pay أو بالتقسيط</p><span class="btn btn-brand sm">ابدأ التسوق</span></div>
-        <div class="img"><i style="background-image:url(img/p-bizcards.jpg)"></i></div>
-      </a>
+  <div class="wrap section acts-sec">
+    <div class="acts">
+      <a href="#category" class="act"><span class="aib"><svg class="ic"><use href="#i-zap"/></svg></span><span><b>طلب أونلاين</b><span>اختر المنتج والكمية وادفع أونلاين</span></span></a>
+      <a href="#business" class="act"><span class="aib"><svg class="ic"><use href="#i-building"/></svg></span><span><b>عرض سعر للمشاريع</b><span>للجهات والكميات الخاصة خلال 24 ساعة</span></span></a>
+      <a href="https://wa.me/966509050013" target="_blank" rel="noopener" class="act"><span class="aib"><svg class="ic"><use href="#i-chat"/></svg></span><span><b>تواصل واتساب</b><span class="num">050 90 500 13 · رد خلال ساعات العمل</span></span></a>
+      <a href="#product" class="act"><span class="aib"><svg class="ic"><use href="#i-pen"/></svg></span><span><b>اطلب تصميم</b><span>تصميم كامل من فريقنا بسعر محدد</span></span></a>
     </div>
   </div>
 
   <div class="wrap section">
     <div class="sec-head">
       <div><h2>الأكثر طلبًا</h2><p>أسعار تبدأ من الحبة الواحدة، شاملة ضريبة القيمة المضافة</p></div>
-      <div class="sec-ctrl"><a href="#category" class="link-more">عرض الكل <svg class="ic"><use href="#i-arrow"/></svg></a><span class="sep"></span><button class="arrow-btn prev" id="pPrev" aria-label="السابق"><svg class="ic"><use href="#i-arrow"/></svg></button><button class="arrow-btn next" id="pNext" aria-label="التالي"><svg class="ic"><use href="#i-arrow"/></svg></button></div>
+      <a href="#category" class="link-more">عرض الكل <svg class="ic"><use href="#i-arrow"/></svg></a>
     </div>
     <div class="filters-row" id="homeChips" role="group" aria-label="فلترة حسب القسم">
       <button class="fchip" aria-pressed="true" data-cat="all">الكل</button><button class="fchip" aria-pressed="false" data-cat="print">الطباعة الرقمية</button><button class="fchip" aria-pressed="false" data-cat="stickers">الاستيكرات</button><button class="fchip" aria-pressed="false" data-cat="pack">التغليف والعلب</button><button class="fchip" aria-pressed="false" data-cat="gifts">الهدايا والدروع</button>
     </div>
-    <div class="pscroll" id="homeProducts"></div>
-    <div class="sprog" aria-hidden="true"><i id="pThumb"></i></div>
+    <div class="pgrid8" id="homeProducts"></div>
+  </div>
+
+  <div class="wrap section">
+    <div class="featx">
+      <div class="fpanel">
+        <svg class="die" viewBox="0 0 300 240" fill="none" aria-hidden="true"><path d="M20 60V22Q20 10 32 10H78Q90 10 90 22V60L96 38H134L140 60V46H210V60L216 38H254L260 60L278 72V168L260 180L254 202H216L210 180V214H140V180L134 202H96L90 180V218Q90 230 78 230H32Q20 230 20 218V180Z" stroke="#2C2B29" stroke-opacity=".35" stroke-width="1.4" stroke-linejoin="round"/><path d="M20 60H260M20 180H260M90 60V180M140 60V180M210 60V180M260 60V180" stroke="#2C2B29" stroke-opacity=".3" stroke-width="1.2" stroke-dasharray="5 5"/></svg>
+        <span class="fp-card"><img src="img/hero-pack.jpg" alt="علب وأكياس مطبوعة" loading="lazy"></span>
+        <span class="lab">قسم الشهر</span>
+        <h2>التغليف والعلب</h2>
+        <p>علب شحن مطبوعة وأكياس فاخرة وعلب هارد كوفر بهوية علامتك، بسعر واضح لكل كمية</p>
+        <div class="chips"><a href="#category" class="fchip">علب شحن</a><a href="#category" class="fchip">أكياس ورقية</a><a href="#category" class="fchip">علب عطور</a><a href="#category" class="fchip">هارد كوفر</a></div>
+        <a href="#category" class="btn btn-dark">تسوّق القسم كامل</a>
+      </div>
+      <div id="featProducts" style="display:contents"></div>
+    </div>
   </div>
 
   <div class="band">
@@ -905,20 +1078,6 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
     <div class="marq">
       <div class="mrow"><div class="mtrack"><img src="img/clients-a.png" alt="شعارات عملاء بانوراما: الرومانسية، كنوز، أكاديمية طويق، وزارة الصحة، جامعة الملك سعود، وتين، D360، المواصفات السعودية، STC، أرامكو، الحدث، تدير، مدرستي" width="2336" height="64"><img src="img/clients-a.png" alt="" aria-hidden="true" width="2336" height="64"></div></div>
       <div class="mrow"><div class="mtrack b"><img src="img/clients-b.png" alt="شعارات عملاء بانوراما: موسم الرياض، أمانة منطقة الرياض، وزارة الرياضة، المسار الرياضي، مدن، وزارة التعليم، ماراثون الرياض، سمسا، مكيون، جامعة الأميرة نورة، صحتك، كاساو" width="2434" height="64"><img src="img/clients-b.png" alt="" aria-hidden="true" width="2434" height="64"></div></div>
-    </div>
-  </div>
-
-  <div class="wrap section">
-    <div class="promos">
-      <a href="#product" class="promo dark"><span class="pr-card"><img src="img/hero-stickers.jpg" alt="" loading="lazy"></span><span class="pr-copy"><small>الاستيكرات والملصقات</small><b>ستيكرات بشعارك<br>بأي شكل تبيه</b><span class="num">ابتداءً من 0.45 ر.س للحبة</span><em class="btn btn-brand sm" style="font-style:normal">اطلب الحين</em></span><svg class="reg" style="color:var(--orange-500)"><use href="#i-reg"/></svg></a>
-      <a href="#product" class="promo org"><span class="pr-card"><img src="img/hero-print.jpg" alt="" loading="lazy"></span><span class="pr-copy"><small>الطباعة الرقمية</small><b>كروت أعمال<br>تعلق في الذاكرة</b><span class="num">100 كرت بحواف ملونة بـ 120 ر.س</span><em class="btn btn-dark sm" style="font-style:normal">صمّم كرتك</em></span><svg class="reg" style="color:var(--ink)"><use href="#i-reg"/></svg></a>
-    </div>
-  </div>
-
-  <div class="wrap section">
-    <div class="season">
-      <div class="body"><span class="badge unit">موسم نهاية العام</span><h2>هدايا الشركات بهويتكم</h2><p>بوكسات ترحيب ودروع تكريم وتقاويم 2027، بأسعار كميات تبدأ من 25 قطعة</p><a href="#business" class="btn btn-brand sm">تصفّح باقات الهدايا</a></div>
-      <div class="img" style="background-image:url(img/hero-gifts.jpg)"></div>
     </div>
   </div>
 
@@ -1128,8 +1287,11 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
 </section>
 </main>
 
-<footer class="foot">
-  <div class="ribbon" style="height:4px"></div>
+<div class="tapebreak" aria-hidden="true">
+  <div class="tape tb-org"><div class="track"><div class="trow"><span>اطبع</span><svg class="star4"><use href="#i-star4"/></svg><span>غلّف</span><svg class="star4"><use href="#i-star4"/></svg><span>اهدِ</span><svg class="star4"><use href="#i-star4"/></svg><span>اعرض</span><svg class="star4"><use href="#i-star4"/></svg><span>علّق</span><svg class="star4"><use href="#i-star4"/></svg><span>ابدأ طلبك</span><svg class="star4"><use href="#i-star4"/></svg></div></div></div>
+  <div class="tape tb-grad"><div class="track"><div class="trow"><span>بانوراما برينت</span><svg class="star4"><use href="#i-star4"/></svg><span>مصنع طباعة ودعاية وإعلان في الرياض</span><svg class="star4"><use href="#i-star4"/></svg><span class="num">منذ 2000</span><svg class="star4"><use href="#i-star4"/></svg><span>اطلب أونلاين أو بعرض سعر</span><svg class="star4"><use href="#i-star4"/></svg></div></div></div>
+</div>
+<footer class="foot after-break">
   <div class="wrap grid">
     <div>
       <a href="#home" class="logo"><img src="img/logo-white.svg" alt="بانوراما برينت"></a>
@@ -1179,15 +1341,17 @@ form.qf{border:1px solid var(--ink-200);border-radius:24px;padding:28px;display:
   const star='<svg class="ic star"><use href="#i-star"/></svg>';
   const card=p=>`<article class="pcard"><a href="#product" class="media"><img src="img/${p.img}.jpg" alt="${p.t}" loading="lazy"><span class="badge unit">${p.u}</span></a><button class="fav" aria-label="أضف للمفضلة"><svg class="ic sm"><use href="#i-heart"/></svg></button><div class="body"><span class="cat-name">${p.c}</span><h3><a href="#product">${p.t}</a></h3><div class="rating">${star}<b class="num">4.9</b><span class="num">(128)</span></div><div class="price"><small>ابتداءً من</small><strong class="num">${fmt(p.p)} ر.س</strong><small class="num">${p.per}</small></div><div class="eta"><svg class="ic sm"><use href="#i-clock"/></svg><span class="num">يجهز خلال ${p.eta===2?'يومي عمل':p.eta+' أيام عمل'}</span></div><a href="#product" class="btn btn-primary sm btn-block">اختر الكمية واطلب</a></div></article>`;
   const fixFav=()=>{};
-  const home=document.getElementById('homeProducts'), thumb=document.getElementById('pThumb');
-  const syncBar=()=>{const max=home.scrollWidth-home.clientWidth;const vis=home.clientWidth/home.scrollWidth;thumb.style.width=(Math.min(1,vis)*100)+'%';const pos=max>0?Math.abs(home.scrollLeft)/max:0;thumb.style.right=(pos*(1-Math.min(1,vis))*100)+'%'};
-  const renderHome=k=>{home.innerHTML=P.filter(p=>k==='all'||p.k===k).map(card).join('');home.scrollLeft=0;syncBar()};
+  const home=document.getElementById('homeProducts');
+  const renderHome=k=>{home.innerHTML=P.filter(p=>k==='all'||p.k===k).map(card).join('');fixFav(home)};
   renderHome('all');
-  home.addEventListener('scroll',syncBar,{passive:true}); window.addEventListener('resize',syncBar);
   document.getElementById('homeChips').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#homeChips button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderHome(b.dataset.cat)});
-  const step=()=>{const c=home.firstElementChild;return c?c.getBoundingClientRect().width+24:300};
-  document.getElementById('pNext').addEventListener('click',()=>home.scrollBy({left:-step(),behavior:'smooth'}));
-  document.getElementById('pPrev').addEventListener('click',()=>home.scrollBy({left:step(),behavior:'smooth'}));
+  const fpw=document.getElementById('featProducts'); fpw.innerHTML=P.filter(p=>p.k==='pack').map(card).join(''); fixFav(fpw);
+  const mb=document.getElementById('allcats'), mg=document.getElementById('mega');
+  const setMega=o=>{mg.classList.toggle('open',o);mb.setAttribute('aria-expanded',o)};
+  mb.addEventListener('click',e=>{e.stopPropagation();setMega(!mg.classList.contains('open'))});
+  document.addEventListener('click',e=>{if(!mg.contains(e.target))setMega(false)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')setMega(false)});
+  mg.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMega(false)));
   document.querySelectorAll('.track').forEach(t=>{const r=t.querySelector('.trow');for(let i=0;i<2;i++){const c=r.cloneNode(true);c.setAttribute('aria-hidden','true');t.appendChild(c)}});
   const rel=document.getElementById('relProducts'); rel.innerHTML=[P[2],P[3],P[1],P[7]].map(card).join(''); fixFav(rel);
 
