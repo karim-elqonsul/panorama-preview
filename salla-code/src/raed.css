@@ -97,7 +97,7 @@ footer.store-footer > div:last-child{border-top:1px solid rgba(255,255,255,.12)}
 /* ---- fixes r1 */
 body.theme-raed{background:#fff}
 .pp-nav-spacer{display:none}
-@media (min-width:1024px){.pp-nav-spacer{display:block;flex:none;width:170px;pointer-events:none}}
+@media (min-width:1024px){.pp-nav-spacer{display:block;flex:none;width:170px;margin-inline-end:-170px;visibility:hidden;pointer-events:none}}
 #mainnav #more-menu-dropdown > a span{font-weight:500}
 .pp-tapebreak .tapebreak{background:linear-gradient(to bottom,transparent 50%,var(--pp-ink) 50%)}
 @media (min-width:861px){.pp .fpanel{min-height:460px}}
@@ -143,3 +143,4 @@ body.theme-raed{background:#fff}
   .pp-top5-grid::-webkit-scrollbar{display:none}
   .pp-top5 custom-salla-product-card{scroll-snap-align:start}
 }
+.s-comments-product{background:var(--pp-paper)!important}
